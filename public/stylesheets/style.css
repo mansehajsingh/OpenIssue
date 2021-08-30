@@ -72,7 +72,7 @@ body {
     color: #000000;
     background-color: #FFFFFF;
     padding: 0.5em 1em;
-    border-radius: 0.3rem;
+    border-radius: 0.3em;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
     font-size: 1.5vw;
     transition: color, background-color 0.3s;
@@ -81,4 +81,86 @@ body {
 #sign-up-button:hover {
     background-color: #70c355;
     color: #FFFFFF;
+}
+
+/* elements for: login.html */
+
+#login-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#login-form-wrapper {
+    margin-top: 10vmax;
+    background-color: #FFFFFF;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+#login-form {
+    padding: 1em 2em 2em 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#login-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+#login-form input[type=text], [type=password] {
+    font-size: 1em;
+    color: #000000;
+    padding: 0.5em;
+    border-width: 0 0 3px 0;
+    border-radius: 0.1em;
+    outline: none;
+    text-align: center;
+    background-color: #afafaf;
+    transition: background-color 0.3s,
+                border-color 0.5s;
+}
+
+#login-form input[type=text]:hover, [type=password]:hover {
+    border-color: #70c355;
+    background-color: #cfcfcf;
+}
+
+#login-form input[type=text]:focus, [type=password]:focus {
+    border-color: #70c355;
+    background-color: #cfcfcf;
+}
+
+#login-submit-button {
+    margin-top: 1em;
+    text-decoration: none;
+    color: #000000;
+    background-color: #FFFFFF;
+    padding: 0.5em 1em;
+    border-radius: 0.3em;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    font-size: 1em;
+    transition: color, background-color 0.3s;
+    outline: none;
+    border-width: 0;
+    cursor: pointer;
+}
+
+#login-submit-button:hover {
+    background-color: #70c355;
+    color: #ffffff;
+}
+
+#login-username-error {
+    color: #8b0000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
 }

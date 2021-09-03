@@ -6,8 +6,8 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.green-tag {
-    color: #70c355;
+.color-tag {
+    color: #F33F54;
 }
 
 /* elements for: index.html */
@@ -26,9 +26,22 @@ body {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
+#logo-heading-section {
+    display: flex;
+    flex-direction: row;
+    vertical-align: middle;
+    padding: 1vh 3rem 0 3rem;
+}
+
+#heading-logo {
+    height: 7vw;
+    width: auto;
+    margin: 0;
+    padding: 1vh 0 0 10px;
+}
+
 #index-heading {
     margin: 0;
-    padding: 0.5em 1em 0em 1em;
     text-align: center;
     font-size: 7vw;
 }
@@ -79,7 +92,7 @@ body {
 }
 
 #sign-up-button:hover {
-    background-color: #70c355;
+    background-color: #F33F54;
     color: #FFFFFF;
 }
 
@@ -90,6 +103,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 #login-form-wrapper {
@@ -97,6 +111,14 @@ body {
     background-color: #FFFFFF;
     border-radius: 0.5rem;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+#login-logo {
+    height: 10vh;
+    width: 10vh;
+    padding: 30px 0 0 0;
 }
 
 #login-form {
@@ -127,12 +149,12 @@ body {
 }
 
 #login-form input[type=text]:hover, [type=password]:hover {
-    border-color: #70c355;
+    border-color: #F33F54;
     background-color: #cfcfcf;
 }
 
 #login-form input[type=text]:focus, [type=password]:focus {
-    border-color: #70c355;
+    border-color: #F33F54;
     background-color: #cfcfcf;
 }
 
@@ -149,14 +171,24 @@ body {
     outline: none;
     border-width: 0;
     cursor: pointer;
+    -webkit-appearance: none;
 }
 
 #login-submit-button:hover {
-    background-color: #70c355;
+    background-color: #F33F54;
     color: #ffffff;
 }
 
 #login-username-error {
+    color: #8b0000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#login-password-error {
     color: #8b0000;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 0.8em;

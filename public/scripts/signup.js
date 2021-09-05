@@ -62,7 +62,7 @@ function sendFormData() {
 
     $.ajax({
         type: "POST",
-        url: "/login",
+        url: "/signup",
         datatype: "json",
         cache : false,
         data: {
@@ -71,7 +71,7 @@ function sendFormData() {
         },
         success: function(res) {
             if(res === "400") {
-                document.getElementById("login-password-error").innerHTML = "Invalid username or password";
+                document.getElementById("login-username-error").innerHTML = "Username already exists.";
             } else {
                 window.location.href = "/";
             }

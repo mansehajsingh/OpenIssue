@@ -5,6 +5,7 @@ const dbcont = require('./controllers/databaseController');
 // requires for routers
 const homeRouter = require("./routes/homeRouter.js")
 const loginRouter = require("./routes/loginRouter")
+const signupRouter = require("./routes/signupRouter");
 
 const app = express();
 const port = 5000;
@@ -20,8 +21,7 @@ app.use(express.static(__dirname)); // allows for the use of the public director
 // use statements for project routers
 app.use('/', homeRouter);
 app.use('/login', loginRouter);
-
-const bcrypt = require('bcrypt');
+app.use('/signup', signupRouter);
 
 app.listen(port, hostname, () => {
     console.log(`App is listening on Port #${port}.`);

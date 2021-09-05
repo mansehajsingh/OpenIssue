@@ -20,12 +20,14 @@ router.post('/', (req, res) => {
         
         bcrypt.compare(currAccount.password, hashedPassword, (err, compRes) => {
             if(!compRes) {
-                res.send('400')
+                res.send('400');
             } else {
-                res.send('200')
+                res.send('200');
             }
         });
 
+    }).catch(() => {
+        res.send('400');
     });
     
 });

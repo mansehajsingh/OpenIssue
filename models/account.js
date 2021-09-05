@@ -10,7 +10,7 @@ class Account {
     }
 
     get password() {
-        return this._password;
+        return this._password; 
     }
 
 }

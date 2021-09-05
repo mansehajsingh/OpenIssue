@@ -1,4 +1,5 @@
 const { Client } = require("pg");
+const bcrypt = require("bcrypt");
 
 const client = new Client({
     user: process.env.OPEN_ISSUE_USER,
@@ -20,4 +21,21 @@ async function getPasswordHash(username) {
 
 }
 
+async function isUsernameTaken(username) {
+
+    const res = await client.query('SELECT * FROM accounts WHERE username = $1;', [username]);
+    return res.rows.length;
+
+}
+
+async function createUser(username, password) {
+
+    bcrypt.hash(password, 11, (err, hash) => {
+        client.query('INSERT INTO accounts(username, password) VALUES ($1, $2);', [username, hash]);
+    });
+
+}
+
 module.exports.getPasswordHash = getPasswordHash;
+module.exports.isUsernameTaken = isUsernameTaken;
+module.exports.createUser = createUser;

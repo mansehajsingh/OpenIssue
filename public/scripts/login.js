@@ -58,7 +58,6 @@ function isValidPassword() {
 function sendFormData() {
 
     document.getElementById("login-submit-button").innerHTML = "Please Wait";
-    document.getElementById("login-submit-button").onclick = null;
 
     $.ajax({
         type: "POST",
@@ -76,7 +75,6 @@ function sendFormData() {
                 window.location.href = "/";
             }
             document.getElementById("login-submit-button").innerHTML = "Login";
-            document.getElementById("login-submit-button").onclick = formBuffer();
         }
     });
 }

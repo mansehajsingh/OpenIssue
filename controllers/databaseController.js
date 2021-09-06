@@ -28,12 +28,10 @@ async function isUsernameTaken(username) {
 
 }
 
-async function createUser(username, password) {
-
+function createUser(username, password) {
     bcrypt.hash(password, 11, (err, hash) => {
         client.query('INSERT INTO accounts(username, password) VALUES ($1, $2);', [username, hash]);
     });
-
 }
 
 module.exports.getPasswordHash = getPasswordHash;

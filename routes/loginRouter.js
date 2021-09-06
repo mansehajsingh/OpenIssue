@@ -17,7 +17,6 @@ router.post('/', (req, res) => {
     let currAccount = new Account(username, password);
     databaseController.getPasswordHash(currAccount.username).then(hash => {
         let hashedPassword = hash;
-        
         bcrypt.compare(currAccount.password, hashedPassword, (err, compRes) => {
             if(!compRes) {
                 res.send('400');

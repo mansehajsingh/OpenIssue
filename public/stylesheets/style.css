@@ -1,5 +1,5 @@
 body {
-    background-color: #ebebeb;
+    background-color: #0d1117;
 }
 
 .primary-text {
@@ -7,7 +7,7 @@ body {
 }
 
 .color-tag {
-    color: #F33F54;
+    color: #3dac64;
 }
 
 /* elements for: index.html */
@@ -21,9 +21,8 @@ body {
 
 .index-heading-wrapper {
     margin-top: 10vmax;
-    background-color: #FFFFFF;
+    background-color: #0d1117;
     border-radius: 0.5rem;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 #logo-heading-section {
@@ -37,6 +36,7 @@ body {
     height: 6vw;
     width: auto;
     margin: 0;
+    margin-top: 1vh;
     padding: 1vh 0 0 20px;
 }
 
@@ -44,6 +44,7 @@ body {
     margin: 0;
     text-align: center;
     font-size: 7vw;
+    color: #ffffff;
 }
 
 #index-subheading {
@@ -51,6 +52,7 @@ body {
     font-weight: lighter;
     font-size: 1.5vw;
     font-style: italic;
+    color: #ffffff;
 }
 
 .sign-button-wrapper {
@@ -65,35 +67,35 @@ body {
 #sign-in-button {
     margin-top: 1em;
     text-decoration: none;
-    color: #000000;
-    background-color: #FFFFFF;
+    color: #FFFFFF;
+    background-color: #0d1117;
     padding: 0.5em 1em;
     border-radius: 0.3em;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    border: solid #FFFFFF 2px;
     font-size: 1.5vw;
     transition: color, background-color 0.3s;
 }
 
 #sign-in-button:hover {
-    background-color: #242424;
-    color: #FFFFFF;
+    background-color: #FFFFFF;
+    color: #0d1117;
 }
 
 #sign-up-button {
     margin-top: 1em;
     text-decoration: none;
-    color: #000000;
-    background-color: #FFFFFF;
+    color: #3dac64;
+    background-color: #0d1117;
     padding: 0.5em 1em;
     border-radius: 0.3em;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    border: solid #3dac64 2px;
     font-size: 1.5vw;
     transition: color, background-color 0.3s;
 }
 
 #sign-up-button:hover {
-    background-color: #F33F54;
-    color: #FFFFFF;
+    background-color: #3dac64;
+    color: #0d1117;
 }
 
 /* elements for: login.html */
@@ -108,9 +110,9 @@ body {
 
 #login-form-wrapper {
     margin-top: 10vmax;
-    background-color: #FFFFFF;
+    background-color: #161b22;
     border-radius: 0.5rem;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    border-width: 1px;
     justify-content: center;
     align-items: center;
 }
@@ -133,54 +135,52 @@ body {
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 1em;
+    color:#FFFFFF;
 }
 
 #login-form input[type=text], [type=password] {
     font-size: 1em;
-    color: #000000;
+    color: #FFFFFF;
     padding: 0.5em;
     border-width: 0 0 3px 0;
     border-radius: 0.1em;
     outline: none;
     text-align: center;
-    background-color: #afafaf;
+    background-color: #161b22;
     transition: background-color 0.3s,
                 border-color 0.5s;
 }
 
 #login-form input[type=text]:hover, [type=password]:hover {
-    border-color: #F33F54;
-    background-color: #cfcfcf;
+    border-color: #3dac64;
 }
 
 #login-form input[type=text]:focus, [type=password]:focus {
-    border-color: #F33F54;
-    background-color: #cfcfcf;
+    border-color: #3dac64;
 }
 
 #login-submit-button {
     margin-top: 1em;
     text-decoration: none;
-    color: #000000;
-    background-color: #FFFFFF;
+    color: #3dac64;
+    background-color: #0d1117;
     padding: 0.5em 1em;
     border-radius: 0.3em;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
     font-size: 1em;
     transition: color, background-color 0.3s;
     outline: none;
-    border-width: 0;
+    border: solid #3dac64 2px;
     cursor: pointer;
     -webkit-appearance: none;
 }
 
 #login-submit-button:hover {
-    background-color: #F33F54;
-    color: #ffffff;
+    background-color: #3dac64;
+    color: #0d1117;
 }
 
 #login-username-error {
-    color: #8b0000;
+    color: #a3a3a3;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 0.8em;
     margin-top: 10px;
@@ -189,7 +189,7 @@ body {
 }
 
 #login-password-error {
-    color: #8b0000;
+    color: #a3a3a3;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 0.8em;
     margin-top: 10px;

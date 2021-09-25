@@ -4,6 +4,10 @@
 
 <h1 align = "center">OpenIssue</h1>
 
+h1 {
+  font-size: 10pt;
+}
+
 ## Issue Tracking Software Based in MarkDown
 
 ```

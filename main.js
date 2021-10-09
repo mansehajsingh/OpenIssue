@@ -1,6 +1,6 @@
 // require statements
 const express = require('express');
-const dbcont = require('./controllers/databaseController');
+const session = require("express-session");
 
 // requires for routers
 const homeRouter = require("./routes/homeRouter.js")
@@ -15,7 +15,6 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED='0';
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-
 app.use(express.static(__dirname)); // allows for the use of the public directory to serve static files
 
 // use statements for project routers

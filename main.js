@@ -1,17 +1,17 @@
 // require statements
 const express = require('express');
-const dbcont = require('./controllers/databaseController');
+const session = require('express-session');
 
 // requires for routers
-const homeRouter = require("./routes/homeRouter.js")
-const loginRouter = require("./routes/loginRouter")
+const homeRouter = require("./routes/homeRouter.js");
+const loginRouter = require("./routes/loginRouter");
 const signupRouter = require("./routes/signupRouter");
 
 const app = express();
 const port = 5000;
 const hostname = '0.0.0.0';
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED='0';
+//process.env.NODE_TLS_REJECT_UNAUTHORIZED='0';
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

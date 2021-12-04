@@ -1,6 +1,5 @@
 // require statements
 const express = require('express');
-const session = require('express-session');
 
 // requires for routers
 const homeRouter = require("./routes/homeRouter.js");
@@ -15,7 +14,6 @@ const hostname = '0.0.0.0';
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-
 app.use(express.static(__dirname)); // allows for the use of the public directory to serve static files
 
 // use statements for project routers

@@ -1,7 +1,7 @@
 // require statements
 const { Client } = require("pg");
 const bcrypt = require("bcrypt");
-const dotenv = require("dotenv"); // we use dotenv to access environment variables
+const dotenv = require("dotenv").config(); // we use dotenv to access environment variables
 
 dotenv.config();
 

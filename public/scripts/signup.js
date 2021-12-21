@@ -72,7 +72,7 @@ function sendFormData() {
             if(res === "400") {
                 document.getElementById("login-username-error").innerHTML = "Username already exists.";
             } else {
-                window.location.href = "/";
+                window.location.href = "/login";
             }
             document.getElementById("login-submit-button").innerHTML = "Sign Up";
         }

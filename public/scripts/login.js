@@ -69,12 +69,29 @@ function sendFormData() {
             password: $("#password-input").val()
         },
         success: function(res) {
-            if(res === "400") {
+            if(res === "400") { 
                 document.getElementById("login-password-error").innerHTML = "Invalid username or password";
-            } else {
-                window.location.href = "/";
             }
-            document.getElementById("login-submit-button").innerHTML = "Login";
+            else { // if the login data was recieved
+
+                document.cookie = "Open Issue Session=" + JSON.stringify(res) + ";"
+                + "expires=" + new Date(Date.now() + (15 * 24 * 60 * 60 * 1000)); // creates a new session cookie
+
+                window.location.href = "/"; // TODO: change path once new routes are created
+            }
+            
+            document.getElementById("login-submit-button").innerHTML = "Login"; 
         }
     });
+}
+
+function checkSessionExists() {
+
+    if( document.cookie.indexOf("Open Issue Session=") != -1 ) {
+        // change window location
+        window.location.href = "/"; // TODO: change 
+    } 
+
+    // don't change window location
+
 }

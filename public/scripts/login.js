@@ -74,7 +74,7 @@ function sendFormData() {
             }
             else { // if the login data was recieved
 
-                document.cookie = "Open Issue Session=" + JSON.stringify(res) + ";"
+                document.cookie = "Softverse Session=" + JSON.stringify(res) + ";"
                 + "expires=" + new Date(Date.now() + (15 * 24 * 60 * 60 * 1000)); // creates a new session cookie
 
                 window.location.href = "/"; // TODO: change path once new routes are created
@@ -87,7 +87,7 @@ function sendFormData() {
 
 function checkSessionExists() {
 
-    if( document.cookie.indexOf("Open Issue Session=") != -1 ) {
+    if( document.cookie.indexOf("Softverse Session=") != -1 ) {
         // change window location
         window.location.href = "/"; // TODO: change 
     } 

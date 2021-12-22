@@ -7,7 +7,7 @@ body {
 }
 
 .color-tag {
-    color: #3dac64;
+    color: #0281fa;
 }
 
 /* elements for: index.html */
@@ -33,11 +33,10 @@ body {
 }
 
 #heading-logo {
-    height: 6vw;
+    height: 9vw;
     width: auto;
     margin: 0;
-    margin-top: 1vh;
-    padding: 1vh 0 0 20px;
+    padding: 0 0 0 20px;
 }
 
 #index-heading {
@@ -84,17 +83,17 @@ body {
 #sign-up-button {
     margin-top: 1em;
     text-decoration: none;
-    color: #3dac64;
+    color: #0281fa;
     background-color: #0d1117;
     padding: 0.5em 1em;
     border-radius: 0.3em;
-    border: solid #3dac64 2px;
+    border: solid #0281fa 2px;
     font-size: 1.5vw;
     transition: color, background-color 0.3s;
 }
 
 #sign-up-button:hover {
-    background-color: #3dac64;
+    background-color: #0281fa;
     color: #0d1117;
 }
 
@@ -118,8 +117,8 @@ body {
 }
 
 #form-logo{
-    height: 10vh;
-    width: 10vh;
+    height: 12vh;
+    width: 12vh;
     padding: 30px 0 0 0;
 }
 
@@ -153,30 +152,30 @@ body {
 }
 
 #login-form input[type=text]:hover, [type=password]:hover {
-    border-color: #3dac64;
+    border-color: #0281fa;
 }
 
 #login-form input[type=text]:focus, [type=password]:focus {
-    border-color: #3dac64;
+    border-color: #0281fa;
 }
 
 #login-submit-button {
     margin-top: 1em;
     text-decoration: none;
-    color: #3dac64;
+    color: #0281fa;
     background-color: #0d1117;
     padding: 0.5em 1em;
     border-radius: 0.3em;
     font-size: 1em;
     transition: color, background-color 0.3s;
     outline: none;
-    border: solid #3dac64 2px;
+    border: solid #0281fa 2px;
     cursor: pointer;
     -webkit-appearance: none;
 }
 
 #login-submit-button:hover {
-    background-color: #3dac64;
+    background-color: #0281fa;
     color: #0d1117;
 }
 

@@ -77,7 +77,7 @@ function sendFormData() {
                 document.cookie = "Softverse Session=" + JSON.stringify(res) + ";"
                 + "expires=" + new Date(Date.now() + (15 * 24 * 60 * 60 * 1000)); // creates a new session cookie
 
-                window.location.href = "/"; // TODO: change path once new routes are created
+                window.location.href = "/dashboard"; 
             }
             
             document.getElementById("login-submit-button").innerHTML = "Login"; 
@@ -89,7 +89,7 @@ function checkSessionExists() {
 
     if( document.cookie.indexOf("Softverse Session=") != -1 ) {
         // change window location
-        window.location.href = "/"; // TODO: change 
+        window.location.href = "/dashboard";
     } 
 
     // don't change window location

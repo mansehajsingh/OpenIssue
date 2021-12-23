@@ -5,6 +5,7 @@ const express = require('express');
 const homeRouter = require("./routes/homeRouter.js");
 const loginRouter = require("./routes/loginRouter");
 const signupRouter = require("./routes/signupRouter");
+const dashboardRouter = require("./routes/dashboardRouter");
 
 const app = express();
 const port = 5000;
@@ -20,6 +21,7 @@ app.use(express.static(__dirname)); // allows for the use of the public director
 app.use('/', homeRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
+app.use('/dashboard', dashboardRouter);
 
 app.listen(port, hostname, () => {
     console.log(`App is listening on Port #${port}.`);

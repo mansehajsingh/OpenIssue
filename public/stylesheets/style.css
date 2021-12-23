@@ -198,3 +198,118 @@ body {
 }
 
 /* elements for: signup.html were reused from login.html*/
+
+/* elements for dashboard.html */
+
+#nav {
+    overflow: hidden;
+    background-color: #0d1117;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding-top: 20px;
+    border-color: #3d444e;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+
+.nav-button {
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    color: #e9f3fb;
+    text-decoration: none;
+    margin-left: 35px;
+    padding: 20px 2px 24px 2px;
+    font-size: 1rem;
+}
+
+.nav-button:hover {
+    border-color: #0281fa;
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+}
+
+#nav-image {
+    float: left;
+    height: 70px;
+    cursor: pointer;
+    padding-left: 60px;
+}
+
+#projects-wrapper {
+    margin-top: 140px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 40px;
+    margin-right: 40px;
+    flex-wrap: wrap;
+}
+
+#create-button {
+    height: 250px;
+    width: 250px;
+    border: solid 1px #3d444e;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 200px;
+    user-select: none;
+    cursor: pointer;
+    transition: 0.5s ease;
+    margin: 20px;
+}
+
+#create-button:hover {
+    transition: 0.5s ease;
+    color:#0d1117;
+    background: rgb(2,129,250);
+    background: linear-gradient(180deg, rgba(2,129,250,1) 0%, rgba(21,86,168,1) 100%);
+}
+.project-card-wrapper {
+    height: 250px;
+    width: 250px;
+    border: solid 1px #3d444e;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.project-name {
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+    text-align: left;
+    margin: 25px 0 0 30px;
+}
+
+.project-description {
+    color: #7c7c7c;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: lighter;
+    text-align: left;
+    margin: 10px 30px 0 30px;
+}
+
+.project-card-wrapper:hover {
+    transition: 0.5s ease;
+    background: rgb(2,129,250);
+    background: linear-gradient(180deg, rgba(2,129,250,1) 0%, rgba(21,86,168,1) 100%);
+}
+
+.project-card-wrapper:hover .project-name {
+    transition: 0.3s ease;
+    color: #0d1117;
+}
+
+.project-card-wrapper:hover .project-description {
+    transition: 0.3s ease;
+    color: #0d1117;
+}
+

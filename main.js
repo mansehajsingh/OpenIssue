@@ -6,6 +6,7 @@ const homeRouter = require("./routes/homeRouter.js");
 const loginRouter = require("./routes/loginRouter");
 const signupRouter = require("./routes/signupRouter");
 const dashboardRouter = require("./routes/dashboardRouter");
+const createRouter = require("./routes/createRouter");
 
 const app = express();
 const port = 5000;
@@ -22,9 +23,8 @@ app.use('/', homeRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 app.use('/dashboard', dashboardRouter);
+app.use('/create-project', createRouter);
 
 app.listen(port, hostname, () => {
     console.log(`App is listening on Port #${port}.`);
 });
-
-// <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div><div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>

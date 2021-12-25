@@ -104,13 +104,13 @@ async function getProjects(username) {
     );
 
 
-    if( (await res).rows.length === 0) {
-        return result;
-    }
+    if( !((await res).rows.length === 0) ) {
     
-    (await res).rows.forEach( obj => {
-        result.push( new Project(obj.name, obj.description, obj.owner) );
-    });
+        (await res).rows.forEach( obj => {
+            result.push( new Project(obj.name, obj.description, obj.owner) );
+        });
+
+    }   
     
     const integrations = client.query(
         "SELECT * FROM integrations WHERE username = ($1)",
@@ -148,6 +148,25 @@ async function getProjects(username) {
 
 }
 
+async function isProjectNameAvailable(project) {
+
+    const res = await client.query("SELECT * FROM projects WHERE name = ($1);", [ project.projectName ]);
+
+    if(res.rows.length > 0) {
+        return false;
+    }
+    
+    return true;
+
+}
+
+async function createProject(project) {
+
+    client.query("INSERT INTO projects(name, description, owner) VALUES ($1, $2, $3);", 
+    [ project.projectName, project.projectDescription, project.projectOwner ]);
+
+}
+
 module.exports.getPasswordHash = getPasswordHash;
 module.exports.isUsernameTaken = isUsernameTaken;
 module.exports.createUser = createUser;
@@ -155,3 +174,5 @@ module.exports.createSession = createSession;
 module.exports.sessionExists = sessionExists;
 module.exports.validateSession = validateSession;
 module.exports.getProjects = getProjects;
+module.exports.isProjectNameAvailable = isProjectNameAvailable;
+module.exports.createProject = createProject;

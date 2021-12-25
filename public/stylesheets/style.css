@@ -267,6 +267,7 @@ body {
     background: rgb(2,129,250);
     background: linear-gradient(180deg, rgba(2,129,250,1) 0%, rgba(21,86,168,1) 100%);
 }
+
 .project-card-wrapper {
     height: 250px;
     width: 250px;
@@ -313,3 +314,119 @@ body {
     color: #0d1117;
 }
 
+/* elements for the create project page */
+
+#create-project-wrapper {
+    margin: 140px 40px 0 40px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#create-project-form {
+    background-color: #161b22;
+    border-radius: 0.5rem;
+    border-width: 1px;
+    padding: 1em 2em 2em 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#create-project-logo {
+    width: 150px;
+}
+
+#create-project-label {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    margin: 5px 0 20px 0;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+#project-name-input {
+    font-size: 24px;
+    width: 60vw;
+    color: #FFFFFF;
+    border-style: solid;
+    padding: 0.5em;
+    border-width: 1px;
+    border-radius: 0.5em;
+    outline: none;
+    text-align: left;
+    background-color: #0d1117;
+    transition: background-color 0.3s,
+                border-color 0.5s;
+    margin-bottom:5px;
+}
+
+#project-name-input:hover {
+    border-color: #0281fa;
+}
+
+#create-description-area {
+    resize: vertical;
+    font-size: 18px;
+    width: 60vw;
+    height: 20vh;
+    color: #FFFFFF;
+    border-style: solid;
+    padding: 0.5em;
+    border-width: 1px;
+    border-radius: 0.5em;
+    outline: none;
+    text-align: left;
+    background-color: #0d1117;
+    transition: background-color 0.3s,
+                border-color 0.5s;
+    margin-bottom: 5px;
+    min-height: 25px;
+}
+
+#create-description-area:hover {
+    border-color: #0281fa;
+}
+
+#create-project-button {
+    margin-top: 1em;
+    text-decoration: none;
+    color: #0281fa;
+    background-color: #0d1117;
+    padding: 0.5em 1em;
+    border-radius: 0.3em;
+    font-size: 1em;
+    transition: color, background-color 0.3s;
+    outline: none;
+    border: solid #0281fa 2px;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-appearance: none;
+    text-align: center;
+    user-select: none;
+}
+
+#create-project-button:hover {
+    background-color: #0281fa;
+    color: #0d1117;
+}
+
+#create-project-name-error-tag {
+    color: #a3a3a3;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#create-project-description-error-tag {
+    color: #a3a3a3;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}

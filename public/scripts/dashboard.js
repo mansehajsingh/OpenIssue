@@ -51,3 +51,7 @@ function loadProjects(projects) {
     });
 
 }
+
+function sendToCreate() {
+    window.location.href = '/create-project';
+}

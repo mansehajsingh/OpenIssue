@@ -20,7 +20,7 @@ function isValidUsername() {
         return false;
     }
 
-    re = /^[a-zA-Z0-9]*$/;
+    let re = /^[a-zA-Z0-9]*$/;
     
     if(!re.test(text)) { // must be alphanumeric 
         document.getElementById("login-username-error").innerHTML = "Username must be alphanumeric, and contain at least one letter.";

@@ -77,7 +77,7 @@ async function validateSession(session) {
 
     let sessionData = res.rows[0];
     
-    if ( !(session.sessionID === sessionData['session_id']) ) {
+    if ( !(session.sessionID === sessionData.session_id) ) {
         return false;
     }
 
@@ -121,23 +121,24 @@ async function getProjects(username) {
         return result;
     }
 
-    let foreignProjectsQuery = "SELECT * FROM projects WHERE name = ($1) ";
+    let foreignProjectsQuery = "SELECT * FROM projects WHERE (name = ($1) AND owner = ($2)) ";
 
-    for(let i = 1; i < integrations.length; i++) {
-        foreignProjectsQuery += `OR name = (${i + 1}) `;
+    for(let i = 2; i < integrations.length; i += 2) {
+        foreignProjectsQuery += `OR (name = (${i + 1}) AND owner = (${i + 2})) `;
     }
 
     foreignProjectsQuery += ";";
 
-    let projectNames = [];
+    let projectDetails = [];
 
     (await integrations).rows.forEach(integration => {
-        projectNames.push(integration.projectname);
+        projectDetails.push(integration.projectname);
+        projectDetails.push(integration.owner);
     });
 
     const foreignProjects = client.query(
         foreignProjectsQuery,
-        projectNames
+        projectDetails
     );
 
     (await foreignProjects).rows.forEach( foreignProj => {
@@ -150,7 +151,8 @@ async function getProjects(username) {
 
 async function isProjectNameAvailable(project) {
 
-    const res = await client.query("SELECT * FROM projects WHERE name = ($1);", [ project.projectName ]);
+    const res = await client.query("SELECT * FROM projects WHERE name = ($1) AND owner = ($2);", 
+    [ project.projectName, project.projectOwner ]);
 
     if(res.rows.length > 0) {
         return false;

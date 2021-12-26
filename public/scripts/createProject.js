@@ -47,8 +47,22 @@ function isValidProjectName() {
 
     let nameErrorTag = document.getElementById("create-project-name-error-tag");
 
-    if( document.getElementById("project-name-input").value.length < 4 ) {
-        nameErrorTag.innerText = "Project name must be at least 4 characters."
+    if( document.getElementById("project-name-input").value.length < 4 
+    || document.getElementById("project-name-input").value.length > 50 ) 
+    {
+        nameErrorTag.innerText = "Project name be from 4-50 characters."
+        return false;
+    }
+
+    let re = /^[a-zA-Z0-9 ]*$/;
+    
+    if(!re.test( document.getElementById("project-name-input").value )) { // must be alphanumeric, with spaces
+        nameErrorTag.innerText = "While we love your funky characters, please use only letters, numbers, and spaces.";
+        return false;
+    }
+
+    if(!document.getElementById("project-name-input").value.trim()) {
+        nameErrorTag.innerText = "Please use characters other than spaces as well.";
         return false;
     }
 
@@ -123,7 +137,7 @@ function sendProject() {
         success: function(res) {
             
             if(res === "taken") {
-                document.getElementById("create-project-name-error-tag").innerText = "Sorry, a project already exists with this name.";
+                document.getElementById("create-project-name-error-tag").innerText = "Sorry, one of your projects already has this name.";
             } else if (res === "success") {
                 window.location.href = '/dashboard';
             }

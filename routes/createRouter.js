@@ -14,11 +14,15 @@ router.post('/', (req, res) => {
 
     let session = new Session(req.body.username, req.body.session_id);
 
-    let isValid = databaseController.validateSession(session);
+    databaseController.validateSession(session).then( isValid => {
 
-    if(isValid === false) {
-        res.send("fail");
-    }
+        console.log(isValid);
+
+        if(isValid === false) {
+            res.send("fail");
+        }
+        
+    });
 
 });
 

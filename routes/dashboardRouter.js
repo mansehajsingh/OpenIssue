@@ -14,16 +14,16 @@ router.post('/', (req, res) => {
     
     let session = new Session(req.body.username, req.body.session_id);
 
-    let isValid = databaseController.validateSession(session);
-
-    if(isValid === false) {
-        res.send("fail");
-    }
-    else {
-        databaseController.getProjects(req.body.username).then(projects => {
-            res.send(projects);
-        })
-    }
+    databaseController.validateSession(session).then( isValid => {
+        if(isValid === false) {
+            res.send("fail");
+        }
+        else {
+            databaseController.getProjects(req.body.username).then(projects => {
+                res.send(projects);
+            })
+        }
+    });
 
 });
 

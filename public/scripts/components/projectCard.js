@@ -8,6 +8,8 @@ class ProjectCard extends HTMLElement {
         this.template = document.createElement('template');
     }
 
+    
+
     connectedCallback() {
         this.render();
     }

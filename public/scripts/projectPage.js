@@ -1,6 +1,10 @@
 document.title = window.location.pathname.split("/")[2] + " by " + 
                  window.location.pathname.split("/")[1] + " | SoftVerse";
 
+let openIssues = [];
+let closedIssues = [];
+let members = [];
+
 ( function () { // self invoking post-function 
 
     let index = document.cookie.indexOf("Softverse Session=");
@@ -48,7 +52,9 @@ document.title = window.location.pathname.split("/")[2] + " by " +
                 
                 let issuesWrapper = document.getElementById("issues-wrapper");
 
-                fillIssueButtons(res.issues, issuesWrapper, true);
+                setIssueLists(res.issues);
+                fillIssueButtons(openIssues, issuesWrapper);
+                document.getElementById("open-issues-button").style.background = "#1d2635";
             }
 
         }
@@ -60,7 +66,18 @@ function deleteCookie() {
     document.cookie = "Softverse Session=; expires=Thu, 01-Jan-70 00:00:01 GMT;";
 }
 
-function fillIssueButtons(issues, wrapper, type) {
+function setIssueLists(issues) {
+    issues.forEach( issue => {
+        if(issue._type === true) {
+            openIssues.push(issue);
+        }
+        else {
+            closedIssues.push(issue);
+        }
+    });
+}
+
+function fillIssueButtons(issues, wrapper) {
     issues.forEach( issue => {
         let newButton = document.createElement("issue-button");
         newButton.setAll(
@@ -71,8 +88,28 @@ function fillIssueButtons(issues, wrapper, type) {
             issue._issueID
         );
 
-        if(newButton._type === type) {
-            wrapper.prepend(newButton);
-        }
+        wrapper.prepend(newButton);
     });
+}
+
+function openIssuesOnClick() {
+
+    document.getElementById("open-issues-button").style.background = "#1d2635";
+
+    document.getElementById("closed-issues-button").style.background = "#0d1117";
+
+    let issuesWrapper = document.getElementById("issues-wrapper");
+    issuesWrapper.innerHTML = '';
+    fillIssueButtons(openIssues, issuesWrapper);
+}
+
+function closedIssuesOnClick() {
+
+    document.getElementById("open-issues-button").style.background = "#0d1117";
+
+    document.getElementById("closed-issues-button").style.background = "#1d2635";
+
+    let issuesWrapper = document.getElementById("issues-wrapper");
+    issuesWrapper.innerHTML = '';
+    fillIssueButtons(closedIssues, issuesWrapper);
 }

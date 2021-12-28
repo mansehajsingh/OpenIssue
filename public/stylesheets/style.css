@@ -496,6 +496,10 @@ body {
     cursor: pointer;
 }
 
+#open-issues-button:hover {
+    transition: 0.3s ease;
+}
+
 #closed-issues-button {
     background-color: #0d1117;
     border: solid 1px #3d444e;
@@ -508,6 +512,10 @@ body {
     padding: 10px 0 10px 0;
     width: 32vw;
     cursor: pointer;
+}
+
+#closed-issues-button:hover {
+    transition: 0.3s ease;
 }
 
 #issues-wrapper {
@@ -524,6 +532,10 @@ body {
     flex-direction: row;
     justify-content: space-between;
     padding: 0 0 10px 0;
+}
+
+.issue-button-wrapper:hover {
+    background:#1d2635;
 }
 
 .issue-button-title {

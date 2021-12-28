@@ -88,10 +88,13 @@ function sendFormData() {
 function checkSessionExists() {
 
     if( document.cookie.indexOf("Softverse Session=") != -1 ) {
-        // change window location
-        window.location.href = "/dashboard";
+        deleteCookie();
     } 
 
     // don't change window location
 
+}
+
+function deleteCookie() {
+    document.cookie = "Softverse Session=; expires=Thu, 01-Jan-70 00:00:01 GMT;";
 }

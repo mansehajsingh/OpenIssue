@@ -430,3 +430,196 @@ body {
     margin-bottom: 10px;
     text-align: center;
 }
+
+/* project page elements */
+
+#project-page-wrapper {
+    margin: 140px 0px 0 0px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.project-details-wrapper {
+    background-color: #0d1117;
+    border: solid 1px #3d444e;
+    border-radius: 10px;
+    width: 60vw;
+    padding: 0 30px 20px 30px;
+}
+
+.project-details-name {
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+}
+
+.project-details-description {
+    color: #7c7c7c;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+}
+
+.project-details-owner {
+    color: #7c7c7c;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+.project-details-username {
+    color: #0281fa;
+    background-color: #00182e;
+    border: solid 1px #0281fa;
+    border-radius: 10px;
+    padding: 0 15px 2px 15px;
+    text-decoration: none;
+}
+
+#issue-type-button-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+#open-issues-button {
+    background-color: #0d1117;
+    border: solid 1px #3d444e;
+    color: #ffffff;
+    border-radius: 10px 0 0 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    font-size: 20px;
+    margin-right: 0;
+    padding: 10px 0 10px 0;
+    width: 32vw;
+    cursor: pointer;
+}
+
+#closed-issues-button {
+    background-color: #0d1117;
+    border: solid 1px #3d444e;
+    color: #ffffff;
+    border-radius: 0 10px 0 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    font-size: 20px;
+    margin-right: 0;
+    padding: 10px 0 10px 0;
+    width: 32vw;
+    cursor: pointer;
+}
+
+#issues-wrapper {
+    text-align: center;  
+    display: flex;
+    flex-direction: column;
+    width: 64vw;
+}
+
+.issue-button-wrapper {
+    border: solid 1px #3d444e;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 0 10px 0;
+}
+
+.issue-button-title {
+    text-align: left;
+    margin: 10px 0 3px 20px;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    font-size: 18px;
+}
+
+.issue-button-description {
+    text-align: left;
+    margin: 5px 0 10px 20px;
+    color: #3d444e;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    font-size: 16px;
+}
+
+.open-issue-button-type {
+    color: #238636;
+    background-color: #011a06;
+    border: solid 1px #238636;
+    border-radius: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    padding: 2px 8px 2px 8px;
+    text-decoration: none;
+    float: left;
+    margin-left: 20px;
+}
+
+.closed-issue-button-type {
+    color: #da140d;
+    background-color: #200201;
+    border: solid 1px #da140d;
+    border-radius: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    padding: 2px 8px 2px 8px;
+    text-decoration: none;
+    float: left;
+    margin-left: 20px;
+}
+
+.issue-button-priority-tag-LOW {
+    text-align: left;
+    margin: 5px 0 5px 22px;
+    font-family: 'Arial Narrow Black', sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #3d444e;
+}
+
+.issue-button-priority-tag-LOW {
+    text-align: left;
+    margin: 5px 0 5px 22px;
+    font-family: 'Arial Narrow Black', sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #3d444e;
+}
+
+.issue-button-priority-tag-MEDIUM {
+    text-align: left;
+    margin: 5px 0 5px 22px;
+    font-family: 'Arial Narrow Black', sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #d39912;
+}
+
+.issue-button-priority-tag-HIGH {
+    text-align: left;
+    margin: 5px 0 5px 22px;
+    font-family: 'Arial Narrow Black', sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #a80e08;
+}
+
+.issue-button-creator-tag {
+    color: #3d444e;
+    text-align: right;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-right: 20px;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.issue-button-id {
+    color: #3d444e;
+    text-align: right;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-right: 20px;
+    font-size: 14px;
+    margin-top: 0;
+}

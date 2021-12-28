@@ -28,6 +28,7 @@ function validateSession() {
         success: function(res) {
             
             if(res === "fail") {
+                deleteCookie();
                 window.location.href = '/';
             }
             else {
@@ -47,6 +48,7 @@ function loadProjects(projects) {
         let card = document.createElement("project-card");
         card.projectName = project._projectName;
         card.projectDescription = project._projectDescription;
+        card.projectOwner = project._projectOwner;
         wrapper.append(card);
     });
 
@@ -54,4 +56,8 @@ function loadProjects(projects) {
 
 function sendToCreate() {
     window.location.href = '/create-project';
+}
+
+function deleteCookie() {
+    document.cookie = "Softverse Session=; expires=Thu, 01-Jan-70 00:00:01 GMT;";
 }

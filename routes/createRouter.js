@@ -16,8 +16,6 @@ router.post('/', (req, res) => {
 
     databaseController.validateSession(session).then( isValid => {
 
-        console.log(isValid);
-
         if(isValid === false) {
             res.send("fail");
         }

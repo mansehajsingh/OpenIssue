@@ -4,6 +4,10 @@ const bcrypt = require("bcrypt");
 const dotenv = require("dotenv"); // we use dotenv to access environment variables
 const { rows } = require("pg/lib/defaults");
 const { Project } = require("../models/project");
+const { Issue } = require("../models/issue");
+const { Account } = require("../models/account");
+const { v4: uuidV4 } = require('uuid');
+const res = require("express/lib/response");
 
 dotenv.config();
 
@@ -169,6 +173,110 @@ async function createProject(project) {
 
 }
 
+async function canViewProject(session, project) {
+
+    if(session.username === project.projectOwner) {
+        return true;
+    }
+
+    const res = await client.query(
+        "SELECT * FROM integrations WHERE username = ($1) AND projectname = ($2) AND owner = ($3);",
+        [ session.username, project.projectName, project.projectOwner ]
+    );
+
+    if(res.rows.length > 0) {
+        return true;
+    }
+
+    return false;
+
+}
+
+async function getProjectDetails(project) {
+
+    const descRes = await client.query(
+        "SELECT * FROM projects WHERE name = ($1) AND owner = ($2);",
+        [ project.projectName, project.projectOwner ]
+    );
+
+    let description = descRes.rows[0].description;
+
+    let issues = [];
+
+    const issuesRes = await client.query(
+        "SELECT * FROM issues WHERE project_name = ($1) AND owner = ($2);",
+        [ project.projectName, project.projectOwner ]
+    );
+
+    issuesRes.rows.forEach( entry => {
+        let issue = new Issue(
+            entry.title,
+            entry.description,
+            entry.project_name,
+            entry.creator,
+            entry.owner,
+            entry.date_created,
+            entry.type,
+            entry.issue_id,
+            entry.priority
+        );
+
+        issues.push(issue);
+    });
+
+    let members = [];
+
+    const membersRes = await client.query(
+        "SELECT * FROM integrations WHERE projectname = ($1) AND owner = ($2);",
+        [ project.projectName, project.projectOwner ]
+    );
+
+    members.push(new Account(project.projectOwner));
+
+    membersRes.rows.forEach( entry => {
+        let account = new Account(entry.username);
+        members.push(account);
+    });
+
+    const result = {
+        description: description,
+        members: members,
+        issues: issues
+    }
+
+    return result;
+
+}
+
+async function getUniqueIssueId(project) {
+
+    let candidateID = null;
+
+    let res = null;
+
+    do {
+
+        candidateID = uuidV4().substring(0, 8);
+
+        res = await client.query(
+            "SELECT * FROM issues WHERE project_name = ($1) AND owner = ($2);",
+            [ project.projectName, project.projectOwner ]
+        );
+
+    } while(!isUniqueIssueID(candidateID, res.rows))
+
+}
+
+function isUniqueIssueID(candidateID, issues) {
+    issues.forEach( issue => {
+        if(candidateID === issue.issue_id) {
+            return false;
+        }
+    });
+
+    return true;
+}
+
 module.exports.getPasswordHash = getPasswordHash;
 module.exports.isUsernameTaken = isUsernameTaken;
 module.exports.createUser = createUser;
@@ -178,3 +286,6 @@ module.exports.validateSession = validateSession;
 module.exports.getProjects = getProjects;
 module.exports.isProjectNameAvailable = isProjectNameAvailable;
 module.exports.createProject = createProject;
+module.exports.canViewProject = canViewProject;
+module.exports.getProjectDetails = getProjectDetails;
+module.exports.getUniqueIssueId = getUniqueIssueId;

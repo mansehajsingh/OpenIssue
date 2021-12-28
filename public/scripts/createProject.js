@@ -28,6 +28,7 @@ function validateSession() {
         success: function(res) {
             
             if(res === "fail") {
+                deleteCookie();
                 window.location.href = '/';
             }
             
@@ -147,4 +148,8 @@ function sendProject() {
         }
     });
 
+}
+
+function deleteCookie() {
+    document.cookie = "Softverse Session=; expires=Thu, 01-Jan-70 00:00:01 GMT;";
 }

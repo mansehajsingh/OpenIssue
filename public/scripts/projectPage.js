@@ -113,3 +113,7 @@ function closedIssuesOnClick() {
     issuesWrapper.innerHTML = '';
     fillIssueButtons(closedIssues, issuesWrapper);
 }
+
+function goToCreateIssue() {
+    window.location = window.location + '/create-issue';
+}

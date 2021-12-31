@@ -16,6 +16,11 @@
 <body >
     <div class = "main-wrapper">
         <div id = "project-page-wrapper">
+            <project-info></project-info>
+            <div id = "action-buttons-wrapper">
+                <button class = "action-button" id = "new-issue-button" onclick = "goToCreateIssue();">New</button>
+                <button class = "action-button" id = "export-issues-button">Export</button>
+            </div>
             <div id = "issue-type-button-wrapper">
                 <button id = "open-issues-button" onclick="openIssuesOnClick();">Open</button>
                 <button id = "closed-issues-button" onclick="closedIssuesOnClick();">Closed</button>
@@ -28,5 +33,6 @@
     <script src = "/public/scripts/projectPage.js"></script>
     <script src = "/public/scripts/components/projectDetailsSection.js"></script>
     <script src = "/public/scripts/components/issueButton.js"></script>
+    <script src = "/public/scripts/components/projectInfoSection.js"></script>
 </body>
 </html>

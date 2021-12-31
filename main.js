@@ -8,6 +8,7 @@ const signupRouter = require("./routes/signupRouter");
 const dashboardRouter = require("./routes/dashboardRouter");
 const createRouter = require("./routes/createRouter");
 const projectRouter = require("./routes/projectRouter");
+const createIssueRouter = require("./routes/createIssueRouter");
 
 const app = express();
 const port = 5000;
@@ -26,6 +27,7 @@ app.use('/signup', signupRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/create-project', createRouter);
 app.use('/:username/:project', projectRouter);
+app.use('/:username/:project/create-issue', createIssueRouter);
 
 app.listen(port, hostname, () => {
     console.log(`App is listening on Port #${port}.`);

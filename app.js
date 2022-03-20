@@ -2,6 +2,7 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
 const { sequelize } = require("./database");
+const router = require("./routes")
 
 /* important inits */
 const app = express();
@@ -10,6 +11,9 @@ HOSTNAME = process.env.HOSTNAME;
 
 /* middlewares */
 app.use(express.json());
+
+/* router setup */
+app.use("/", router);
 
 /* app boilerplate */
 (async function checkDBConnection() {

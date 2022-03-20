@@ -3,7 +3,17 @@ const { sequelize } = require("../database");
 const { Model, DataTypes } = require("sequelize");
 
 /* init model */
-class User extends Model {};
+class User extends Model {
+
+    /* class level methods */
+
+    // finds if a user with the provided username exists
+    static async usernameExists(username) {
+        const users = await User.findAll({ where: { username: username } });
+        return users.length > 0;
+    }
+
+};
 
 User.init(
     /* model attributes */
@@ -13,6 +23,11 @@ User.init(
             defaultValue: DataTypes.UUIDV4,
             allowNull: false,
             primaryKey: true
+        },
+        session_id: {
+            type: DataTypes.UUID,
+            allowNull: true,
+            defaultValue: null
         },
         username: {
             type: DataTypes.STRING(20),

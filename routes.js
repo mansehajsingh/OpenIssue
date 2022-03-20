@@ -9,9 +9,9 @@ const apiRouter = express.Router();
 router.use("/api", apiRouter);
 
 /* require controllers */
-
+const UserController = require("./controllers/UserController");
 
 /* configure routes */
-
+apiRouter.post("/user", UserController.createUser);
 
 module.exports = router;

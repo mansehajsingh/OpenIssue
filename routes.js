@@ -1,5 +1,6 @@
 /* require dependencies */
 const express = require("express");
+const { authenticateToken } = require("./middlewares/authentication");
 
 /* important inits */
 const router = express.Router();

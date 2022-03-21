@@ -6,12 +6,13 @@
 
 <p align="center">A collaborative issue tracker web applicaiton.</p>
 
-# Stack
+# Stack (PERN)
 <p align="center" vertical-align="middle">
-    <img src="https://img.shields.io/badge/-Django-092e20?logo=django&logoColor=ffffff&style=for-the-badge&logoWidth=20" height="40"/>
+    <img src="https://img.shields.io/badge/-Express-303030?logo=express&logoColor=ffffff&style=for-the-badge&logoWidth=20" height="40"/>
     <img src="https://img.shields.io/badge/-React-282c34?logo=react&logoColor=61DBFB&style=for-the-badge&logoWidth=20" height="40"/>
     <img src="https://img.shields.io/badge/-postgresql-31648c?logo=postgresql&logoColor=ffffff&style=for-the-badge&logoWidth=20" height="40"/>
     <img src="https://img.shields.io/badge/-SASS-CD6799?logo=sass&logoColor=ffffff&style=for-the-badge&logoWidth=20" height="40"/>
+    <img src="https://img.shields.io/badge/-Node.js-3c873a?logo=node.js&logoColor=ffffff&style=for-the-badge&logoWidth=20" height="40">
 </p>
 
 

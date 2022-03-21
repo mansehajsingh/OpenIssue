@@ -15,15 +15,13 @@ class TokenController {
 
         // if user does not exist
         if (!user) {
-            res.status(401).json({ message: "Username or password is invalid." });
-            return;
+            return res.status(401).json({ message: "Username or password is invalid." });
         }
         
         // comparing password to hash in db
         const passwordIsValid = await bcrypt.compare(password, user.hashed_password);
         if(!passwordIsValid) {
-            res.status(401).json({ message: "Username or password is invalid." });
-            return;
+            return res.status(401).json({ message: "Username or password is invalid." });
         }
 
         // adding session id to record
@@ -38,7 +36,7 @@ class TokenController {
             expiresIn: "14d"
         });
 
-        res.status(201).json({ token: accessToken});
+        return res.status(201).json({ token: accessToken });
     }
     
 }

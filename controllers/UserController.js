@@ -14,18 +14,16 @@ class UserController {
         // validating request items
         const userInvalid = userInvalidity(username, first_name, last_name, password);
         if (userInvalid) {
-            res.status(userInvalid.status).json(userInvalid.message);
-            return;
+            return res.status(userInvalid.status).json(userInvalid.message);
         }
 
         // checking if the username exists already in the db
         const usernameExists = await User.usernameExists(username);
         if (usernameExists) {
-            res.status(409).json({ message: "This username has already been taken." });
-            return;
+            return res.status(409).json({ message: "This username has already been taken." });
         }
         
-        // hasing the password to store in the db
+        // hashing the password to store in the db
         bcrypt.hash(password, parseInt(process.env.ROUNDS), async function(err, hashedPassword) {
             const user = await User.create({
                 username: username,
@@ -33,7 +31,7 @@ class UserController {
                 last_name: last_name,
                 hashed_password: hashedPassword
             });
-            res.status(201).json({ message: "User created successfully." });
+            return res.status(201).json({ message: "User created successfully." });
         });
     }
 

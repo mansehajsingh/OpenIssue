@@ -38,6 +38,17 @@ class TokenController {
 
         return res.status(201).json({ token: accessToken });
     }
+
+    static async invalidateToken(req, res, next) {
+        const { username } = req.session;
+
+        // setting session id to null in the db
+        await User.update({ session_id: null }, {
+            where: { username: username }
+        });
+
+        return res.status(200).json({ message: "Token invalidated successfully." });
+    }
     
 }
 

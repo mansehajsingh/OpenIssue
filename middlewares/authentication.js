@@ -27,7 +27,7 @@ async function authenticateToken(req, res, next) {
         if (!user) return res.status(403).json({message: "The token is invalid."});
 
         // makes the details accessible to the next function
-        req.session = { username, session_id }
+        req.session = { username, session_id };
 
         next();
     });

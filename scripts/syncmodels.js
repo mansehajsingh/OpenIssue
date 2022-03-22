@@ -4,6 +4,7 @@
 
 /* require models */
 const User = require("../models/User");
+const Project = require("../models/Project");
 
 alter = { alter: true }
 
@@ -17,3 +18,4 @@ function logFailure(modelName, err) {
 
 /* sync statements */
 User.sync(alter).then(logSuccess("User")).catch((err) => logFailure("User", err));
+Project.sync(alter).then(logSuccess("Project")).catch((err) => logFailure("Project", err));

@@ -17,17 +17,19 @@ async function authenticateToken(req, res, next) {
         // if the jwt was invalid
         if (error) return res.status(403).json({ message: "The token is invalid." });
 
-        const { username, session_id } = payload;
+        const { user_id, session_id } = payload;
+
+        if (!user_id || !session_id) return res.status(403).json({ message: "The token is invalid." });
 
         const user = await User.findOne({ 
-            where: { username: username, session_id: session_id } 
+            where: { id: user_id, session_id: session_id } 
         });
 
         // if no user exists w/ this session id
         if (!user) return res.status(403).json({message: "The token is invalid."});
 
         // makes the details accessible to the next function
-        req.session = { username, session_id };
+        req.session = { user_id, session_id };
 
         next();
     });

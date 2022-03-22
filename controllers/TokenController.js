@@ -31,7 +31,7 @@ class TokenController {
         });
         
         // generating access token
-        const payload = { username: username, session_id: sessionID }
+        const payload = { user_id: user.id, session_id: sessionID }
         const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
             expiresIn: "14d"
         });
@@ -40,11 +40,11 @@ class TokenController {
     }
 
     static async invalidateToken(req, res, next) {
-        const { username } = req.session;
+        const { user_id, session_id } = req.session;
 
         // setting session id to null in the db
         await User.update({ session_id: null }, {
-            where: { username: username }
+            where: { id: user_id, session_id: session_id }
         });
 
         return res.status(200).json({ message: "Token invalidated successfully." });

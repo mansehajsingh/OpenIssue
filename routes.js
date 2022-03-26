@@ -17,6 +17,7 @@ const UserController = require("./controllers/UserController");
 apiRouter.post("/token", TokenController.generateToken);
 apiRouter.delete("/token", authenticateToken, TokenController.invalidateToken);
 
-apiRouter.post("/user", UserController.createUser);
+apiRouter.post("/users", UserController.createUser);
+apiRouter.get("/users/:username", authenticateToken, UserController.getUser);
 
 module.exports = router;

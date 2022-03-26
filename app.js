@@ -10,6 +10,7 @@ PORT = process.env.PORT;
 HOSTNAME = process.env.HOSTNAME;
 
 /* middlewares */
+app.use(express.static("public"));
 app.use(express.json());
 
 /* router setup */

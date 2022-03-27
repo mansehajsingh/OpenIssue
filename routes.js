@@ -18,6 +18,6 @@ apiRouter.post("/token", TokenController.generateToken);
 apiRouter.delete("/token", authenticateToken, TokenController.invalidateToken);
 
 apiRouter.post("/users", UserController.createUser);
-apiRouter.get("/users/:username", authenticateToken, UserController.getUser);
+apiRouter.get("/users/:user_id", authenticateToken, UserController.getUser);
 
 module.exports = router;

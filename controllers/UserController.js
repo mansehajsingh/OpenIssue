@@ -3,20 +3,22 @@ const User = require("../models/User");
 const userInvalidity = require("./validation/UserValidator");
 const dotenv = require("dotenv").config();
 const bcrypt = require("bcrypt");
+const { validate: isValidUUID } = require("uuid");
 
 /* controller */
 class UserController {
 
     static async getUser(req, res, next) {
         // destructuring the request body
-        const { username } = req.params;
+        const { user_id } = req.params;
         
-        if(!username) return res.status(422).json({ message: "No username provided." });
+        if (!user_id) return res.status(422).json({ message: "No user id provided." });
+        if (!isValidUUID(user_id)) return res.status(422).json({ message: "User id format invalid." });
 
-        const user = await User.findOne({ where: { username: username } });
+        const user = await User.findOne({ where: { id: user_id } });
 
         // if the user does not exist
-        if (!user) return res.status(404).json({ message: "No user exists with this username." });
+        if (!user) return res.status(404).json({ message: "No user exists with this user id." });
 
         // formatting response
         const response = {

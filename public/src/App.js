@@ -1,14 +1,18 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import RouteHandler from "./components/RouteHandler";
+import { store } from "./redux/store";
+import { Provider } from "react-redux";
 
 const App = () => {
     return (
-        <React.StrictMode>
-            <div className="App">
-                <RouteHandler/>
-            </div>
-        </React.StrictMode>
+        <StrictMode>
+            <Provider store={store}>
+                <div className="App">
+                    <RouteHandler/>
+                </div>
+            </Provider>
+        </StrictMode>
     );
 }
 

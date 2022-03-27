@@ -38,7 +38,7 @@ class TokenController {
         });
 
         return res.cookie("token", accessToken, {
-            expires: new Date(Date.now() + 12096e5), // 14 days
+            maxAge: 12096e5, // 14 days
             httpOnly: true,
             secure: appconfig.development.useHttps,
             sameSite: true,

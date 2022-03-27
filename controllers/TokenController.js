@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require('uuid');
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv").config();
+const appconfig = require("../config/appconfig");
 
 /* controller */
 class TokenController {
@@ -36,7 +37,12 @@ class TokenController {
             expiresIn: "14d"
         });
 
-        return res.status(201).json({ token: accessToken });
+        return res.cookie("token", accessToken, {
+            expires: new Date(Date.now() + 12096e5), // 14 days
+            httpOnly: true,
+            secure: appconfig.development.useHttps,
+            sameSite: true,
+        }).sendStatus(201);
     }
 
     static async invalidateToken(req, res, next) {

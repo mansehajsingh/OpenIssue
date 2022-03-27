@@ -3,6 +3,7 @@ const express = require("express");
 const dotenv = require("dotenv").config();
 const { sequelize } = require("./database");
 const router = require("./routes")
+const cookieParser = require("cookie-parser")
 
 /* important inits */
 const app = express();
@@ -10,6 +11,7 @@ PORT = process.env.PORT;
 HOSTNAME = process.env.HOSTNAME;
 
 /* middlewares */
+app.use(cookieParser());
 app.use(express.static("public"));
 app.use(express.json());
 

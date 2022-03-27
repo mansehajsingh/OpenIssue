@@ -13,6 +13,7 @@
     <img src="https://img.shields.io/badge/-postgresql-31648c?logo=postgresql&logoColor=ffffff&style=for-the-badge&logoWidth=20" height="40"/>
     <img src="https://img.shields.io/badge/-SASS-CD6799?logo=sass&logoColor=ffffff&style=for-the-badge&logoWidth=20" height="40"/>
     <img src="https://img.shields.io/badge/-Node.js-3c873a?logo=node.js&logoColor=ffffff&style=for-the-badge&logoWidth=20" height="40">
+    <img src="https://img.shields.io/badge/-Redux%20Toolkit-764abc?logo=redux&logoColor=ffffff&style=for-the-badge&logoWidth=20" height="40">
 </p>
 
 

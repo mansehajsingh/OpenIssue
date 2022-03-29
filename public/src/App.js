@@ -1,17 +1,18 @@
 import React, { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import RouteHandler from "./components/RouteHandler";
-import { store } from "./redux/store";
 import { Provider } from "react-redux";
+import { ChakraProvider } from "@chakra-ui/react";
+import "./App.module.scss";
 
 const App = () => {
     return (
         <StrictMode>
-            <Provider store={store}>
+            <ChakraProvider>
                 <div className="App">
-                    <RouteHandler/>
+                    <RouteHandler />
                 </div>
-            </Provider>
+            </ChakraProvider>
         </StrictMode>
     );
 }

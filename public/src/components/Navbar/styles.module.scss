@@ -1,0 +1,44 @@
+@use "../../App.module.scss" as App;
+
+/* mixins */
+
+/* styles */
+
+.navbar {
+    background-color: App.$dark;;
+    width: 100%;
+    position: sticky;
+    height: 65px;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    filter: drop-shadow(0 2px 3px rgba(#000, 0.7));
+}
+
+.navleft {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin: 0 0 0 80px;
+}
+
+.navlogo {
+    min-width: 100px;
+    max-width: 100px;
+    height: auto;
+    margin: 19px 0 0 0;
+}
+
+.navlist {
+    list-style-type: none;
+    margin: 18px 0 0 60px;
+    display: flex;
+    flex-direction: row;
+
+    & > li > a {
+        font-size: 15px;
+        color: #FFFFFF;
+        margin-right: 25px;
+    }
+}

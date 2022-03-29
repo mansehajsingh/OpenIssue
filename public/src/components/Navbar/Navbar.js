@@ -1,6 +1,6 @@
-import React  from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { IconButton } from "@chakra-ui/react";
+import { IconButton, others } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
 import styles from "./styles.module.scss";
@@ -59,9 +59,9 @@ const Navbar = ({
                 <li>
                     <Link 
                         to={titleAndRouteByItem[item].route}
-                        style={ activeItem === NavbarActiveItems[item] 
-                                ? { color: "#B98FDD" } 
-                                : {  }
+                        className={ 
+                            activeItem === NavbarActiveItems[item] 
+                            ? styles.active_navlink : styles.inactive_navlink
                         }
                     >
                         {titleAndRouteByItem[item].title}

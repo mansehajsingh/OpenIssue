@@ -5,6 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv").config();
 const appconfig = require("../config/appconfig");
+const UserController = require("./UserController");
 
 /* controller */
 class TokenController {
@@ -54,6 +55,11 @@ class TokenController {
         });
 
         return res.status(200).json({ message: "Token invalidated successfully." });
+    }
+
+    static async getSelfFromToken(req, res, next) {
+        req.params["user_id"] = req.session.user_id;
+        UserController.getUser(req, res, next);
     }
     
 }

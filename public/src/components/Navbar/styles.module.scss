@@ -6,6 +6,7 @@
 
 .navbar {
     background-color: App.$dark;;
+    min-width: 100%;
     width: 100%;
     position: sticky;
     height: 65px;
@@ -20,7 +21,7 @@
     display: flex;
     flex-direction: row;
     justify-content: left;
-    margin: 0 0 0 80px;
+    margin: 0 0 0 min(40px, 30%);
 }
 
 .navlogo {
@@ -32,25 +33,56 @@
 
 .navlist {
     list-style-type: none;
-    margin: 18px 0 0 60px;
+    margin: 18px 0 0 90px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    min-width: 70%;
+    width: 70%;
 }
 
 .active_navlink {
     font-size: 15px;
     color: #B98FDD;
-    margin-right: 25px;
     transition: 0.3s ease;
 }
 
 .inactive_navlink {
     font-size: 15px;
     color: #FFFFFF;
-    margin-right: 25px;
     transition: 0.3s ease;
 
     &:hover {
         color: #7b8286;
     }
+}
+
+.drawer_logo {
+    min-width: 100px;
+    max-width: 100px;
+    height: auto;
+    margin: 0 0 0 0;
+}
+
+.drawer_header {
+    display: flex;
+    flex-direction: row;
+}
+
+.drawer_body {
+    background: App.$dark;
+}
+
+.drawer_body_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 60%;
+    max-height: 60%;
+}
+
+.drawer_link {
+    font-size: 30px;
+    color: #FFFFFF;
 }

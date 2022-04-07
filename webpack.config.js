@@ -57,18 +57,6 @@ module.exports = (env, argv) => {
               }
             ]
           },
-          {
-            test:/\.(svg|jpg|png|gif)$/,
-            use: [{
-                loader:'file-loader',
-                options: {
-                    publicPath: path.resolve(__dirname, "public/content/images"),
-                    outputPath: 'public/dist',
-                    name: '[name].[ext]',
-                    esModule: false
-                }
-            }],
-        },
         ]
     },
     resolve: {
@@ -77,7 +65,7 @@ module.exports = (env, argv) => {
     output: {
         path: path.join(__dirname, "public", "dist"),
         filename: "bundle.js",
-        publicPath: path.join(__dirname, "public", "dist/")
+        publicPath: "/", // path.join(__dirname, "public", "dist/")
     }, 
     plugins: [
         new webpack.HotModuleReplacementPlugin(),

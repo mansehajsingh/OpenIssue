@@ -22,7 +22,4 @@ apiRouter.get("/token/self", authenticateToken, TokenController.getSelfFromToken
 apiRouter.post("/users", UserController.createUser);
 apiRouter.get("/users/:user_id", authenticateToken, UserController.getUser);
 
-/* base level static route */
-router.get(/^\/(?!api($|\/.*))/, (req, res) => res.sendFile(path.join(__dirname, "/public/index.html")));
-
 module.exports = router;

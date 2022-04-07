@@ -8,7 +8,7 @@ const LandingPage = (props) => {
         <title>Home | Devwire</title> 
         <Navbar/>
         <main className={styles.content}>
-
+            
         </main>
         </>
     );

@@ -15,7 +15,7 @@ async function authenticateToken(req, res, next) {
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (error, payload) => {
         // if the jwt was invalid
         if (error) return res.status(403).json({ message: "The token is invalid." });
-
+        
         const { user_id, session_id } = payload;
 
         if (!user_id || !session_id) return res.status(403).json({ message: "The token is invalid." });

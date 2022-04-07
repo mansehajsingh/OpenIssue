@@ -13,6 +13,7 @@ HOSTNAME = process.env.HOSTNAME;
 
 /* middlewares */
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, "public", "dist")));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 

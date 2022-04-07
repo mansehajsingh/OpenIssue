@@ -4,3 +4,11 @@
 /* mixins */
 
 /* styles */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url(../../../../content/images/landing_bg.jpg) no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+}

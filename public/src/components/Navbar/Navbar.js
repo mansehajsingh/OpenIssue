@@ -146,9 +146,7 @@ const Navbar = ({ activeItem = null, userID = null }) => {
             <div className={styles.navleft}>
                 <Link
                     to="/"
-                    onClick={(e) =>
-                        window.location === "/" && e.preventDefault()
-                    }
+                    onClick={(e) => window.location === "/" && e.preventDefault()}
                 >
                     <img className={styles.navlogo} src={whiteLogoPath} />
                 </Link>

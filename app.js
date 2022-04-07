@@ -1,5 +1,6 @@
 /* require dependencies */
 const express = require("express");
+const path = require("path");
 const dotenv = require("dotenv").config();
 const { sequelize } = require("./database");
 const router = require("./routes")
@@ -12,7 +13,7 @@ HOSTNAME = process.env.HOSTNAME;
 
 /* middlewares */
 app.use(cookieParser());
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 
 /* router setup */

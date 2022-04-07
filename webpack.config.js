@@ -56,7 +56,19 @@ module.exports = (env, argv) => {
                 }
               }
             ]
-          }
+          },
+          {
+            test:/\.(svg|jpg|png|gif)$/,
+            use: [{
+                loader:'file-loader',
+                options: {
+                    publicPath: path.resolve(__dirname, "public/content/images"),
+                    outputPath: 'public/dist',
+                    name: '[name].[ext]',
+                    esModule: false
+                }
+            }],
+        },
         ]
     },
     resolve: {

@@ -4,12 +4,13 @@ import RouteHandler from "./components/RouteHandler";
 import { Provider } from "react-redux";
 import { ChakraProvider } from "@chakra-ui/react";
 import "./App.module.scss";
+import styles from "./App.module.scss";
 
 const App = () => {
     return (
         <StrictMode>
             <ChakraProvider>
-                <div className="App">
+                <div className={styles.App}>
                     <RouteHandler />
                 </div>
             </ChakraProvider>

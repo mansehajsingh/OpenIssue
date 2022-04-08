@@ -70,7 +70,7 @@ const Navbar = ({ activeItem = null, userID = null }) => {
 
         for (let item in NavbarActiveItems) {
             itemsElements.push(
-                <li>
+                <li key={item}>
                     <Link
                         to={titleAndRouteByItem[item].route}
                         className={

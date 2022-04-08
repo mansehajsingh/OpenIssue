@@ -5,22 +5,19 @@
 
 /* styles */
 .content {
-    height: 100%;
 }
 
 .landing_image {
     background: url(../../../../content/images/landing_bg.jpg) no-repeat center center fixed;
     background-attachment: fixed;
     background-size: cover;
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 0 20% 0;
 }
 
 .main_logo {
-    margin-top: 15%;
     width: 60%;
     align-self: center;
     user-select: none;

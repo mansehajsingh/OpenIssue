@@ -5,6 +5,7 @@ import styles from "./styles.module.scss";
 
 /* component imports */
 import LandingInfoCard from "../../LandingInfoCard";
+import Footer from "../../Footer";
 
 const LandingPage = (props) => {
 
@@ -66,6 +67,7 @@ const LandingPage = (props) => {
                 />
             </section>
         </main>
+        <Footer/>
         </>
     );
 }

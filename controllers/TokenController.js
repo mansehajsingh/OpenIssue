@@ -29,7 +29,7 @@ class TokenController {
         // adding session id to record
         const sessionID = uuidv4();
         await User.update({ session_id: sessionID }, {
-            where: { username: user.username }
+            where: { id: user.id }
         });
         
         // generating access token
@@ -58,7 +58,7 @@ class TokenController {
     }
 
     static async getSelfFromToken(req, res, next) {
-        req.params["user_id"] = req.session.user_id;
+        req.params.user_id = req.session.user_id;
         UserController.getUser(req, res, next);
     }
     

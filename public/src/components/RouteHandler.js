@@ -4,6 +4,7 @@ import {
     Routes,
     Route
 } from "react-router-dom";
+import AuthComponent from "./AuthComponent";
 
 /* component imports */
 import LandingPage from "./PageComponents/LandingPage/LandingPage";
@@ -12,7 +13,7 @@ const RouteHandler = (props) => {
     return (
         <Router basename="/">
             <Routes>
-                <Route path="/" element={<LandingPage />}/>
+                <Route path="/" element={<AuthComponent component={LandingPage}/>}/>
             </Routes>
         </Router>
     );

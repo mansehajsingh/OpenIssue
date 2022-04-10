@@ -55,7 +55,15 @@ class UserController {
                 last_name: last_name,
                 hashed_password: hashedPassword
             });
-            return res.status(201).json({ message: "User created successfully." });
+            return res.status(201).json({ 
+                message: "User created successfully.",
+                resource: {
+                    id: user.id,
+                    username: user.username,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                }
+            });
         });
     }
 

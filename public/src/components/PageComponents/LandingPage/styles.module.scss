@@ -24,6 +24,14 @@
     -webkit-user-drag: none;
 }
 
+.form_wrapper {
+    background-color: #272829;
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 .info_container {
     display: flex;
     flex-direction: column;
@@ -40,4 +48,16 @@
     &:hover {
         opacity: 1;
     }
+}
+
+.welcome_tag {
+    color: #FFF;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+}
+
+.handle {
+    color: #9966FF;
+    font-weight: lighter;
 }

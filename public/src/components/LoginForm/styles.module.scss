@@ -1,0 +1,117 @@
+/* imports */
+@use "../../App.module.scss" as App;
+
+/* mixins */
+@mixin input_mixin {
+    outline: none;
+    font-size: 14px;
+    border-radius: 7px;
+    color: #FFF;
+    border: solid 1px #3a3a3a;
+    transition: 0.5s ease;
+
+    &:hover {
+        border-color: #9966FF;
+    }
+
+    &:focus {
+        border-color: #9966FF;
+    }
+}
+
+/* styles */
+.form {
+    background-color: #272829;
+    padding: 0 50px 50px 50px;
+    border-radius: 10px;
+    border: solid 1px #3a3a3a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: 0.3s ease;
+    width: 30%;
+    min-width: 350px;
+}
+
+.heading {
+    color: #FFF;
+    font-weight: bold;
+    font-size: 40px;
+    margin: 20px 0;
+}
+
+.username {
+    @include input_mixin;
+    background: url(../../../content/images/user.svg) no-repeat scroll 10px 7px #242526;
+    padding: 10px 10px 10px 50px;
+    background-size: 25px 25px;
+    width: 100%;
+}
+
+.first_name {
+    @include input_mixin;
+    background: #242526;
+    padding: 10px;
+    margin-right: 10px;
+    width: 50%;
+}
+
+.last_name {
+    @include input_mixin;
+    background: #242526;
+    padding: 10px;
+    width: 50%;
+}
+
+.password {
+    @include input_mixin;
+    background: url(../../../content/images/lock.svg) no-repeat scroll 10px 7px #242526;
+    padding: 10px 10px 10px 50px;
+    background-size: 25px 25px;
+    width: 100%;
+}
+
+.submit_button {
+    border-radius: 5px;
+    background-color: #272829;
+    border: solid 1px #9966FF;
+    color: #9966FF;
+    font-size: 14px;
+    padding: 8px 15px 9px 15px;
+    transition: 0.3s ease;
+
+    &:hover:enabled {
+        color: #272829;
+        background-color: #9966FF;
+    }
+
+    &:disabled {
+        color: #3a3a3a;
+        border-color: #3a3a3a;
+    }
+}
+
+.helper_text {
+    color: #FFF;
+    font-size: 12px;
+    margin: 0 0 20px 0;
+}
+
+.helper_tag {
+    color: #9966FF;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.error_text {
+    color: #545454;
+    font-size: 11px;
+    margin-bottom: 5px;
+    min-height: 35px;
+    flex-grow:1;
+}

@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar, { NavbarActiveItems } from "../../Navbar/Navbar";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
 import styles from "./styles.module.scss";
+import PropTypes from "prop-types";
 
 /* component imports */
+import LoginForm from "../../LoginForm";
 import LandingInfoCard from "../../LandingInfoCard";
 import Footer from "../../Footer";
 
-const LandingPage = (props) => {
+const LandingPage = ({ isAuthenticated }) => {
+
+    const user = useSelector((state) => state.user);
 
     return (
         <>
@@ -21,6 +26,15 @@ const LandingPage = (props) => {
                     draggable="false"
                 />
                 <Link to="/" className={styles.main_button}>Take Our Hand</Link>
+            </section>
+            <section className={styles.form_wrapper}>
+                {!isAuthenticated ? (
+                    <LoginForm /> 
+                ) : (
+                    <h1 className={styles.welcome_tag}>Welcome back, {user.identity.first_name}{" "}
+                        <span className={styles.handle}>@{user.identity.username}</span>
+                    </h1>
+                )}
             </section>
             <section className={styles.info_container}>
                 <LandingInfoCard 
@@ -70,6 +84,10 @@ const LandingPage = (props) => {
         <Footer/>
         </>
     );
+}
+
+LandingPage.propTypes = {
+    isAuthenticated: PropTypes.bool,
 }
 
 export default LandingPage;

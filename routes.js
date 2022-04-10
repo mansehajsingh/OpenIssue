@@ -13,13 +13,16 @@ router.use("/api", apiRouter);
 /* require controllers */
 const TokenController = require("./controllers/TokenController");
 const UserController = require("./controllers/UserController");
+const ProjectController = require("./controllers/ProjectController");
 
 /* configure api routes */
 apiRouter.post("/token", TokenController.generateToken);
 apiRouter.delete("/token", authenticateToken, TokenController.invalidateToken);
-apiRouter.get("/token/self", authenticateToken, TokenController.getSelfFromToken)
+apiRouter.get("/token/self", authenticateToken, TokenController.getSelfFromToken);
 
 apiRouter.post("/users", UserController.createUser);
 apiRouter.get("/users/:user_id", authenticateToken, UserController.getUser);
+
+apiRouter.post("/projects", authenticateToken, ProjectController.createProject);
 
 module.exports = router;

@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import Navbar, { NavbarActiveItems } from "../../Navbar/Navbar";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useRef } from "react";
+import Navbar from "../../Navbar/Navbar";
+import { useSelector } from 'react-redux';
 import styles from "./styles.module.scss";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 /* component imports */
@@ -10,9 +10,22 @@ import LoginForm from "../../LoginForm";
 import LandingInfoCard from "../../LandingInfoCard";
 import Footer from "../../Footer";
 
+const scrollToRefOnEvent = (ref) => {
+    ref.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+    })
+}
+
 const LandingPage = ({ isAuthenticated }) => {
 
     const user = useSelector((state) => state.user);
+    const formRef = useRef(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        user.tokenCreated && navigate("/projects");
+    }, [user.tokenCreated]);
 
     return (
         <>
@@ -25,9 +38,18 @@ const LandingPage = ({ isAuthenticated }) => {
                     src="../../../../content/images/devwire_logo_white.svg"
                     draggable="false"
                 />
-                <Link to="/" className={styles.main_button}>Take Our Hand</Link>
+                <button 
+                    onClick={() => {
+                        isAuthenticated
+                        ? navigate("/projects")
+                        : scrollToRefOnEvent(formRef);
+                    }} 
+                    className={styles.main_button}
+                >
+                    Take Our Hand
+                </button>
             </section>
-            <section className={styles.form_wrapper}>
+            <section ref={formRef} className={styles.form_wrapper}>
                 {!isAuthenticated ? (
                     <LoginForm /> 
                 ) : (

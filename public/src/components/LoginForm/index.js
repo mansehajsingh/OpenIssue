@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser, loginUser } from "../../redux/slices/userSlice";
 import { useToast } from '@chakra-ui/react'
+import PropTypes from "prop-types";
 import styles from "./styles.module.scss";
 
 function toUsernameErrorText(username) {
@@ -47,7 +48,7 @@ function inputsAreValid(username, firstname, lastname, password) {
     return true; 
 }
 
-const LoginForm = () => {
+const LoginForm = ({ isAuthenticated }) => {
 
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
@@ -78,8 +79,6 @@ const LoginForm = () => {
 
     const [loginButtonDisabled, setLoginButtonDisabled] = useState(true);
 
-    const [numberOfToasts, setNumberOfToasts] = useState(0);
-
     useEffect(() => {
         if (user.userCreated) {
             dispatch(loginUser({
@@ -96,7 +95,7 @@ const LoginForm = () => {
             registerFields.lastName,
             registerFields.password,
         ) ? setButtonDisabled(false) : setButtonDisabled(true);
-    });
+    }, [registerFields]);
 
     useEffect(() => {
         activeForm === "signup" &&
@@ -169,23 +168,27 @@ const LoginForm = () => {
         });
     }
 
-    const handleSignUpSubmit = () => {
-        setButtonDisabled(true);
-        dispatch(createUser({
-            username: registerFields.username, 
-            firstName: registerFields.firstName,
-            lastName: registerFields.lastName,
-            password: registerFields.password,
-        }));
+    const handleSignUpSubmit = (e) => {
+        if ((e && e.key === "Enter" && !buttonDisabled) || e.type === "click") {
+            setButtonDisabled(true);
+            dispatch(createUser({
+                username: registerFields.username, 
+                firstName: registerFields.firstName,
+                lastName: registerFields.lastName,
+                password: registerFields.password,
+            }));
+        }
     }
 
-    const handleLoginSubmit = () => {
-        if(loginFields.username && loginFields.password) {
-            setLoginButtonDisabled(true);
-            dispatch(loginUser({
-                username: loginFields.username,
-                password: loginFields.password,
-            }))
+    const handleLoginSubmit = (e) => {
+        if ((e && e.key === "Enter" && !loginButtonDisabled) || e.type === "click") {
+            if(loginFields.username && loginFields.password) {
+                setLoginButtonDisabled(true);
+                dispatch(loginUser({
+                    username: loginFields.username,
+                    password: loginFields.password,
+                }))
+            }
         }
     }
 
@@ -208,6 +211,7 @@ const LoginForm = () => {
                 placeholder="Password"
                 name="password"
                 onChange={handleLoginFields}
+                onKeyDown={handleLoginSubmit}
                 value={loginFields.password}
                 style={{marginBottom:"20px"}}
             />
@@ -279,6 +283,7 @@ const LoginForm = () => {
                 onChange={handleRegisterFields}
                 value={registerFields.password}
                 style={{marginBottom:"5px"}}
+                onKeyDown={handleSignUpSubmit}
             />
             <p className={styles.error_text}>{errorTexts.password}</p>
             <p className={styles.helper_text}>
@@ -306,6 +311,10 @@ const LoginForm = () => {
             {activeForm === "signup" && renderSignUp()}
         </form>
     );
+}
+
+LoginForm.propTypes = {
+    isAuthenticated: PropTypes.bool,
 }
 
 export default LoginForm;

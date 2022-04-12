@@ -16,22 +16,6 @@ ProjectMember.init(
             allowNull: false,
             primaryKey: true
         },
-        user_id: {
-            type: DataTypes.UUID,
-            allowNull: false,
-            references: {
-                model: User,
-                key: "id"
-            }
-        },
-        project_id: {
-            type: DataTypes.UUID,
-            allowNull: false,
-            references: {
-                model: Project,
-                key: "id"
-            }
-        },
         type: {
             type: DataTypes.ENUM("member"), // can add more types in the future
             allowNull: false,

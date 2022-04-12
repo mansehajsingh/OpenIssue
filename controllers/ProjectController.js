@@ -1,5 +1,5 @@
 /* require dependencies */
-const { User, Project } = require("../models");
+const { User, Project, ProjectMember } = require("../models");
 const projectInvalidity = require("./validation/ProjectValidator");
 
 /* controller */

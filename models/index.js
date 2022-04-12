@@ -10,9 +10,13 @@ const ProjectMember = require("./ProjectMember");
 
 /* relations */
 User.hasMany(Project, { foreignKey: "owner" });
+User.hasMany(ProjectMember, { foreignKey: "user_id" });
 
 Project.belongsTo(User, { foreignKey: "owner" });
+Project.hasMany(ProjectMember, { foreignKey: "project_id" });
 
+ProjectMember.hasOne(User, { foreignKey: "user_id" });
+ProjectMember.hasOne(Project, { foreignKey: "project_id" });
 
 /* export all models */
 module.exports = {

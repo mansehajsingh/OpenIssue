@@ -4,6 +4,6 @@ const dotenv = require("dotenv").config();
 const databaseConfiguration = require("./config/dbconfig.js");
 
 /* important inits */
-const sequelize = new Sequelize(databaseConfiguration.production);
+const sequelize = new Sequelize(databaseConfiguration.development);
 
 module.exports.sequelize = sequelize;

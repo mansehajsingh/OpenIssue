@@ -1,6 +1,6 @@
 /* require dependencies */
 const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+const  { User } = require("../models");
 const dotenv = require("dotenv").config();
 
 /* middleware functions */

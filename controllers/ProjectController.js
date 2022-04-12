@@ -1,10 +1,36 @@
 /* require dependencies */
-const Project = require("../models/Project");
-const User = require("../models/User");
+const { User, Project } = require("../models");
 const projectInvalidity = require("./validation/ProjectValidator");
 
 /* controller */
 class ProjectController {
+
+    static async getProject(req, res, next) {
+        const { project_id } = req.params;
+        
+        const project = await Project.findOne({
+            where: { id: project_id },
+            include: [{
+                model: User
+            }]
+        });
+
+        if (!project) return res.status(404).json({ message: "A project with this id does not exist." });
+        
+        if (project.owner !== req.session.user_id)
+            return res.status(403).json({ message: "This token is not authorized to access this project." });
+        
+        return res.status(200).json({
+            name: project.name,
+            description: project.description,
+            owner: {
+                id: project.user.id,
+                username: project.user.username,
+                first_name: project.user.first_name,
+                last_name: project.user.last_name,
+            }
+        });
+    }
 
     static async createProject(req, res, next) {
         const { name, description } = req.body;

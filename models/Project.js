@@ -23,19 +23,11 @@ Project.init(
             type: DataTypes.TEXT,
             allowNull: true
         },
-        owner: {
-            type: DataTypes.UUID,
-            allowNull: false,
-            references: {
-                model: User,
-                key: "id"
-            }
-        }
     },
     /* model options */
     {
         sequelize,
-        modelName: "Project"
+        modelName: "project"
     }
 );
 

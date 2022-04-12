@@ -1,5 +1,5 @@
 /* require dependencies */
-const User = require("../models/User");
+const { User } = require("../models");
 const userInvalidity = require("./validation/UserValidator");
 const dotenv = require("dotenv").config();
 const bcrypt = require("bcrypt");

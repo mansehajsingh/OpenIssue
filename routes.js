@@ -22,6 +22,7 @@ apiRouter.get("/token/self", authenticateToken, TokenController.getSelfFromToken
 
 apiRouter.post("/users", UserController.createUser);
 apiRouter.get("/users/:user_id", authenticateToken, UserController.getUser);
+apiRouter.get("/users/:user_id/projects", authenticateToken, UserController.getProjects)
 
 apiRouter.post("/projects", authenticateToken, ProjectController.createProject);
 apiRouter.get("/projects/:project_id", authenticateToken, ProjectController.getProject);

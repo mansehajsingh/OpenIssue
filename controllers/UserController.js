@@ -1,5 +1,5 @@
 /* require dependencies */
-const { User } = require("../models");
+const { User, Project } = require("../models");
 const userInvalidity = require("./validation/UserValidator");
 const dotenv = require("dotenv").config();
 const bcrypt = require("bcrypt");
@@ -64,6 +64,49 @@ class UserController {
                     last_name: user.last_name,
                 }
             });
+        });
+    }
+
+    static async getProjects(req, res, next) {
+        const { user_id } = req.params;
+
+        let user;
+
+        try {
+            user = await User.findOne({ 
+                where: { id: user_id },
+                include: [{
+                    model: Project,
+                    include: [{
+                        model: User
+                    }]
+                }]
+            });
+        }
+        catch (err) {
+            return res.status(404).json({ message: "No user exists with this id." });
+        }
+
+        if (!user)
+            return res.status(404).json({ message: "No user exists with this id." });
+
+        if (req.session.user_id !== user_id)
+            return res.status(403).json({ message: "This token is not authorized to view projects for this user." });
+
+        return res.status(200).json({
+            projects: user.projects.map((project) => {
+                return {
+                    id: project.id,
+                    name: project.name,
+                    description: project.name,
+                    owner: {
+                        id: project.user.id,
+                        username: project.user.username,
+                        first_name: project.user.first_name,
+                        last_name: project.first_name
+                    }
+                };
+            })
         });
     }
 

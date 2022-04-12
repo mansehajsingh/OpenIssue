@@ -1,0 +1,75 @@
+/* imports */
+@use "../../App.module.scss" as App;
+
+/* mixins */
+
+/* styles */
+.container {
+    min-width: 250px;
+    min-height: 250px;
+    width: 250px;
+    height: 250px;
+    border-radius: 10px;
+    border: solid 1px #3a3a3a;
+    margin: 20px;
+    cursor: pointer;
+    z-index: 1;
+
+    &::before {
+        position: absolute;
+        content: "";
+        border-radius: 10px;
+        background-image: linear-gradient(
+            to bottom,
+            #7245b4,
+            #63169a
+        );
+        width: inherit;
+        height: inherit;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    &:hover::before {
+        opacity: 1;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .container {    
+        min-width: 250px;
+        min-height: 250px;
+        width: 60vw;
+        height: 60vw;
+
+        &::before {
+            min-width: 250px;
+            min-height: 250px;
+            width: 60vw;
+            height: 60vw;
+        }
+    }
+}
+
+.inner_content {
+    padding: 20px 30px;
+}
+
+.name {
+    font-size: 1.5rem;
+    color: #FFF;
+    font-weight: bold;
+}
+
+.desc {
+    font-size: 16px;
+    color: #6d6d6d;
+}
+
+.container:hover .name {
+    color: App.$dark-gray;
+}
+.container:hover .desc {
+    color: App.$dark-gray;
+}

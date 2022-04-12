@@ -1,0 +1,40 @@
+/* imports */
+@use "../../../App.module.scss" as App;
+
+/* mixins */
+
+/* styles */
+.content {
+    background-color: App.$dark-gray;
+    padding: 30px 60px;
+    min-height: calc(100vh - 65px);
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 30px 20px;
+}
+
+.title {
+    color: #FFF;
+    font-weight: bold;
+    font-size: 40px;
+    text-align: left;
+}
+
+.project_card_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+@media only screen and (max-width: 650px) {
+    .project_card_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

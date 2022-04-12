@@ -27,4 +27,6 @@ apiRouter.get("/users/:user_id/projects", authenticateToken, UserController.getP
 apiRouter.post("/projects", authenticateToken, ProjectController.createProject);
 apiRouter.get("/projects/:project_id", authenticateToken, ProjectController.getProject);
 
+router.get(/^\/(?!api($|\/.*))/, (req, res) => { res.sendFile(path.join(__dirname, "public", "index.html")) });
+
 module.exports = router;

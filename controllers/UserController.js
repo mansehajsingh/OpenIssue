@@ -103,7 +103,7 @@ class UserController {
                         id: project.user.id,
                         username: project.user.username,
                         first_name: project.user.first_name,
-                        last_name: project.first_name
+                        last_name: project.user.last_name
                     }
                 };
             })

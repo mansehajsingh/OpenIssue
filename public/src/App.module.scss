@@ -4,7 +4,46 @@ $dark-gray: #242526;
 $purple: #9966FF;
 
 /* mixins */
+@mixin input_mixin {
+    outline: none;
+    font-size: 14px;
+    border-radius: 7px;
+    color: #FFF;
+    border: solid 1px #3a3a3a;
+    transition: border-color 0.5s ease;
 
+    &:hover {
+        border-color: $purple;
+    }
+
+    &:focus {
+        border-color: $purple;
+    }
+
+    &::placeholder {
+        color: #707070;
+    }
+}
+
+@mixin button_mixin {
+    border-radius: 5px;
+    background-color: #272829;
+    border: solid 1px $purple;
+    color: $purple;
+    font-size: 14px;
+    padding: 8px 15px 9px 15px;
+    transition: 0.3s ease;
+
+    &:hover:enabled {
+        color: #272829;
+        background-color: $purple;
+    }
+
+    &:disabled {
+        color: #3a3a3a;
+        border-color: #3a3a3a;
+    }
+}
 
 /* styles */
 html {

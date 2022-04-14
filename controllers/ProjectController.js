@@ -64,6 +64,38 @@ class ProjectController {
         });
     }
 
+    static async addMember(req, res, next) {
+        const { user_id } = req.body;
+        const { project_id } = req.params;
+        
+        const exists = await ProjectMember.findOne({ where: { user_id, project_id } });
+
+        if (exists)
+            return res.status(409).json({ message: "User is already member of group." });
+
+        const project = await Project.findOne({ where: { id: project_id } });
+        
+        if (!project) return res.status(404).json({ message: "No project exists with this id." });
+
+        const user = await User.findOne({ where: { id: user_id } });
+
+        if (!user) return res.status(404).json({ message: "No user exists with this id." });
+
+        if (req.session.user_id !== project.owner)
+            return res.status(403).json({ message: "Not authorized to add a member to this project." });
+
+        const member = await ProjectMember.create({ user_id, project_id });
+
+        return res.status(201).json({
+            message: "Member added successfully.",
+            resource: {
+                id: member.id,
+                user_id: member.user_id,
+                project_id: member.project_id
+            }
+        });
+    }
+
 }
 
 module.exports = ProjectController;

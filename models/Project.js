@@ -1,7 +1,6 @@
 /* require dependencies */
 const { sequelize } = require("../database");
 const { Model, DataTypes } = require("sequelize");
-const User = require("./User");
 
 /* init model */
 class Project extends Model {};

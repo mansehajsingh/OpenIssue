@@ -64,6 +64,43 @@ class ProjectController {
         });
     }
 
+    static async getMembers(req, res, next) {
+        const { project_id } = req.params;
+        
+        const project = await Project.findOne({ 
+            where: { id: project_id },
+            include: [
+                {  
+                    model: ProjectMember, 
+                    include: [{ model: User }]
+                },
+            ]
+        });
+
+        if (!project) return res.status(404).json({ message: "No project exists with this id." });
+
+        const projectMember = await ProjectMember.findOne({ 
+            where: { project_id: project_id, user_id: req.session.user_id }
+        });
+
+        if (project.owner !== req.session.user_id && !projectMember)
+            return res.status(403).json({ message: "Token is not authorized to access this project's members." });
+
+        let members = [];
+
+        members = project.project_members.map((member) => {
+            return {
+                id: member.user.id,
+                username: member.user.username,
+                first_name: member.user.first_name,
+                last_name: member.user.last_name,
+            };
+        });
+
+        return res.status(200).json({ members: members });
+
+    }
+
     static async addMember(req, res, next) {
         const { user_id } = req.body;
         const { project_id } = req.params;

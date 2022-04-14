@@ -1,5 +1,5 @@
 /* require dependencies */
-const { User, Project } = require("../models");
+const { User, Project, ProjectMember } = require("../models");
 const userInvalidity = require("./validation/UserValidator");
 const dotenv = require("dotenv").config();
 const bcrypt = require("bcrypt");
@@ -87,18 +87,30 @@ class UserController {
             return res.status(404).json({ message: "No user exists with this id." });
         }
 
+        const memberProjects = await ProjectMember.findAll({
+            where: { user_id: user_id },
+            include: [
+                {
+                    model: Project,
+                    include: { model: User }
+                },
+            ]
+        });
+
         if (!user)
             return res.status(404).json({ message: "No user exists with this id." });
 
         if (req.session.user_id !== user_id)
             return res.status(403).json({ message: "This token is not authorized to view projects for this user." });
 
-        return res.status(200).json({
-            projects: user.projects.map((project) => {
+        let projects = [];
+
+        if (user.projects) {
+            projects = user.projects.map((project) => {
                 return {
                     id: project.id,
                     name: project.name,
-                    description: project.name,
+                    description: project.description,
                     owner: {
                         id: project.user.id,
                         username: project.user.username,
@@ -106,7 +118,27 @@ class UserController {
                         last_name: project.user.last_name
                     }
                 };
-            })
+            });
+        }
+
+        if (memberProjects) {
+            projects = projects.concat(memberProjects.map((member) => {
+                return {
+                    id: member.project.id,
+                    name: member.project.name,
+                    description: member.project.description,
+                    owner: {
+                        id: member.project.user.id,
+                        username: member.project.user.username,
+                        first_name: member.project.user.first_name,
+                        last_name: member.project.user.last_name
+                    }
+                };
+            }));
+        }
+        
+        return res.status(200).json({
+            projects: projects,
         });
     }
 

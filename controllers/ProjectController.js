@@ -84,6 +84,9 @@ class ProjectController {
         if (req.session.user_id !== project.owner)
             return res.status(403).json({ message: "Not authorized to add a member to this project." });
 
+        if (user_id === project.owner)
+            return res.status(422).json({ message: "Cannot add owner as membber of project." });
+
         const member = await ProjectMember.create({ user_id, project_id });
 
         return res.status(201).json({

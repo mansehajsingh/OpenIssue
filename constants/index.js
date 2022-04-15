@@ -1,0 +1,1 @@
+module.exports.flairs = ["bug", "question", "feature", "announcement", "misc"];

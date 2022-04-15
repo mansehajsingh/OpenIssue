@@ -14,6 +14,7 @@ router.use("/api", apiRouter);
 const TokenController = require("./controllers/TokenController");
 const UserController = require("./controllers/UserController");
 const ProjectController = require("./controllers/ProjectController");
+const IssueController = require("./controllers/IssueController");
 
 /* configure api routes */
 apiRouter.post("/token", TokenController.generateToken);
@@ -26,8 +27,11 @@ apiRouter.get("/users/:user_id/projects", authenticateToken, UserController.getP
 
 apiRouter.post("/projects", authenticateToken, ProjectController.createProject);
 apiRouter.get("/projects/:project_id", authenticateToken, ProjectController.getProject);
+
 apiRouter.get("/projects/:project_id/members", authenticateToken, ProjectController.getMembers);
 apiRouter.post("/projects/:project_id/members", authenticateToken, ProjectController.addMember);
+
+apiRouter.post("/projects/:project_id/issues", authenticateToken, IssueController.createIssue);
 
 router.get(/^\/(?!api($|\/.*))/, (req, res) => { res.sendFile(path.join(__dirname, "public", "index.html")) });
 

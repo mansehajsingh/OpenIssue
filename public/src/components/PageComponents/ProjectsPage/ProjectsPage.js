@@ -5,6 +5,7 @@ import Navbar, { NavbarActiveItems } from '../../Navbar/Navbar';
 import VerticalSpacer from "../../VerticalSpacer";
 import ProjectCard from '../../ProjectCard';
 import AddModal from '../../AddModal';
+import Footer from "../../Footer";
 import { useDisclosure } from '@chakra-ui/react';
 import PropTypes from  "prop-types";
 import styles from "./styles.module.scss";
@@ -57,6 +58,7 @@ const ProjectsPage = ({ isAuthenticated }) => {
                 {renderProjects()}
             </section>
         </main>
+        <Footer />
         <AddModal isOpen={addModalIsOpen} onClose={onAddModalClose}/>
         </>
     );

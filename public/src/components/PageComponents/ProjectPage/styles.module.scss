@@ -71,13 +71,20 @@
 
 .admin_button {
     color: #FFF;
-    border: solid 1px #319fb5;
+    border: solid 1px #cb3213;
     border-radius: 5px;
-    background-color: #177cb7;
+    background-color: #a92d14;
     padding: 5px 25px;
     font-size: 13px;
     transition: 0.3s ease;
     &:hover {
-        background-color: #319fb5;
+        background-color: #cb3213;
     }
+}
+
+.project_content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
 }

@@ -21,7 +21,7 @@ const MembersSection = ({ isOwner }) => {
         <>
         <div className={styles.container}>
             <div className={styles.header}>
-                <h4 className={styles.heading}>Members</h4>
+                <h4 className={styles.heading}>Members ({project?.members?.length})</h4>
                 {isOwner && (
                     <MdPersonAddAlt1 size={20} className={styles.add_button}/>
                 )}

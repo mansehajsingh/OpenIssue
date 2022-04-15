@@ -5,6 +5,7 @@ import { getMembers, getProject } from "../../../redux/slices/projectSlice";
 import Navbar from "../../Navbar/Navbar";
 import VerticalSpacer from "../../VerticalSpacer";
 import MembersSection from "../../MembersSection";
+import Footer from "../../Footer";
 import styles from "./styles.module.scss";
 
 const ProjectPage = ({
@@ -53,11 +54,12 @@ const ProjectPage = ({
                         <button className={styles.admin_button}>Admin Dashboard</button>
                     )}
                 </section>
-                <section>
+                <section className={styles.project_content}>
                     <MembersSection isOwner={project?.identity?.owner?.id === user?.identity?.id}/>
                 </section>
             </section>
         </main>
+        <Footer />
         </>
     );
 }

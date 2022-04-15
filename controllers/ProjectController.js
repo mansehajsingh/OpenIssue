@@ -17,7 +17,14 @@ class ProjectController {
 
         if (!project) return res.status(404).json({ message: "A project with this id does not exist." });
         
-        if (project.owner !== req.session.user_id)
+        const member = await ProjectMember.findOne({ 
+            where: {
+                project_id: project_id,
+                user_id: req.session.user_id,
+            } 
+        });
+
+        if (project.owner !== req.session.user_id && !member)
             return res.status(403).json({ message: "This token is not authorized to access this project." });
         
         return res.status(200).json({

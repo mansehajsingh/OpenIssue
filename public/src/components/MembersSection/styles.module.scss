@@ -1,0 +1,58 @@
+/* imports */
+@use "../../App.module.scss" as App;
+
+/* styles */
+.container {
+    border: solid 1px #3a3a3a;
+    border-radius: 10px;
+    width: 20vw;
+    min-width: 250px;
+}
+
+.header {
+    border-radius: 10px 10px 0 0;
+    padding: 10px 20px 10px 20px;
+    border-bottom: solid 1px #3a3a3a;
+}
+
+.heading {
+    color: #FFF;
+}
+
+.members_container {
+    height: 400px;
+    background-color: #1d1f21;
+    border-radius: 0 0 10px 10px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: #3a3a3a;
+    }
+}
+
+.member_row {
+    padding: 5px 20px;
+    background-color: App.$dark;
+    border-bottom: solid 1px #3a3a3a;
+    transition: 0.3s ease;
+    cursor: pointer;
+
+    & > p {
+        color: #FFF;
+        font-size: 12px;
+
+        & > span {
+            font-weight: bold;
+            color: App.$purple;
+        }
+
+    }
+
+    &:hover {
+        background-color: #2a2d2e;
+    }
+}

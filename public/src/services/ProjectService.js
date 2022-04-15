@@ -13,6 +13,14 @@ class ProjectService {
         });
     }
 
+    getProject(project_id) {
+        return api.get(`/projects/${project_id}`);
+    }
+
+    getMembers(project_id) {
+        return api.get(`/projects/${project_id}/members`);
+    }
+
 }
 
 export default new ProjectService();

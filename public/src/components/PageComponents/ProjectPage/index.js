@@ -54,7 +54,7 @@ const ProjectPage = ({
                     )}
                 </section>
                 <section>
-                    <MembersSection />
+                    <MembersSection isOwner={project?.identity?.owner?.id === user?.identity?.id}/>
                 </section>
             </section>
         </main>

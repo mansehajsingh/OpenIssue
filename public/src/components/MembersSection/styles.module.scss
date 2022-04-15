@@ -6,17 +6,35 @@
     border: solid 1px #3a3a3a;
     border-radius: 10px;
     width: 20vw;
-    min-width: 250px;
+    min-width: 200px;
+}
+
+@media only screen and (max-width: 500px) {
+    .container {
+        width: 300px;
+    }
 }
 
 .header {
     border-radius: 10px 10px 0 0;
     padding: 10px 20px 10px 20px;
     border-bottom: solid 1px #3a3a3a;
+    display: flex;
+    flex-direction: row;
 }
 
 .heading {
     color: #FFF;
+}
+
+.add_button {
+    color: #3a3a3a;
+    margin: 3px 0 0 20px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    &:hover {
+        color: #FFF;
+    }
 }
 
 .members_container {

@@ -1,8 +1,9 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux"; 
+import { useDispatch, useSelector } from "react-redux";
+import { MdPersonAddAlt1 } from "react-icons/md";
 import styles from "./styles.module.scss";
 
-const MembersSection = ({}) => {
+const MembersSection = ({ isOwner }) => {
 
     const project = useSelector((state) => state.project);
 
@@ -21,6 +22,9 @@ const MembersSection = ({}) => {
         <div className={styles.container}>
             <div className={styles.header}>
                 <h4 className={styles.heading}>Members</h4>
+                {isOwner && (
+                    <MdPersonAddAlt1 size={20} className={styles.add_button}/>
+                )}
             </div>
             <div className={styles.members_container}>
                 {renderMembers()}

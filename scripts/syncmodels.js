@@ -7,6 +7,8 @@ const {
     User,
     Project,
     ProjectMember,
+    Issue,
+    Flair,
 } = require("../models");
 
 alter = { alter: true }
@@ -23,3 +25,5 @@ function logFailure(modelName, err) {
 User.sync(alter).then(logSuccess("User")).catch((err) => logFailure("User", err));
 Project.sync(alter).then(logSuccess("Project")).catch((err) => logFailure("Project", err));
 ProjectMember.sync(alter).then(logSuccess("ProjectMember")).catch((err) => logFailure("ProjectMember", err));
+Issue.sync(alter).then(logSuccess("Issue")).catch((err) => logFailure("Issue", err));
+Flair.sync(alter).then(logSuccess("Flair")).catch((err) => logFailure("Flair", err));

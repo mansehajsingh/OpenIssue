@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useDisclosure } from "@chakra-ui/react";
 import { getMembers, getProject } from "../../../redux/slices/projectSlice";
 import Navbar from "../../Navbar/Navbar";
 import VerticalSpacer from "../../VerticalSpacer";
 import MembersSection from "../../MembersSection";
 import Footer from "../../Footer";
+import CreateIssueModal from "../../CreateIssueModal";
 import styles from "./styles.module.scss";
 
 const ProjectPage = ({
@@ -15,6 +17,12 @@ const ProjectPage = ({
     const dispatch = useDispatch();
     const project = useSelector((state) => state.project);
     const user = useSelector((state) => state.user);
+
+    const { 
+        isOpen: issueModalIsOpen, 
+        onOpen: issueModalOnOpen,
+        onClose: issueModalOnClose,
+    } = useDisclosure();
 
     const { project_id } = useParams();
 
@@ -49,7 +57,12 @@ const ProjectPage = ({
                     <p className={styles.description}>{project?.identity?.description}</p>
                 </section>
                 <section className={styles.buttons_container}>
-                    <button className={styles.new_button}>New</button>
+                    <button 
+                        className={styles.new_button}
+                        onClick={issueModalOnOpen}
+                    >
+                        New
+                    </button>
                     {user?.identity?.id === project?.identity?.owner?.id && (
                         <button className={styles.admin_button}>Admin Dashboard</button>
                     )}
@@ -59,6 +72,7 @@ const ProjectPage = ({
                 </section>
             </section>
         </main>
+        <CreateIssueModal isOpen={issueModalIsOpen} onClose={issueModalOnClose}/>
         <Footer />
         </>
     );

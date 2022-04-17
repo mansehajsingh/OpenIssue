@@ -21,6 +21,16 @@ Issue.init(
         content: {
             type: DataTypes.TEXT,
             allowNull: false,
+        },
+        open: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true,
+            allowNull: false
+        },
+        priority: {
+            type: DataTypes.ENUM("low", "medium", "high", "critical"),
+            defaultValue: "low",
+            allowNull: false,
         }
     },
     /* model options */

@@ -32,6 +32,7 @@ apiRouter.get("/projects/:project_id/members", authenticateToken, ProjectControl
 apiRouter.post("/projects/:project_id/members", authenticateToken, ProjectController.addMember);
 
 apiRouter.post("/projects/:project_id/issues", authenticateToken, IssueController.createIssue);
+apiRouter.get("/projects/:project_id/issues", authenticateToken, IssueController.getIssuesByProject);
 
 router.get(/^\/(?!api($|\/.*))/, (req, res) => { res.sendFile(path.join(__dirname, "public", "index.html")) });
 

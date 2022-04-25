@@ -11,7 +11,7 @@ class IssueController {
 
         const issueInvalid = issueInvalidity(title, content, flairs, priority);
         if (issueInvalid) {
-            return res.status(issueInvalid.status).json(issueInvalid.message);
+            return res.status(issueInvalid.status).json({ message: issueInvalid.message });
         }
 
         const projectMember = await ProjectMember.findOne({

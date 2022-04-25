@@ -10,7 +10,7 @@ module.exports = function issueValidity (title, content, flairs, priority) {
     }
 
     if (content.length > 5000) {
-        return { status: 422, message: "Content cannot exceed 500 characters." };
+        return { status: 422, message: "Content cannot exceed 5000 characters." };
     }
 
     const priorities = { "low": 1, "medium": 1, "high": 1, "critical": 1 };

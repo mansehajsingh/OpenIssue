@@ -1,0 +1,59 @@
+/* imports */
+@use "../../../App.module.scss" as App;
+
+/* mixins */
+
+/* styles */ 
+.content {
+    background-color: App.$dark-gray;
+    min-height: calc(100vh - 65px);
+    padding: 100px 60px;
+    min-width: 325px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 413px) {
+    .content {
+        padding: 100px 30px;
+    }
+}
+
+.issue_form {
+    margin: 20px 0 0 0;
+}
+
+.heading {
+    font-size: 40px;
+    font-weight: bold;
+    color: #FFF;
+}
+
+.title {
+    @include App.input_mixin;
+    background: #242526;
+    padding: 10px;
+    width: 100%;
+    font-size: 20px;
+}
+
+.flair_section {
+    margin: 15px 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.button_container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+.create_button {
+    @include App.button_mixin;
+    font-size: 20px;
+    margin-top: 20px;
+    padding: 10px 50px;
+}

@@ -1,0 +1,41 @@
+/* imports */
+@use "../../../App.module.scss" as App;
+
+/* mixins */
+
+/* styles */
+.toolbar {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    border: solid 1px #8a8a8a;
+    padding: 5px;
+}
+
+.toolbar_button {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    transition: 0.3s ease;
+    border-radius: 3px;
+    margin-right: 2px;
+
+    &:hover {
+        background-color: #363535;
+    }
+
+    &:hover > .toolbar_icon {
+       color: #388cec;
+    }
+
+}
+
+.toolbar_icon {
+    color: #8a8a8a;
+    transition: 0.3s ease;
+}

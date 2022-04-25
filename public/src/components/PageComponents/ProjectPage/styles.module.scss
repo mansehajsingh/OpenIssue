@@ -51,7 +51,7 @@
 
 .buttons_container {
     margin: 15px 0;
-    & > button {
+    & > button, > a {
         margin-right: 10px;
     }
 }

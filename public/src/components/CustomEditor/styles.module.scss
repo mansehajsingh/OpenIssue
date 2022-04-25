@@ -1,0 +1,24 @@
+/* imports */
+@use "../../App.module.scss" as App;
+
+/* mixins */
+
+/* styles */
+.editor {
+    
+}
+
+.attribution {
+    border: solid 1px #8a8a8a;
+    border-top: none;
+    padding: 5px;
+    vertical-align: top;
+    margin: 0;
+
+    & > p {
+        color: #8a8a8a;
+        margin: 0;
+        font-size: 9px;
+        font-weight: bold;
+    }
+}

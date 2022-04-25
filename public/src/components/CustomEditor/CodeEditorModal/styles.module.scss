@@ -1,0 +1,44 @@
+/* imports */
+@use "../../../App.module.scss" as App;
+
+/* mixins */
+
+/* styles */
+.heading {
+    color: #FFF;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.select_wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin-bottom: 20px;
+}
+
+.select {
+    width: 200px;
+    background-color: App.$dark-gray;
+}
+
+.insert_button {
+    @include App.button_mixin;
+    margin: 0 15px 0 0;
+    background-color: App.$purple;
+    color: App.$dark-gray;
+
+    &:disabled {
+        background-color: #242526;
+    }
+}
+
+.cancel_button {
+    @include App.button_mixin;  
+
+    &:hover {
+        background-color: App.$dark !important;
+        color: App.$purple !important;
+    }
+}

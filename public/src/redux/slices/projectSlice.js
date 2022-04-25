@@ -15,7 +15,7 @@ export const getProject = createAsyncThunk(
             const response = await ProjectService.getProject(project_id);
             return response.data;
         } catch (error) {
-            thunkAPI.rejectWithValue(error.response);
+            return thunkAPI.rejectWithValue(error.response);
         }
     }
 );
@@ -27,22 +27,22 @@ export const getMembers = createAsyncThunk(
             const response = await ProjectService.getMembers(project_id);
             return response.data;
         } catch (error) {
-            thunkAPI.rejectWithValue(error.response);
+            return thunkAPI.rejectWithValue(error.response);
         }
     }
 );
 
 export const createIssue = createAsyncThunk(
     "projects/:project_id/issues",
-    async ({ project_id, title, content, flairs }, thunkAPI) => {
+    async ({ project_id, title, content, flairs, priority }, thunkAPI) => {
         try {
-            const response = await ProjectService.createIssue(project_id, title, content, flairs);
+            const response = await ProjectService.createIssue(project_id, title, content, flairs, priority);
             return response.data;
         } catch (error) {
-            thunkAPI.rejectWithValue(error.response);
+            return thunkAPI.rejectWithValue(error.response);
         }
     }
-)
+);
 
 const projectSlice = createSlice({
     name: "project",

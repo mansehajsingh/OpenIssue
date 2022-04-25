@@ -21,9 +21,9 @@ class ProjectService {
         return api.get(`/projects/${project_id}/members`);
     }
 
-    createIssue(project_id, title, content, flairs) {
+    createIssue(project_id, title, content, flairs, priority) {
         return api.post(`/projects/${project_id}/issues`, {
-            title, content, flairs
+            title, content, flairs, priority
         });
     }
 

@@ -57,3 +57,15 @@
     margin-top: 20px;
     padding: 10px 50px;
 }
+
+.back_btn_wrapper {
+    width: 100%;
+    align-items: left;
+}
+
+.back_button {
+    @include App.button_mixin;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 40px;
+}

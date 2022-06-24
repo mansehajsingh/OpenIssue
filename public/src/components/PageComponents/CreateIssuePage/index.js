@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createIssue } from "../../../redux/slices/projectSlice";
 import { useParams, useNavigate } from "react-router-dom";
 import { useToast } from '@chakra-ui/react';
+import { BiArrowBack } from "react-icons/bi";
 import Navbar from "../../Navbar/Navbar";
 import Footer from "../../Footer";
 import FlairMenu from "../../FlairMenu";
@@ -18,6 +19,7 @@ const CreateIssuePage = ({ isAuthenticated }) => {
     const navigate = useNavigate();
     const project = useSelector(state => state.project);
     const toast = useToast();
+    const isMounted = useRef(false);
 
     const [formState, setFormState] = useState({
         title: "",
@@ -27,8 +29,10 @@ const CreateIssuePage = ({ isAuthenticated }) => {
 
     const [content, setContent] = useState("");
 
+    useEffect(() => isMounted.current = true, []);
+
     useEffect(() => {
-        if (project.issueCreationSuccess !== null) {
+        if (project.issueCreationSuccess !== null && isMounted) {
             if (project.issueCreationSuccess) {
                 toast({
                     title: "Hooray!",
@@ -50,7 +54,11 @@ const CreateIssuePage = ({ isAuthenticated }) => {
                 });
             }
         }
-    }, [project]);
+    }, [project.issueCreationSuccess]);
+
+    const redirectBackToProject = () => {
+        navigate(`/projects/${project_id}`);
+    }
 
     const handleSubmit = () => {
         dispatch(createIssue({
@@ -115,7 +123,15 @@ const CreateIssuePage = ({ isAuthenticated }) => {
         <>
         <Navbar />
         <main className={styles.content}>
-        <h1 className={styles.heading}>Create an Issue</h1>
+            <div className={styles.back_btn_wrapper}>
+                <button 
+                    className={styles.back_button}
+                    onClick={redirectBackToProject}
+                >
+                    <BiArrowBack style={{ margin: "4px 5px 0 0" }}/> Back To Project
+                </button>
+            </div>
+            <h1 className={styles.heading}>Create an Issue</h1>
             <form className={styles.issue_form}>
                 <input
                     className={styles.title}

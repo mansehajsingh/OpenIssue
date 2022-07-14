@@ -4,6 +4,7 @@ import ProjectService from "../../services/ProjectService";
 const initialState = {
     identity: null,
     members: [],
+    issues: [],
     issueCreationSuccess: null,
     issueCreationMessage: null,
 };
@@ -31,6 +32,18 @@ export const getMembers = createAsyncThunk(
         }
     }
 );
+
+export const getIssues = createAsyncThunk(
+    "projects/:project_id/issues",
+    async ({ project_id }, thunkAPI) => {
+        try {
+            const response = ProjectService.getIssues(project_id);
+            return (await response).data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response);
+        }
+    }
+)
 
 export const createIssue = createAsyncThunk(
     "projects/:project_id/issues",
@@ -71,6 +84,12 @@ const projectSlice = createSlice({
         [createIssue.rejected]: (state, action) => {
             state.issueCreationMessage = action.payload.data.message;
             state.issueCreationSuccess = false;
+        },
+        [getIssues.pending]: (state, action) => {
+            state.issues = [];
+        },
+        [getIssues.fulfilled]: (state, action) => {
+            state.issues = action.payload.issues;
         }
     }
 });

@@ -21,6 +21,10 @@ class ProjectService {
         return api.get(`/projects/${project_id}/members`);
     }
 
+    getIssues(project_id) {
+        return api.get(`/projects/${project_id}/issues`);
+    }
+
     createIssue(project_id, title, content, flairs, priority) {
         return api.post(`/projects/${project_id}/issues`, {
             title, content, flairs, priority

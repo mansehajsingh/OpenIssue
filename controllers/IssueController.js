@@ -81,6 +81,7 @@ class IssueController {
                 author: issue.author,
                 flairs: issue.flairs.map(flair => flair.value),
                 open: issue.open,
+                priority: issue.priority,
                 created: issue.createdAt,
             };
         });

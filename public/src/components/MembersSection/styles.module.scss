@@ -9,6 +9,12 @@
     min-width: 200px;
 }
 
+@media only screen and (max-width: 900px) {
+    .container {
+        width: 80vw;
+    }
+}
+
 @media only screen and (max-width: 500px) {
     .container {
         width: 300px;

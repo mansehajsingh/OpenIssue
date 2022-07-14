@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getMembers, getProject } from "../../../redux/slices/projectSlice";
+import { getIssues, getMembers, getProject } from "../../../redux/slices/projectSlice";
 import Navbar from "../../Navbar/Navbar";
 import VerticalSpacer from "../../VerticalSpacer";
 import MembersSection from "../../MembersSection";
+import IssuesSection from "../../IssuesSection";
 import Footer from "../../Footer";
 import styles from "./styles.module.scss";
 
@@ -21,6 +22,7 @@ const ProjectPage = ({
     useEffect(() => {
         dispatch(getProject({ project_id }));
         dispatch(getMembers({ project_id }));
+        dispatch(getIssues({ project_id }));
     }, []);
 
     return (
@@ -62,6 +64,7 @@ const ProjectPage = ({
                 </section>
                 <section className={styles.project_content}>
                     <MembersSection isOwner={project?.identity?.owner?.id === user?.identity?.id}/>
+                    <IssuesSection />
                 </section>
             </section>
         </main>

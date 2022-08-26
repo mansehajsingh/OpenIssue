@@ -34,10 +34,9 @@ export const IssueRow = ({ issue }) => {
                 )}
                 <p 
                     className={styles.issue_title}
-                    style={{ color: issue.open ? "#FFF" : "#3a3a3a" }}
+                    style={{ color: issue.open ? "#FFF" : "#505050" }}
                 >
-                    {issue.title.substring(0, 25)}
-                    {issue.title.length > 25 ? "..." : ""}
+                    {issue.title}
                 </p>
             </div>
             <div className={styles.under_row}>

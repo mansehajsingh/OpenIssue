@@ -82,7 +82,7 @@ export const FlairChip = ({
                 backgroundColor: flairToColorRGBA[value],
                 color: flairToColorHex[value],
                 border: `solid 1px ${flairToColorHex[value]}`,
-                borderRadius: "20px",
+                borderRadius: "0px",
                 padding: "0 10px 0 10px",
                 fontSize: fontSize || "16px",
                 fontWeight: "300px",

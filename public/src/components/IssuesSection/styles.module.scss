@@ -74,22 +74,29 @@
 .issue_title {
     font-size: 16px;
     margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; 
 }
 
 .open_icon {
     margin-top: 2px;
     margin-right: 10px;
     color: #238636;
-    width: 20px;
-    height: 20px;
+    max-width: 20px;
+    max-height: 20px;
+    min-width: 20px;
+    min-height: 20px;
 }
 
 .closed_icon {
     margin-top: 2px;
     margin-right: 10px;
-    color: #3a3a3a;
-    width: 20px;
-    height: 20px;
+    color: #505050;
+    max-width: 20px;
+    max-height: 20px;
+    min-width: 20px;
+    min-height: 20px;
 }
 
 .under_row {

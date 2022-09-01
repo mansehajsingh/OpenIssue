@@ -19,7 +19,8 @@ const CreateIssuePage = ({ isAuthenticated }) => {
     const navigate = useNavigate();
     const project = useSelector(state => state.project);
     const toast = useToast();
-    const isMounted = useRef(false);
+
+    const [isMounted, setIsMounted] = useState(false);
 
     const [formState, setFormState] = useState({
         title: "",
@@ -29,10 +30,10 @@ const CreateIssuePage = ({ isAuthenticated }) => {
 
     const [content, setContent] = useState("");
 
-    useEffect(() => isMounted.current = true, []);
+    useEffect(() => setIsMounted(true), []);
 
     useEffect(() => {
-        if (project.issueCreationSuccess !== null && isMounted.current) {
+        if (project.issueCreationSuccess !== null && isMounted) {
             if (project.issueCreationSuccess) {
                 toast({
                     title: "Hooray!",

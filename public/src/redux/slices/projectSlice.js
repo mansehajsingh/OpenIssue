@@ -10,7 +10,7 @@ const initialState = {
 };
 
 export const getProject = createAsyncThunk(
-    "/projects/:project_id",
+    "GET Project",
     async ({ project_id }, thunkAPI) => {
         try {
             const response = await ProjectService.getProject(project_id);
@@ -22,7 +22,7 @@ export const getProject = createAsyncThunk(
 );
 
 export const getMembers = createAsyncThunk(
-    "projects/:project_id/members",
+    "GET Project Members",
     async ({ project_id }, thunkAPI) => {
         try {
             const response = await ProjectService.getMembers(project_id);
@@ -34,7 +34,7 @@ export const getMembers = createAsyncThunk(
 );
 
 export const getIssues = createAsyncThunk(
-    "projects/:project_id/issues",
+    "GET Project Issues",
     async ({ project_id }, thunkAPI) => {
         try {
             const response = ProjectService.getIssues(project_id);
@@ -46,7 +46,7 @@ export const getIssues = createAsyncThunk(
 )
 
 export const createIssue = createAsyncThunk(
-    "projects/:project_id/issues",
+    "CREATE Project Issue",
     async ({ project_id, title, content, flairs, priority }, thunkAPI) => {
         try {
             const response = await ProjectService.createIssue(project_id, title, content, flairs, priority);

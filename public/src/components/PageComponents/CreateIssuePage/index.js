@@ -32,7 +32,7 @@ const CreateIssuePage = ({ isAuthenticated }) => {
     useEffect(() => isMounted.current = true, []);
 
     useEffect(() => {
-        if (project.issueCreationSuccess !== null && isMounted) {
+        if (project.issueCreationSuccess !== null && isMounted.current) {
             if (project.issueCreationSuccess) {
                 toast({
                     title: "Hooray!",

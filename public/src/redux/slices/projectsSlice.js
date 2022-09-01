@@ -9,7 +9,7 @@ const initialState = {
 };
 
 export const getProjectsByUser = createAsyncThunk(
-    "/users/:user_id/projects",
+    "GET Projects by User",
     async ({ user_id }, thunkAPI) => {
         try {
             const response = await ProjectService.getAllByUser(user_id);
@@ -21,7 +21,7 @@ export const getProjectsByUser = createAsyncThunk(
 );
 
 export const createProject = createAsyncThunk(
-    "projects",
+    "CREATE Project",
     async({ name, description }, thunkAPI) => {
         try {
             const response = await ProjectService.createProject(name, description);

@@ -11,7 +11,7 @@ const initialState = {
 };
 
 export const getSelfFromToken = createAsyncThunk(
-    "token/self",
+    "GET Self from Token",
     async () => {
         const response = await AuthService.getSelf();
         return response.data;
@@ -19,7 +19,7 @@ export const getSelfFromToken = createAsyncThunk(
 );
 
 export const createUser = createAsyncThunk(
-    "users",
+    "CREATE User",
     async ({username, firstName, lastName, password}, thunkAPI) => {
         try {
             const response = await UserService.create(
@@ -36,7 +36,7 @@ export const createUser = createAsyncThunk(
 );
 
 export const loginUser = createAsyncThunk(
-    "token",
+    "Login User",
     async({username, password}, thunkAPI) => {
         try {
             const response = await AuthService.createToken(

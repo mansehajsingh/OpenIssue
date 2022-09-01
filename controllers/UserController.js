@@ -1,5 +1,6 @@
 /* require dependencies */
 const { User, Project, ProjectMember } = require("../models");
+const { Sequelize } = require("sequelize");
 const userInvalidity = require("./validation/UserValidator");
 const dotenv = require("dotenv").config();
 const bcrypt = require("bcrypt");
@@ -7,6 +8,23 @@ const { validate: isValidUUID } = require("uuid");
 
 /* controller */
 class UserController {
+
+    static async getUsers(req, res, next) {
+        const usernameQuery = req.query.usernameQuery;
+        const limit = req.query.limit <= 100 ? parseInt(req.query.limit) : 10;
+        
+        const likeUsers = await User.findAll({
+            attributes: ["id", "username", "first_name", "last_name"],
+            limit: limit,
+            where: {
+                username: {
+                    [Sequelize.Op.iLike]: `%${usernameQuery}%`
+                }
+            }
+        })
+
+        return res.status(200).json({ users: likeUsers });
+    }
 
     static async getUser(req, res, next) {
         // destructuring the request body

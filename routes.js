@@ -24,7 +24,7 @@ apiRouter.get("/token/self", authenticateToken, TokenController.getSelfFromToken
 apiRouter.get("/users", UserController.getUsers);
 apiRouter.post("/users", UserController.createUser);
 apiRouter.get("/users/:user_id", authenticateToken, UserController.getUser);
-apiRouter.get("/users/:user_id/projects", authenticateToken, UserController.getProjects)
+apiRouter.get("/users/:user_id/projects", authenticateToken, UserController.getProjects);
 
 apiRouter.post("/projects", authenticateToken, ProjectController.createProject);
 apiRouter.get("/projects/:project_id", authenticateToken, ProjectController.getProject);
@@ -32,6 +32,7 @@ apiRouter.get("/projects/:project_id", authenticateToken, ProjectController.getP
 apiRouter.get("/projects/:project_id/members", authenticateToken, ProjectController.getMembers);
 apiRouter.post("/projects/:project_id/members", authenticateToken, ProjectController.addMember);
 
+apiRouter.get("/projects/:project_id/issues/:issue_id", authenticateToken, IssueController.getIssue);
 apiRouter.post("/projects/:project_id/issues", authenticateToken, IssueController.createIssue);
 apiRouter.get("/projects/:project_id/issues", authenticateToken, IssueController.getIssuesByProject);
 

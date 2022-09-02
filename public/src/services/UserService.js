@@ -1,6 +1,15 @@
 import api from "./http";
 
 class UserService {
+
+    getUsers(usernameQuery, limit) {
+        return api.get("/users", {
+            params: {
+                usernameQuery,
+                limit
+            }
+        });
+    }
     
     create(username, firstName, lastName, password) {
         return api.post("/users", {

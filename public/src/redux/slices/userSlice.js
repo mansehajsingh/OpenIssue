@@ -8,6 +8,7 @@ const initialState = {
     tokenCreated: false,
     userCreationResponse: "",
     userLoginResponse: "",
+    queriedUsers: [],
 };
 
 export const getSelfFromToken = createAsyncThunk(
@@ -50,6 +51,18 @@ export const loginUser = createAsyncThunk(
     }
 );
 
+export const queryUsers = createAsyncThunk(
+    "Query Users",
+    async({username, limit}, thunkAPI) => {
+        try {
+            const response = await UserService.getUsers(username, limit);
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response);
+        }
+    }
+);
+
 const userSlice = createSlice({
     name: "user",
     initialState,
@@ -75,6 +88,12 @@ const userSlice = createSlice({
         },
         [loginUser.rejected]: (state, action) => {
             state.userLoginResponse = action.payload.data.message;
+        },
+        [queryUsers.pending]: (state, action) => {
+            state.queriedUsers = [];
+        },
+        [queryUsers.fulfilled]: (state, action) => {
+            state.queriedUsers = action.payload.users;
         },
     }
 });

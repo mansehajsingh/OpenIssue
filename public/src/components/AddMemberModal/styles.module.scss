@@ -1,0 +1,89 @@
+/* imports */
+@use "../../App.module.scss" as App;
+
+/* mixins */
+
+/* styles */
+.username_input {
+    @include App.input_mixin;
+    background: #242526;
+    padding: 10px;
+    width: 100%;
+    font-size: 20px;
+}
+
+.error_text {
+    color: #545454;
+    font-size: 12px;
+    margin: 3px 0 10px 5px;
+    min-height: 20px;
+}
+
+.query_results_section {
+    border: solid 1px #3a3a3a;
+    border-radius: 10px;
+    min-height: 4vh;
+    height: 20vh;
+    overflow: hidden;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: #3a3a3a;
+    }
+}
+
+.member_row {
+    padding: 5px 20px;
+    background-color: App.$dark;
+    border-bottom: solid 1px #3a3a3a;
+    transition: 0.3s ease;
+    cursor: pointer;
+
+    & > p {
+        color: #FFF;
+        font-size: 12px;
+
+        & > span {
+            font-weight: bold;
+            color: App.$purple;
+        }
+
+    }
+
+    &:hover {
+        background-color: #2a2d2e;
+    }
+}
+
+.member_row_selected {
+    padding: 5px 20px;
+    background-color: #FFF;
+    border-bottom: solid 1px #3a3a3a;
+    transition: 0.3s ease;
+    cursor: pointer;
+
+    & > p {
+        color: App.$dark;
+        font-size: 12px;
+
+        & > span {
+            font-weight: bold;
+            color: App.$purple;
+        }
+
+    }
+}
+
+.add_button {
+    @include App.button_mixin;
+    margin: 0 15px 0 0;
+    background-color: App.$purple;
+    color: App.$dark-gray;
+
+    &:disabled {
+        background-color: #242526;
+    }
+}

@@ -1,11 +1,19 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useDisclosure } from "@chakra-ui/react";
 import { MdPersonAddAlt1 } from "react-icons/md";
+import AddMemberModal from "../AddMemberModal";
 import styles from "./styles.module.scss";
 
 const MembersSection = ({ isOwner }) => {
 
     const project = useSelector((state) => state.project);
+
+    const { 
+        isOpen: addMemberModalIsOpen,
+        onOpen: addMemberModalOnOpen,
+        onClose: addMemberModalOnClose,
+    } = useDisclosure(); 
 
     const renderMembers = () => {
         return project.members.map((member) => {
@@ -23,13 +31,21 @@ const MembersSection = ({ isOwner }) => {
             <div className={styles.header}>
                 <h4 className={styles.heading}>Members ({project?.members?.length})</h4>
                 {isOwner && (
-                    <MdPersonAddAlt1 size={20} className={styles.add_button}/>
+                    <MdPersonAddAlt1 
+                        size={20} 
+                        className={styles.add_button}
+                        onClick={addMemberModalOnOpen}
+                    />
                 )}
             </div>
             <div className={styles.members_container}>
                 {renderMembers()}
             </div>
         </div>
+        <AddMemberModal 
+            isOpen={addMemberModalIsOpen} 
+            onClose={addMemberModalOnClose}
+        />
         </>
     );
 }

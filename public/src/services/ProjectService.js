@@ -31,6 +31,12 @@ class ProjectService {
         });
     }
 
+    addMember(project_id, user_id) {
+        return api.post(`/projects/${project_id}/members`, {
+            user_id
+        });
+    }
+
 }
 
 export default new ProjectService();

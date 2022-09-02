@@ -1,6 +1,7 @@
 import React from "react";
 import { IoMdHand } from "react-icons/io";
 import { FlairChip } from "../FlairMenu";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./styles.module.scss";
 
 const priorityToIcon = {
@@ -11,6 +12,9 @@ const priorityToIcon = {
 }
 
 export const IssueRow = ({ issue }) => {
+
+    const { project_id } = useParams();
+    const navigate = useNavigate();
 
     const renderFlairs = () => {
         return issue.flairs.map((flair) => {
@@ -24,8 +28,12 @@ export const IssueRow = ({ issue }) => {
         });
     }
 
+    const goToIssue = () => {
+        navigate(`/projects/${project_id}/issues/${issue.id}`);
+    }
+
     return (
-        <div className={styles.issue_row}>
+        <div className={styles.issue_row} onClick={goToIssue}>
             <div className={styles.large_section}>
                 {issue.open ? (
                     <IoMdHand className={styles.open_icon}/>

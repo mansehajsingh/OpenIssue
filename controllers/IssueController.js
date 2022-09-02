@@ -22,7 +22,7 @@ class IssueController {
 
         const issue = await Issue.findOne({ 
             where: { id: issue_id }, 
-            include: [{ model: User , attributes: ["id", "first_name", "last_name"] }],
+            include: [{ model: User , attributes: ["id", "username", "first_name", "last_name"] }],
         });
 
         const flairs = await Flair.findAll({

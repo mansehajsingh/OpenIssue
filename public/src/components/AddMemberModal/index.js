@@ -80,7 +80,7 @@ const AddMemberModal = ({
     const renderUsers = () => {
         return displayUsers.filter((user) => {
             return projectMembers.every((member) => member.id !== user.id)
-                   && project.identity.owner.id !== user.id;
+                   && project.identity && project.identity.owner.id !== user.id;
         }).map((user) => {
             return (
                 <div 

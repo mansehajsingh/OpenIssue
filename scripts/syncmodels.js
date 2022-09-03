@@ -9,6 +9,7 @@ const {
     ProjectMember,
     Issue,
     Flair,
+    Reply,
 } = require("../models");
 
 alter = { alter: true }
@@ -27,3 +28,4 @@ Project.sync(alter).then(logSuccess("Project")).catch((err) => logFailure("Proje
 ProjectMember.sync(alter).then(logSuccess("ProjectMember")).catch((err) => logFailure("ProjectMember", err));
 Issue.sync(alter).then(logSuccess("Issue")).catch((err) => logFailure("Issue", err));
 Flair.sync(alter).then(logSuccess("Flair")).catch((err) => logFailure("Flair", err));
+Reply.sync(alter).then(logSuccess("Reply")).catch((err) => logFailure("Reply", err));

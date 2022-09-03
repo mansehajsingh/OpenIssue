@@ -15,6 +15,7 @@ const TokenController = require("./controllers/TokenController");
 const UserController = require("./controllers/UserController");
 const ProjectController = require("./controllers/ProjectController");
 const IssueController = require("./controllers/IssueController");
+const ReplyController = require("./controllers/ReplyController");
 
 /* configure api routes */
 apiRouter.post("/token", TokenController.generateToken);
@@ -35,6 +36,9 @@ apiRouter.post("/projects/:project_id/members", authenticateToken, ProjectContro
 apiRouter.get("/projects/:project_id/issues/:issue_id", authenticateToken, IssueController.getIssue);
 apiRouter.post("/projects/:project_id/issues", authenticateToken, IssueController.createIssue);
 apiRouter.get("/projects/:project_id/issues", authenticateToken, IssueController.getIssuesByProject);
+
+apiRouter.post("/projects/:project_id/issues/:issue_id/replies", authenticateToken, ReplyController.createReply);
+apiRouter.get("/projects/:project_id/issues/:issue_id/replies", authenticateToken, ReplyController.getReplies);
 
 router.get(/^\/(?!api($|\/.*))/, (req, res) => { res.sendFile(path.join(__dirname, "public", "index.html")) });
 

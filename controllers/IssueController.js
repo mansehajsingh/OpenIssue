@@ -17,7 +17,7 @@ class IssueController {
             const project = await Project.findOne({ where: { id: project_id } });
             if (!project) return res.status(404).json({ message: "No project exists with this id." });
             else if (project.owner !== req.session.user_id)
-                return res.status(403).status({ message: "Not authorized to create an issue for this project." });         
+                return res.status(403).status({ message: "Not authorized to get an issue for this project." });         
         }
 
         const issue = await Issue.findOne({ 

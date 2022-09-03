@@ -64,7 +64,7 @@ class ReplyController {
                 model: User,
                 attributes: ["id", "username", "first_name", "last_name"]
             }],
-            order: [["createdAt", "DESC"]]
+            order: [["createdAt", "ASC"]]
         });
 
         return res.status(200).json({

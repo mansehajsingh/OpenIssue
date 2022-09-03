@@ -5,8 +5,7 @@
 /* styles */
 .container {
     height: 80vh;
-    width: 80%;
-    margin-left: 10%;
+    width: 80vw;
     resize: none;
     outline: none;
     border: solid 1px #8a8a8a;
@@ -25,6 +24,10 @@
     &::-webkit-scrollbar-thumb {
         border-radius: 10px;
         background-color: rgba(74, 74, 74, 0.6);
+    }
+
+    &::-webkit-scrollbar-corner {
+        background: rgba(0,0,0,0);
     }
 }
 

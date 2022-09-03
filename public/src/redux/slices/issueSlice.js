@@ -3,6 +3,8 @@ import IssueService from "../../services/IssueService";
 
 const initialState = {
     identity: null,
+    replies: null,
+    replyCreationSuccess: null,
 };
 
 export const getIssue = createAsyncThunk(
@@ -17,6 +19,30 @@ export const getIssue = createAsyncThunk(
     }
 );
 
+export const createReply = createAsyncThunk(
+    "CREATE Reply",
+    async({ issue_id, project_id, content }, thunkAPI) => {
+        try {
+            const response = await IssueService.createReply(issue_id, project_id, content);
+            return response.data;
+        } catch(error) {
+            return thunkAPI.rejectWithValue(error.response);
+        }
+    }
+);
+
+export const getReplies = createAsyncThunk(
+    "GET Replies",
+    async({ issue_id, project_id }, thunkAPI) => {
+        try {
+            const response = await IssueService.getReplies(issue_id, project_id);
+            return response.data;
+        } catch(error) {
+            return thunkAPI.rejectWithValue(error.response);
+        }
+    }
+)
+
 const issueSlice = createSlice({
     name: "issue",
     initialState,
@@ -26,6 +52,18 @@ const issueSlice = createSlice({
         },
         [getIssue.fulfilled]: (state,action) => {
             state.identity = action.payload;
+        },
+        [getReplies.pending]: (state, action) => {
+            state.replies = null;
+        },
+        [getReplies.fulfilled]: (state, action) => {
+            state.replies = action.payload.replies;
+        },
+        [createReply.pending]: (state, action) => {
+            state.replyCreationSuccess = null;
+        },
+        [createReply.fulfilled]: (state, action) => {
+            state.replyCreationSuccess = true;
         }
     }
 });

@@ -5,6 +5,7 @@ const initialState = {
     identity: null,
     replies: null,
     replyCreationSuccess: null,
+    issueStatusChangeFlag: false,
 };
 
 export const getIssue = createAsyncThunk(
@@ -41,7 +42,19 @@ export const getReplies = createAsyncThunk(
             return thunkAPI.rejectWithValue(error.response);
         }
     }
-)
+);
+
+export const changeIssueStatus = createAsyncThunk(
+    "UPDATE Status",
+    async({ issue_id, project_id, newStatus }, thunkAPI) => {
+        try {
+            const response = await IssueService.changeIssueStatus(issue_id, project_id, newStatus);
+            return response.data;
+        } catch(error) {
+            return thunkAPI.rejectWithValue(error.response);
+        }
+    }
+);
 
 const issueSlice = createSlice({
     name: "issue",
@@ -64,6 +77,9 @@ const issueSlice = createSlice({
         },
         [createReply.fulfilled]: (state, action) => {
             state.replyCreationSuccess = true;
+        },
+        [changeIssueStatus.fulfilled]: (state, action) => {
+            state.issueStatusChangeFlag = !state.issueStatusChangeFlag;
         }
     }
 });

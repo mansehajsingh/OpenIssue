@@ -22,14 +22,27 @@ class IssueController {
 
         const issue = await Issue.findOne({ 
             where: { id: issue_id }, 
-            include: [{ model: User , attributes: ["id", "username", "first_name", "last_name"] }],
+            include: [
+                { model: User , attributes: ["id", "username", "first_name", "last_name"] },
+                { 
+                    model: Project,
+                    include: [{ 
+                        model: User, 
+                        attributes: ["id", "username", "first_name", "last_name"] 
+                    }],
+                }
+            ],
         });
 
         const flairs = await Flair.findAll({
             where: { issue_id: issue_id }
         });
 
-        let flairNames = flairs.map((flair) => flair.value)
+        let flairNames = flairs.map((flair) => flair.value);
+
+        const projectObject = JSON.parse(JSON.stringify(issue.project));
+        projectObject.owner = projectObject.user;
+        delete projectObject.user;
 
         return res.status(200).json({
             id: issue.id,
@@ -40,7 +53,7 @@ class IssueController {
             createdAt: issue.createdAt,
             updatedAt: issue.updatedAt,
             author: issue.user,
-            project_id: issue.project_id,
+            project: projectObject,
             flairs: flairNames,
         });
     }
@@ -127,6 +140,35 @@ class IssueController {
         });
 
         return res.status(200).json({ issues });
+    }
+
+    static async editStatus(req, res, next) {
+        const { project_id, issue_id } = req.params;
+        const { status } = req.body;
+        const { user_id } = req.session;
+
+        const issue = await Issue.findOne({
+            where: { id: issue_id }
+        });
+
+        if (issue.author !== user_id) {
+            const project = await Project.findOne({ where: { id: project_id } });
+            if (!project) {
+                return res.status(404).json({ message: "No project exists with this id." });
+            }
+            else if (project.owner !== req.session.user_id) {
+                return res.status(403).json({ message: "Not authorized to change status of issue." });         
+            }
+        }
+        if (!(typeof status === "boolean")) {
+            return res.status(422).json({ message: "Status needs to be of type boolean." });
+        }
+
+        const updatedIssue = await Issue.update(
+            { open: status }, 
+            { where: { id: issue_id } }
+        );
+        return res.status(204).json({ message: "Status updated successfully" });
     }
 
 }

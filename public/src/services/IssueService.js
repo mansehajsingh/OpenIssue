@@ -16,6 +16,12 @@ class IssueService {
         return api.get(`/projects/${project_id}/issues/${issue_id}/replies`);
     }
 
+    changeIssueStatus(issue_id, project_id, newStatus) {
+        return api.patch(`/projects/${project_id}/issues/${issue_id}/status`, {
+            status: newStatus
+        });
+    }
+
 }
 
 export default new IssueService();

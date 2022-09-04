@@ -11,6 +11,7 @@ import { BiArrowBack } from "react-icons/bi";
 import { FlairChip } from '../../FlairMenu';
 import styles from "./styles.module.scss";
 import MarkdownView from '../../MarkdownView';
+import ActionsMenu from './ActionsMenu';
 
 const priorityToText = {
     low: "Low ❤️‍🩹",
@@ -26,6 +27,7 @@ const IssuePage = () => {
     const dispatch = useDispatch();
 
     const issue = useSelector((state) => state.issue);
+    const user = useSelector((state) => state.user);
 
     const [reply, setReply] = useState("");
     const [replyDisabled, setReplyDisabled] = useState(true);
@@ -108,6 +110,11 @@ const IssuePage = () => {
                 <div className={styles.header}>
                     <h2 className={styles.title}>{issue.identity?.title}</h2>
                 </div>
+                <p className={styles.author_tag}>
+                    by {issue?.identity?.author?.first_name + " " 
+                    + issue?.identity?.author?.last_name} 
+                    <span> @{issue?.identity?.author?.username}</span>
+                </p>
                 <p className={styles.status_tag}>
                     Status: 
                     <span className={issue.identity?.open ? styles.open_status : styles.closed_status}>
@@ -120,11 +127,7 @@ const IssuePage = () => {
                 <div className={styles.flair_container}>
                     {renderFlairs()}
                 </div>
-                <p className={styles.author_tag}>
-                    by {issue?.identity?.author?.first_name + " " 
-                    + issue?.identity?.author?.last_name} 
-                    <span> @{issue?.identity?.author?.username}</span>
-                </p>
+                <ActionsMenu />
                 <MarkdownView value={issue.identity?.content || ""}/>
                 <form>
                     <textarea

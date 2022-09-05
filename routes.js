@@ -40,6 +40,7 @@ apiRouter.patch("/projects/:project_id/issues/:issue_id/status", authenticateTok
 
 apiRouter.post("/projects/:project_id/issues/:issue_id/replies", authenticateToken, ReplyController.createReply);
 apiRouter.get("/projects/:project_id/issues/:issue_id/replies", authenticateToken, ReplyController.getReplies);
+apiRouter.delete("/projects/:project_id/issues/:issue_id/replies/:reply_id", authenticateToken, ReplyController.deleteReply);
 
 router.get(/^\/(?!api($|\/.*))/, (req, res) => { res.sendFile(path.join(__dirname, "public", "index.html")) });
 

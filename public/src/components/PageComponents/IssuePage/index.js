@@ -12,6 +12,7 @@ import { FlairChip } from '../../FlairMenu';
 import styles from "./styles.module.scss";
 import MarkdownView from '../../MarkdownView';
 import ActionsMenu from './ActionsMenu';
+import ReplyMessageBox from './ReplyMessageBox';
 
 const priorityToText = {
     low: "Low ❤️‍🩹",
@@ -73,14 +74,7 @@ const IssuePage = () => {
 
         return issue.replies.map((reply) => {
             return (
-                <div className={styles.reply_container} key={reply.id}>
-                    <p className={styles.reply_author}>
-                        {reply.author.first_name + " " + reply.author.last_name}
-                        <span>{" @" + reply.author.username}</span> replied
-                    </p>
-                    <p className={styles.reply_id_tag}>reply id: {reply.id}</p>
-                    <p className={styles.reply_content}>{reply.content}</p>
-                </div>
+                <ReplyMessageBox reply={reply} issue={issue} user={user}/>
             );
         });
     }

@@ -160,6 +160,7 @@ class IssueController {
                 return res.status(403).json({ message: "Not authorized to change status of issue." });         
             }
         }
+
         if (!(typeof status === "boolean")) {
             return res.status(422).json({ message: "Status needs to be of type boolean." });
         }

@@ -86,6 +86,28 @@ class ReplyController {
         });
     }
 
+    static async deleteReply(req, res, next) {
+        const { project_id, issue_id, reply_id } = req.params;
+        const { user_id } = req.session;
+
+        const reply = await Reply.findOne({ where: { id: reply_id } });
+
+        if (reply.author !== user_id) {
+            const project = await Project.findOne({ where: { id: project_id } });
+            if (!project) {
+                return res.status(404).json({ message: "No project exists with this id." });
+            }
+            else if (project.owner !== req.session.user_id) {
+                return res.status(403).json({ message: "Not authorized to delete this reply." });         
+            }
+        }
+
+        if (reply)
+            await reply.destroy();
+        
+        return res.status(204).json({ message: "Reply deleted successfully." }); 
+    }
+
 }
 
 module.exports = ReplyController;

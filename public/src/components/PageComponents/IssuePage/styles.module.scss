@@ -187,3 +187,25 @@
     font-size: 16px;
     color: #FFF;
 }
+
+.reply_author_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.delete_reply_button {
+    color: #FFF;
+    border: solid 1px #cb3213;
+    background-color: #a92d14;
+    border-radius: 5px;
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #cb3213;
+    }
+}

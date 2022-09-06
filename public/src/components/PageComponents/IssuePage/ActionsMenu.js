@@ -91,16 +91,6 @@ const ActionsMenu = ({ }) => {
                     >
                         Delete this issue.
                     </MenuItem>
-                    {issue?.identity?.author?.id === user?.identity?.id &&
-                        (
-                            <MenuItem
-                                color={"#FFF"}
-                                _hover={{ bg: "#242526", textDecoration: "underline" }}
-                            >
-                                Edit this issue.
-                            </MenuItem>
-                        )
-                    }
                 </MenuList>
             </Menu>
             <ConfirmationModal 

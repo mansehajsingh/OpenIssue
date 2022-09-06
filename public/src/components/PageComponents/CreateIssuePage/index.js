@@ -133,7 +133,7 @@ const CreateIssuePage = ({ isAuthenticated }) => {
                 </button>
             </div>
             <h1 className={styles.heading}>Create an Issue</h1>
-            <form className={styles.issue_form}>
+            <form onSubmit={e => { e.preventDefault(); }} className={styles.issue_form}>
                 <input
                     className={styles.title}
                     placeholder="Title"

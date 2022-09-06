@@ -116,7 +116,7 @@ const AddModal = ({
                 </ModalHeader>
                 <ModalCloseButton color="#FFF"/>
                 <ModalBody>
-                    <form>
+                    <form onSubmit={e => { e.preventDefault(); }}>
                         <input 
                             className={styles.name_input}
                             placeholder="Project Name (required)"

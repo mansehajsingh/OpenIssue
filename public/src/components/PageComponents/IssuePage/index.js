@@ -123,7 +123,7 @@ const IssuePage = () => {
                 </div>
                 <ActionsMenu />
                 <MarkdownView value={issue.identity?.content || ""}/>
-                <form>
+                <form onSubmit={e => { e.preventDefault(); }}>
                     <textarea
                         className={styles.reply_textarea}
                         placeholder="Reply to this issue."

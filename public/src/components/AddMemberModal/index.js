@@ -134,7 +134,7 @@ const AddMemberModal = ({
                 </ModalHeader>
                 <ModalCloseButton color="#FFF"/>
                 <ModalBody>
-                    <form>
+                    <form onSubmit={e => { e.preventDefault(); }}>
                         <input 
                             className={styles.username_input}
                             placeholder="Username"

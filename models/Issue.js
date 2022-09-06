@@ -31,6 +31,11 @@ Issue.init(
             type: DataTypes.ENUM("low", "medium", "high", "critical"),
             defaultValue: "low",
             allowNull: false,
+        },
+        deleted: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+            allowNull: false
         }
     },
     /* model options */

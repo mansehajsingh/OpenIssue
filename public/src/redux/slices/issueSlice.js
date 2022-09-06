@@ -6,6 +6,7 @@ const initialState = {
     replies: null,
     replyCreationSuccess: null,
     issueStatusChangeFlag: false,
+    issueDeletionSuccess: null,
 };
 
 export const getIssue = createAsyncThunk(
@@ -56,6 +57,18 @@ export const changeIssueStatus = createAsyncThunk(
     }
 );
 
+export const deleteIssue = createAsyncThunk(
+    "DELETE Issue",
+    async({ project_id, issue_id }, thunkAPI) => {
+        try {
+            const response = await IssueService.deleteIssue(project_id, issue_id);
+            return response.data;
+        } catch(error) {
+            return thunkAPI.rejectWithValue(error.response);
+        }
+    }
+);
+
 const issueSlice = createSlice({
     name: "issue",
     initialState,
@@ -80,7 +93,13 @@ const issueSlice = createSlice({
         },
         [changeIssueStatus.fulfilled]: (state, action) => {
             state.issueStatusChangeFlag = !state.issueStatusChangeFlag;
-        }
+        },
+        [deleteIssue.pending]: (state, action) => {
+            state.issueDeletionSuccess = null;
+        },
+        [deleteIssue.fulfilled]: (state, action) => {
+            state.issueDeletionSuccess = true;
+        },
     }
 });
 

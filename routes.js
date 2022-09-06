@@ -35,6 +35,7 @@ apiRouter.post("/projects/:project_id/members", authenticateToken, ProjectContro
 apiRouter.delete("/projects/:project_id/members/:user_id", authenticateToken, ProjectController.deleteMember);
 
 apiRouter.get("/projects/:project_id/issues/:issue_id", authenticateToken, IssueController.getIssue);
+apiRouter.delete("/projects/:project_id/issues/:issue_id", authenticateToken, IssueController.deleteIssue);
 apiRouter.post("/projects/:project_id/issues", authenticateToken, IssueController.createIssue);
 apiRouter.get("/projects/:project_id/issues", authenticateToken, IssueController.getIssuesByProject);
 apiRouter.patch("/projects/:project_id/issues/:issue_id/status", authenticateToken, IssueController.editStatus);

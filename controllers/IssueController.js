@@ -21,7 +21,7 @@ class IssueController {
         }
 
         const issue = await Issue.findOne({ 
-            where: { id: issue_id }, 
+            where: { id: issue_id, deleted: false }, 
             include: [
                 { model: User , attributes: ["id", "username", "first_name", "last_name"] },
                 { 
@@ -33,6 +33,9 @@ class IssueController {
                 }
             ],
         });
+
+        if (!issue)
+            return res.status(404).json({ message: "No issue exists with this id." })
 
         const flairs = await Flair.findAll({
             where: { issue_id: issue_id }
@@ -114,6 +117,7 @@ class IssueController {
             where: { id: project_id },
             include: [{ 
                 model: Issue, 
+                where: { deleted: false },
                 include: [{model: User}, {model: Flair}],
                 order: [["createdAt", "DESC"]]
             }]
@@ -148,7 +152,7 @@ class IssueController {
         const { user_id } = req.session;
 
         const issue = await Issue.findOne({
-            where: { id: issue_id }
+            where: { id: issue_id, deleted: false }
         });
 
         if (issue.author !== user_id) {
@@ -170,6 +174,33 @@ class IssueController {
             { where: { id: issue_id } }
         );
         return res.status(204).json({ message: "Status updated successfully" });
+    }
+
+    static async deleteIssue(req, res, next) {
+        const { project_id, issue_id } = req.params;
+        const { user_id } = req.session;
+
+        const issue = await Issue.findOne({
+            where: { id: issue_id }
+        });
+
+        if (issue.author !== user_id) {
+            const project = await Project.findOne({ where: { id: project_id } });
+            if (!project) {
+                return res.status(404).json({ message: "No project exists with this id." });
+            }
+            else if (project.owner !== req.session.user_id) {
+                return res.status(403).json({ message: "Not authorized to delete this issue." });         
+            }
+        }
+
+        if (issue) {
+            const updatedIssue = await Issue.update(
+                { deleted: true }, 
+                { where: { id: issue_id } }
+            );
+        }
+        return res.status(204).json({ message: "Issue deleted successfully" });
     }
 
 }

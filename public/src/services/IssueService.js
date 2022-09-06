@@ -22,6 +22,10 @@ class IssueService {
         });
     }
 
+    deleteIssue(project_id, issue_id) {
+        return api.delete(`/projects/${project_id}/issues/${issue_id}`);
+    }
+
 }
 
 export default new IssueService();

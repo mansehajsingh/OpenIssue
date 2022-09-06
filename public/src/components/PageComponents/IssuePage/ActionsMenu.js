@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getIssue, getReplies, createReply, changeIssueStatus } from '../../../redux/slices/issueSlice';
-import { useParams } from 'react-router-dom';
+import { getIssue, getReplies, createReply, changeIssueStatus, deleteIssue } from '../../../redux/slices/issueSlice';
+import { useParams, useNavigate } from 'react-router-dom';
 import {
     Menu,
     MenuButton,
@@ -15,6 +15,7 @@ import { ChevronDownIcon } from '@chakra-ui/icons';
 const ActionsMenu = ({ }) => {
     const { project_id, issue_id } = useParams();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const issue = useSelector((state) => state.issue);
     const user = useSelector((state) => state.user);
@@ -25,9 +26,21 @@ const ActionsMenu = ({ }) => {
         }));
     }, [issue.issueStatusChangeFlag]);
 
+    useEffect(() => {
+        if (issue.issueDeletionSuccess) {
+            navigate(`/projects/${project_id}`);
+        }
+    }, [issue.issueDeletionSuccess]);
+
     const issueStatusChangeOnClick = () => {
         dispatch(changeIssueStatus({
             issue_id, project_id, newStatus: !issue?.identity?.open
+        }));
+    }
+
+    const issueDeletionOnClick = () => {
+        dispatch(deleteIssue({
+            project_id, issue_id
         }));
     }
 
@@ -56,7 +69,7 @@ const ActionsMenu = ({ }) => {
             </MenuButton>
             <MenuList bg={"#242526"} border={"solid 1px #3a3a3a"}>
                 <MenuItem
-                    _hover={{ bg: "#242526" }}
+                    _hover={{ bg: "#242526", textDecoration: "underline" }}
                     color={"#FFF"}
                     onClick={issueStatusChangeOnClick}
                 >
@@ -64,10 +77,21 @@ const ActionsMenu = ({ }) => {
                 </MenuItem>
                 <MenuItem
                     color={"#FFF"}
-                    _hover={{ bg: "#242526" }}
+                    _hover={{ bg: "#242526", textDecoration: "underline" }}
+                    onClick={issueDeletionOnClick}
                 >
                     Delete this issue.
                 </MenuItem>
+                {issue?.identity?.author?.id === user?.identity?.id &&
+                    (
+                        <MenuItem
+                            color={"#FFF"}
+                            _hover={{ bg: "#242526", textDecoration: "underline" }}
+                        >
+                            Edit this issue.
+                        </MenuItem>
+                    )
+                }
             </MenuList>
         </Menu>
     );

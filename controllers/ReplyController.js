@@ -10,6 +10,11 @@ class ReplyController {
         const { user_id } = req.session;
         const { project_id, issue_id } = req.params;
 
+        const issue = await Issue.findOne({ where: { id: user_id, deleted: false } });
+
+        if (!issue)
+            return res.status(404).json({ message: "Issue does not exist." });
+
         const projectMember = await ProjectMember.findOne({
             where: { user_id: req.session.user_id, project_id: project_id }
         })
@@ -46,6 +51,12 @@ class ReplyController {
 
     static async getReplies(req, res, next) {
         const { project_id, issue_id } = req.params;
+        const { user_id } = req.session;
+
+        const issue = await Issue.findOne({ where: { id: user_id, deleted: false } });
+
+        if (!issue)
+            return res.status(404).json({ message: "Issue does not exist." });
 
         const projectMember = await ProjectMember.findOne({
             where: { user_id: req.session.user_id, project_id: project_id }
@@ -89,6 +100,11 @@ class ReplyController {
     static async deleteReply(req, res, next) {
         const { project_id, issue_id, reply_id } = req.params;
         const { user_id } = req.session;
+
+        const issue = await Issue.findOne({ where: { id: user_id, deleted: false } });
+
+        if (!issue)
+            return res.status(404).json({ message: "Issue does not exist." });
 
         const reply = await Reply.findOne({ where: { id: reply_id } });
 

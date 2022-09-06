@@ -1,0 +1,19 @@
+/* imports */
+@use "../../App.module.scss" as App;
+
+/* mixins */
+
+/* styles */
+.risk_button {
+    @include App.button_mixin;
+    border-color: #cb3213;
+    color: #cb3213;
+
+    &:hover {
+        background-color: #cb3213 !important;
+    }
+}
+
+.cancel_button {
+    @include App.button_mixin;
+}

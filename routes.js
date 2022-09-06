@@ -32,6 +32,7 @@ apiRouter.get("/projects/:project_id", authenticateToken, ProjectController.getP
 
 apiRouter.get("/projects/:project_id/members", authenticateToken, ProjectController.getMembers);
 apiRouter.post("/projects/:project_id/members", authenticateToken, ProjectController.addMember);
+apiRouter.delete("/projects/:project_id/members/:user_id", authenticateToken, ProjectController.deleteMember);
 
 apiRouter.get("/projects/:project_id/issues/:issue_id", authenticateToken, IssueController.getIssue);
 apiRouter.post("/projects/:project_id/issues", authenticateToken, IssueController.createIssue);

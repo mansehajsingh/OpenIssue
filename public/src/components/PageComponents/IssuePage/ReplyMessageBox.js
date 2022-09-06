@@ -12,7 +12,6 @@ const ReplyMessageBox = ({ reply, issue, user }) => {
     const replyState = useSelector((state) => state.reply);
     
     const [isMounted, setIsMounted] = useState(false);
-    let hasBeenDeleted = false;
 
     useEffect(() => {
         setIsMounted(true);

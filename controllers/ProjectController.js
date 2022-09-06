@@ -143,6 +143,31 @@ class ProjectController {
         });
     }
 
+    static async deleteMember(req, res, next) {
+        const { project_id, user_id } = req.params;
+
+        const project = await Project.findOne({ where: { id: project_id } });
+        
+        if (!project) return res.status(404).json({ message: "No project exists with this id." });
+
+        const user = await User.findOne({ where: { id: user_id } });
+
+        if (!user) return res.status(404).json({ message: "No user exists with this id." });
+
+        if (req.session.user_id !== project.owner)
+            return res.status(403).json({ message: "Not authorized to remove a member to this project." });
+
+        if (user_id === project.owner)
+            return res.status(422).json({ message: "Cannot add owner as membber of project." });
+
+        const member = await ProjectMember.findOne({ where: { project_id, user_id } });
+        
+        if (member)
+            await member.destroy();
+            
+        return res.status(204).json({ message: "Member removed successfully." });
+    }
+
 }
 
 module.exports = ProjectController;

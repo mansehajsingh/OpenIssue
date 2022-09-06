@@ -6,6 +6,7 @@ import Navbar from "../../Navbar/Navbar";
 import VerticalSpacer from "../../VerticalSpacer";
 import MembersSection from "../../MembersSection";
 import IssuesSection from "../../IssuesSection";
+import { useToast } from "@chakra-ui/react";
 import Footer from "../../Footer";
 import styles from "./styles.module.scss";
 
@@ -14,6 +15,7 @@ const ProjectPage = ({
 }) => {
 
     const dispatch = useDispatch();
+    const toast = useToast();
     const project = useSelector((state) => state.project);
     const user = useSelector((state) => state.user);
 
@@ -24,6 +26,20 @@ const ProjectPage = ({
         dispatch(getMembers({ project_id }));
         dispatch(getIssues({ project_id }));
     }, []);
+
+    useEffect(() => {
+        if (project.deleteMemberSuccess) {
+            dispatch(getMembers({ project_id }));
+            toast({
+                title: "Ouch",
+                description: "Member kicked successfully.",
+                status: "success",
+                position: "top",
+                duration: 5000,
+                isClosable: true,
+            });
+        }
+    }, [project.deleteMemberSuccess]);
 
     return (
         <>

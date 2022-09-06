@@ -8,6 +8,7 @@ const initialState = {
     issueCreationSuccess: null,
     issueCreationMessage: null,
     addMemberSuccess: null,
+    deleteMemberSuccess: null,
 };
 
 export const getProject = createAsyncThunk(
@@ -70,6 +71,18 @@ export const addMember = createAsyncThunk(
     }
 );
 
+export const deleteMember = createAsyncThunk(
+    "DELETE Member",
+    async({ project_id, user_id }, thunkAPI) => {
+        try {
+            const response = await ProjectService.deleteMember(project_id, user_id);
+            return response.data;
+        } catch(error) {
+            return thunkAPI.rejectWithValue(error.response);
+        }
+    }
+);
+
 const projectSlice = createSlice({
     name: "project",
     initialState,
@@ -109,6 +122,15 @@ const projectSlice = createSlice({
         },
         [addMember.fulfilled]: (state, action) => {
             state.addMemberSuccess = true;
+        },
+        [deleteMember.pending]: (state, action) => {
+            state.deleteMemberSuccess = null;
+        },
+        [deleteMember.rejected]: (state, action) => {
+            state.deleteMemberSuccess = false;
+        },
+        [deleteMember.fulfilled]: (state, action) => {
+            state.deleteMemberSuccess = true;
         }
     }
 });

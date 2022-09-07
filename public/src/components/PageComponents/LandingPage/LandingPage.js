@@ -29,6 +29,11 @@ const LandingPage = ({ isAuthenticated }) => {
         user.tokenCreated && isMounted && navigate("/projects");
     }, [user.tokenCreated]);
 
+    useEffect(() => {
+        if (user.logoutSuccess)
+            window.location.reload();
+    }, []);
+
     return (
         <>
         <title>Home | Devwire</title> 

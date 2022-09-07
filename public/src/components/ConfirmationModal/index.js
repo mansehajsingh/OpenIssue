@@ -34,14 +34,15 @@ const ConfirmationModal = ({
                 top="8rem"
                 margin="0 10px"
             >
+                <ModalCloseButton color="#FFF"/>
                 <ModalHeader 
                     color="#FFF"
                     fontWeight="bold"
                     fontSize="30px"
+                    marginTop="20px"
                 >
                     {text}
                 </ModalHeader>
-                <ModalCloseButton color="#FFF"/>
                 <ModalFooter
                     style={{
                         display: "flex",

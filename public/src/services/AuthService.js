@@ -9,7 +9,11 @@ class AuthService {
         return api.post("/token", {
             username,
             password,
-        })
+        });
+    }
+
+    invalidateToken() {
+        return api.delete("/token");
     }
 }
 

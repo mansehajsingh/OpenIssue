@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { IconButton } from "@chakra-ui/react";
 import { HamburgerIcon, ChevronLeftIcon } from "@chakra-ui/icons";
+import { IoExit } from "react-icons/io5";
 import {
     Drawer,
     DrawerBody,
@@ -11,8 +13,10 @@ import {
     DrawerContent,
     DrawerCloseButton,
     useDisclosure,
+    Tooltip,
 } from "@chakra-ui/react";
-
+import ConfirmationModal from "../ConfirmationModal";
+import { logoutUser } from "../../redux/slices/userSlice";
 import styles from "./styles.module.scss";
 import PropTypes from "prop-types";
 
@@ -32,12 +36,35 @@ const Navbar = ({ activeItem = null, userID = null }) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
 
+    const { 
+        isOpen: signOutIsOpen,
+        onOpen: signOutOnOpen,
+        onClose: signOutOnClose,
+    } = useDisclosure();
+
+    const signedIn = useSelector((state) => !!state.user.identity);
+    const user = useSelector((state) => state.user);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     /* effects */
     useEffect(() => {
         const handleResize = () => setWindowWidth(window.innerWidth);
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, [windowWidth]);
+
+    useEffect(() => {
+        if (user.logoutSuccess) {
+            navigate("/");
+        }
+    }, [user.logoutSuccess]);
+
+    // usage functions
+    const logoutOnClick = () => {
+        dispatch(logoutUser({}));
+    }
 
     /* render functions */
     const renderDrawerButton = () => {
@@ -153,9 +180,32 @@ const Navbar = ({ activeItem = null, userID = null }) => {
                     <ul className={styles.navlist}>{renderListItems()}</ul>
                 )}
             </div>
-            <div>{windowWidth < 500 && renderDrawerButton()}</div>
+            <div>
+                {signedIn && (
+                    <Tooltip label={"Sign Out"}>
+                        <IconButton
+                            icon={<IoExit color="FFF"/>}
+                            style={{
+                                backgroundColor: "#202124",
+                                margin: "12px 20px 0 0",
+                                border: "solid 1px #484F58",
+                                paddingLeft: "3px"
+                            }}
+                            onClick={() => signOutOnOpen()}
+                        />
+                    </Tooltip>
+                )}
+                {windowWidth < 500 && renderDrawerButton()}
+            </div>
         </nav>
         {renderDrawer()}
+        <ConfirmationModal
+            text="Are you sure you want to sign out?"
+            buttonText="Sign Out"
+            isOpen={signOutIsOpen}
+            onClose={signOutOnClose}
+            action={logoutOnClick}
+        />
         </>
     );
 };

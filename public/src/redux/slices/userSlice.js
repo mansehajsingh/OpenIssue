@@ -9,6 +9,7 @@ const initialState = {
     userCreationResponse: "",
     userLoginResponse: "",
     queriedUsers: [],
+    logoutSuccess: null,
 };
 
 export const getSelfFromToken = createAsyncThunk(
@@ -63,6 +64,18 @@ export const queryUsers = createAsyncThunk(
     }
 );
 
+export const logoutUser = createAsyncThunk(
+    "LOGOUT User",
+    async({}, thunkAPI) => {
+        try {
+            const response = await AuthService.invalidateToken();
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response);
+        }
+    }
+);
+
 const userSlice = createSlice({
     name: "user",
     initialState,
@@ -95,6 +108,9 @@ const userSlice = createSlice({
         [queryUsers.fulfilled]: (state, action) => {
             state.queriedUsers = action.payload.users;
         },
+        [logoutUser.fulfilled]: (state, action) => {
+            state.logoutSuccess = true;
+        }
     }
 });
 

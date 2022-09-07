@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Navbar from "../../Navbar/Navbar";
 import { useSelector } from 'react-redux';
 import styles from "./styles.module.scss";
 import { useNavigate } from "react-router-dom";
+import useIsMounted from "../../../hooks/useIsMounted";
 import PropTypes from "prop-types";
 
 /* component imports */
@@ -22,9 +23,10 @@ const LandingPage = ({ isAuthenticated }) => {
     const user = useSelector((state) => state.user);
     const formRef = useRef(null);
     const navigate = useNavigate();
+    const isMounted = useIsMounted();
 
     useEffect(() => {
-        user.tokenCreated && navigate("/projects");
+        user.tokenCreated && isMounted && navigate("/projects");
     }, [user.tokenCreated]);
 
     return (

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser, loginUser } from "../../redux/slices/userSlice";
 import { useToast } from '@chakra-ui/react'
+import useIsMounted from "../../hooks/useIsMounted";
 import PropTypes from "prop-types";
 import styles from "./styles.module.scss";
 
@@ -54,6 +55,8 @@ const LoginForm = ({ isAuthenticated }) => {
     const user = useSelector((state) => state.user);
 
     const toast = useToast();
+    
+    const isMounted = useIsMounted();
 
     const [activeForm, setActiveForm] = useState("login");
 
@@ -127,7 +130,7 @@ const LoginForm = ({ isAuthenticated }) => {
     }, [loginFields.username, loginFields.password]);
 
     useEffect(() => {
-        if (user.userLoginResponse) {
+        if (user.userLoginResponse && isMounted) {
             setLoginButtonDisabled(false);
             toast({
                 title: "Oops....",
@@ -142,7 +145,7 @@ const LoginForm = ({ isAuthenticated }) => {
 
     
     useEffect(() => {
-        if (user.userCreationResponse) {
+        if (user.userCreationResponse && isMounted) {
             toast({
                 title: "Sorry to tell you this but....",
                 description: user.userCreationResponse,

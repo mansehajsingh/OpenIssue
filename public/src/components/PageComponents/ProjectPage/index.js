@@ -7,6 +7,7 @@ import VerticalSpacer from "../../VerticalSpacer";
 import MembersSection from "../../MembersSection";
 import IssuesSection from "../../IssuesSection";
 import { useToast } from "@chakra-ui/react";
+import useIsMounted from "../../../hooks/useIsMounted";
 import Footer from "../../Footer";
 import styles from "./styles.module.scss";
 
@@ -19,6 +20,8 @@ const ProjectPage = ({
     const project = useSelector((state) => state.project);
     const user = useSelector((state) => state.user);
 
+    const isMounted = useIsMounted();
+
     const { project_id } = useParams();
 
     useEffect(() => {
@@ -28,7 +31,7 @@ const ProjectPage = ({
     }, []);
 
     useEffect(() => {
-        if (project.deleteMemberSuccess) {
+        if (project.deleteMemberSuccess && isMounted) {
             dispatch(getMembers({ project_id }));
             toast({
                 title: "Ouch",

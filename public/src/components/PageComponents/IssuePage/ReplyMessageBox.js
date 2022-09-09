@@ -54,10 +54,13 @@ const ReplyMessageBox = ({ reply, issue, user }) => {
     return (
         <div className={styles.reply_container} key={reply.id}>
             <div className={styles.reply_author_container}>
-                <p className={styles.reply_author}>
-                    {reply.author.first_name + " " + reply.author.last_name}
-                    <span>{" @" + reply.author.username}</span> replied&nbsp;
-                </p>
+                <div className={styles.author_time_container}>
+                    <p className={styles.reply_author}>
+                        {reply.author.first_name + " " + reply.author.last_name}
+                        <span>{" @" + reply.author.username}</span> replied&nbsp;
+                    </p>
+                    <Timestamp time={reply.createdAt} margin={"2px 0"}/>
+                </div>
                 {renderDeleteButton()}
             </div>
             <p className={styles.reply_id_tag}>reply id: {reply.id}</p>

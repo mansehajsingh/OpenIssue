@@ -11,6 +11,7 @@ import {
     ModalCloseButton,
     useToast
 } from '@chakra-ui/react';
+import useIsMounted from "../../hooks/useIsMounted";
 import styles from "./styles.module.scss";
 
 const AddModal = ({
@@ -21,6 +22,7 @@ const AddModal = ({
     const dispatch = useDispatch();
     const projects = useSelector((state) => state.projects);
     const user = useSelector((state) => state.user);
+    const isMounted = useIsMounted();
 
     const toast = useToast();
 
@@ -32,7 +34,8 @@ const AddModal = ({
     useEffect(() => {
         if (
             projects.projectCreationMessage && 
-            projects.projectCreationSuccess !== null
+            projects.projectCreationSuccess !== null &&
+            isMounted
         ) {
             if (projects.projectCreationSuccess) {
                 toast({

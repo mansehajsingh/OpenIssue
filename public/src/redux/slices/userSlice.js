@@ -10,6 +10,8 @@ const initialState = {
     userLoginResponse: "",
     queriedUsers: [],
     logoutSuccess: null,
+    userEditMessage: null,
+    userEditSuccess: null,
 };
 
 export const getSelfFromToken = createAsyncThunk(
@@ -76,6 +78,18 @@ export const logoutUser = createAsyncThunk(
     }
 );
 
+export const editUser = createAsyncThunk(
+    "EDIT User",
+    async({ user_id, username, first_name, last_name }, thunkAPI) => {
+        try {
+            const response = await UserService.editUser(user_id, username, first_name, last_name);
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response);
+        }
+    }
+);
+
 const userSlice = createSlice({
     name: "user",
     initialState,
@@ -110,6 +124,23 @@ const userSlice = createSlice({
         },
         [logoutUser.fulfilled]: (state, action) => {
             state.logoutSuccess = true;
+        },
+        [editUser.pending]: (state, action) => {
+            state.userEditResponse = null;
+            state.userEditSuccess = null;
+        },
+        [editUser.fulfilled]: (state, action) => {
+            state.identity = {
+                id: action.payload.resource.id,
+                username: action.payload.resource.username,
+                first_name: action.payload.resource.first_name,
+                last_name: action.payload.resource.last_name
+            };
+            state.userEditSuccess = true;
+        },
+        [editUser.rejected]: (state, action) => {
+            state.userEditSuccess = false;
+            state.userEditMessage = action.payload.data.message;
         }
     }
 });

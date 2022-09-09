@@ -1,0 +1,103 @@
+/* imports */
+@use "../../../App.module.scss" as App;
+
+/* mixins */
+
+/* styles */
+.content {
+    background-color: App.$dark-gray;
+    padding: 30px 30px;
+    min-height: calc(100vh - 65px);
+    min-width: 325px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 30px 0;
+}
+
+.title {
+    color: #FFF;
+    font-weight: bold;
+    font-size: 40px;
+    text-align: left;
+}
+
+.profile_form {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.form_section {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.input_wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.error_text {
+    color: #8a8a8a;
+    font-size: 13px;
+    min-height: 13px;
+}
+
+.username_label {
+    color: #FFF;
+    font-size: 16px;
+    margin-right: 25px;
+    margin-top: 5px;
+}
+
+.username_input {
+    @include App.input_mixin;
+    background: #242526;
+    padding: 7px;
+    font-size: 16px;
+    min-width: 250px;
+    width: 80%;
+    max-width: 80%;
+}
+
+.first_name_label {
+    color: #FFF;
+    font-size: 16px;
+    margin-right: 20px;
+    margin-top: 5px;
+}
+
+.first_name_input {
+    @include App.input_mixin;
+    background: #242526;
+    padding: 7px;
+    font-size: 16px;
+    min-width: 250px;
+    width: 80%;
+    max-width: 80%;
+}
+
+.last_name_label {
+    color: #FFF;
+    font-size: 16px;
+    margin-right: 20px;
+    margin-top: 5px;
+}
+
+.last_name_input {
+    @include App.input_mixin;
+    background: #242526;
+    padding: 7px;
+    font-size: 16px;
+    min-width: 250px;
+    width: 80%;
+    max-width: 80%;
+}
+
+.apply_button {
+    @include App.button_mixin;
+}

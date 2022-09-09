@@ -26,6 +26,7 @@ apiRouter.get("/users", UserController.getUsers);
 apiRouter.post("/users", UserController.createUser);
 apiRouter.get("/users/:user_id", authenticateToken, UserController.getUser);
 apiRouter.get("/users/:user_id/projects", authenticateToken, UserController.getProjects);
+apiRouter.patch("/users/:user_id", authenticateToken, UserController.editUser);
 
 apiRouter.post("/projects", authenticateToken, ProjectController.createProject);
 apiRouter.get("/projects/:project_id", authenticateToken, ProjectController.getProject);

@@ -20,6 +20,12 @@ class UserService {
         });
     }
 
+    editUser(user_id, username, first_name, last_name) {
+        return api.patch(`/users/${user_id}`, {
+            username, first_name, last_name
+        });
+    }
+
 }
 
 export default new UserService();

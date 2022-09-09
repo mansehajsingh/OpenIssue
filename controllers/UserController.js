@@ -160,6 +160,39 @@ class UserController {
         });
     }
 
+    static async editUser(req, res, next) {
+        const { user_id } = req.params;
+        const { username, first_name, last_name } = req.body;
+
+        if (req.session.user_id !== user_id)
+            return res.status(403).json({ message: "This token is not authorized to edit details for this user." });
+
+        // validating request items
+        const userInvalid = userInvalidity(username, first_name, last_name, "validpasswordplaceholder");
+        if (userInvalid) {
+            return res.status(userInvalid.status).json({ message: userInvalid.message });
+        }
+
+        // checking if the username exists already in the db
+        const usernameExists = await User.findOne({ where: { username: username } });
+        if (usernameExists && usernameExists.id !== user_id) {
+            return res.status(409).json({ message: "This username has already been taken." });
+        }
+
+        const updatedUser = await User.update({ 
+            username, first_name, last_name
+        }, {
+            where: { id: user_id }
+        });
+
+        return res.status(200).json({
+            resource: {
+                id: user_id,
+                username, first_name, last_name
+            }
+        });
+    }
+
 }
 
 module.exports = UserController;

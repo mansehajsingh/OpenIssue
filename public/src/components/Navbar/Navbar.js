@@ -88,10 +88,7 @@ const Navbar = ({ activeItem = null, userID = null }) => {
 
         const titleAndRouteByItem = {
             Project: { title: "Projects", route: "/projects" },
-            Profile: {
-                title: "Profile",
-                route: userID ? `users/${userID}` : "/",
-            },
+            Profile: { title: "Profile", route: "/profile" },
             About: { title: "About", route: "/about" },
         };
 
@@ -155,7 +152,7 @@ const Navbar = ({ activeItem = null, userID = null }) => {
                                 About
                             </Link>
                             <Link
-                                to={`/about/${userID}`}
+                                to={"/profile"}
                                 className={styles.drawer_link}
                             >
                                 Profile

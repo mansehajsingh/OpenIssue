@@ -32,7 +32,7 @@ const LandingPage = ({ isAuthenticated }) => {
     useEffect(() => {
         if (user.logoutSuccess)
             window.location.reload();
-    }, []);
+    }, [user.logoutSuccess]);
 
     return (
         <>

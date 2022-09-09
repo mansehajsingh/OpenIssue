@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useMatch } from "react-router-dom";
 import { IconButton } from "@chakra-ui/react";
 import { HamburgerIcon, ChevronLeftIcon } from "@chakra-ui/icons";
 import { IoExit } from "react-icons/io5";
@@ -56,7 +56,7 @@ const Navbar = ({ activeItem = null, userID = null }) => {
     }, [windowWidth]);
 
     useEffect(() => {
-        if (user.logoutSuccess) {
+        if (user.logoutSuccess && !useMatch("/")) {
             navigate("/");
         }
     }, [user.logoutSuccess]);

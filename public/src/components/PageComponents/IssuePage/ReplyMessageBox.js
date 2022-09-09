@@ -4,6 +4,7 @@ import { MdDelete } from "react-icons/md";
 import { Tooltip } from "@chakra-ui/react";
 import { deleteReply } from "../../../redux/slices/replySlice";
 import { getReplies } from '../../../redux/slices/issueSlice';
+import Timestamp from '../../Timestamp';
 import styles from "./styles.module.scss";
 
 const ReplyMessageBox = ({ reply, issue, user }) => {

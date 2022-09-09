@@ -53,7 +53,7 @@ class ReplyController {
         const { project_id, issue_id } = req.params;
         const { user_id } = req.session;
 
-        const issue = await Issue.findOne({ where: { id: user_id, deleted: false } });
+        const issue = await Issue.findOne({ where: { id: issue_id, deleted: false } });
 
         if (!issue)
             return res.status(404).json({ message: "Issue does not exist." });

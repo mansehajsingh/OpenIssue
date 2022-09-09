@@ -9,6 +9,7 @@ import Footer from "../../Footer";
 import PropTypes from  "prop-types";
 import { BiArrowBack } from "react-icons/bi";
 import { FlairChip } from '../../FlairMenu';
+import Timestamp from '../../Timestamp';
 import styles from "./styles.module.scss";
 import MarkdownView from '../../MarkdownView';
 import ActionsMenu from './ActionsMenu';
@@ -109,6 +110,8 @@ const IssuePage = () => {
                     + issue?.identity?.author?.last_name} 
                     <span> @{issue?.identity?.author?.username}</span>
                 </p>
+                <p className={styles.issue_id_text}>issue id: { issue_id }</p>
+                <Timestamp time={issue?.identity?.createdAt}/>
                 <p className={styles.status_tag}>
                     Status: 
                     <span className={issue.identity?.open ? styles.open_status : styles.closed_status}>

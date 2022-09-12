@@ -205,10 +205,12 @@
     border: solid 1px #cb3213;
     background-color: #a92d14;
     border-radius: 5px;
-    padding: 2px;
+    padding: 2px 2px 2px 3px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     transition: background-color 0.3s ease;
+    height: 25px;
+    width: 25px;
 
     &:hover {
         background-color: #cb3213;
@@ -217,5 +219,5 @@
 
 .author_time_container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }

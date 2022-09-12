@@ -22,8 +22,7 @@ const Timestamp = ({
     return (
         <div className={styles.wrapper} style={{ margin }}>
             <BiTimeFive 
-                color={"#8a8a8a"}
-                margin={"5px 0 0 0"}
+                className={styles.icon}
             />
             <p className={styles.text} style={{ fontSize }}>
                 {getDateTimeString(time)}

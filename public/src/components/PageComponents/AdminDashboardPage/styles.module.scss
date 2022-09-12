@@ -1,0 +1,91 @@
+/* imports */
+@use "../../../App.module.scss" as App;
+
+/* mixins */
+
+/* styles */ 
+.content {
+    background-color: App.$dark-gray;
+    min-height: calc(100vh - 65px);
+    padding: 100px 60px;
+    min-width: 325px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 413px) {
+    .content {
+        padding: 100px 30px;
+    }
+}
+
+.heading {
+    font-size: 40px;
+    font-weight: bold;
+    color: #FFF;
+}
+
+.back_btn_wrapper {
+    width: 100%;
+    align-items: left;
+}
+
+.back_button {
+    @include App.button_mixin;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 40px;
+}
+
+.edit_form {
+    margin: 20px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.name_input {
+    @include App.input_mixin;
+    background: #242526;
+    padding: 7px;
+    font-size: 16px;
+    min-width: 250px;
+    width: 80%;
+    max-width: 80%;
+}
+
+.name_label {
+    color: #FFF;
+}
+
+.description_label {
+    color: #FFF;
+    margin-top: 30px;
+}
+
+.description_area {
+    @include App.input_mixin;
+    background: #242526;
+    padding: 10px;
+    width: 80%;
+    font-size: 14px;
+}
+
+.error_text {
+    color: #545454;
+    font-size: 12px;
+    margin: 3px 0 0 5px;
+    min-height: 20px;
+}
+
+.apply_button_wrapper {
+    width: 80%;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 20px;
+}
+
+.apply_button {
+    @include App.button_mixin;
+    width: 150px;
+}

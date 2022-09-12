@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getIssues, getMembers, getProject } from "../../../redux/slices/projectSlice";
 import Navbar from "../../Navbar/Navbar";
@@ -19,6 +19,7 @@ const ProjectPage = ({
     const toast = useToast();
     const project = useSelector((state) => state.project);
     const user = useSelector((state) => state.user);
+    const navigate = useNavigate();
 
     const isMounted = useIsMounted();
 
@@ -43,6 +44,10 @@ const ProjectPage = ({
             });
         }
     }, [project.deleteMemberSuccess]);
+
+    const goToAdminDashboard = () => {
+        navigate(`/projects/${project_id}/admin`);
+    }
 
     return (
         <>
@@ -78,7 +83,7 @@ const ProjectPage = ({
                         </button>
                     </Link>
                     {user?.identity?.id === project?.identity?.owner?.id && (
-                        <button className={styles.admin_button}>Admin Dashboard</button>
+                        <button className={styles.admin_button} onClick={goToAdminDashboard}>Admin Dashboard</button>
                     )}
                 </section>
                 <section className={styles.project_content}>

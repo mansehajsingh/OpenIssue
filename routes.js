@@ -30,6 +30,7 @@ apiRouter.patch("/users/:user_id", authenticateToken, UserController.editUser);
 
 apiRouter.post("/projects", authenticateToken, ProjectController.createProject);
 apiRouter.get("/projects/:project_id", authenticateToken, ProjectController.getProject);
+apiRouter.patch("/projects/:project_id", authenticateToken, ProjectController.editProject);
 
 apiRouter.get("/projects/:project_id/members", authenticateToken, ProjectController.getMembers);
 apiRouter.post("/projects/:project_id/members", authenticateToken, ProjectController.addMember);

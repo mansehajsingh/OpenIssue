@@ -168,6 +168,25 @@ class ProjectController {
         return res.status(204).json({ message: "Member removed successfully." });
     }
 
+    static async editProject(req, res, next) {
+        const { project_id } = req.params;
+        const { user_id } = req.session;
+        const { name, description } = req.body;
+        
+        const project = await Project.findOne({ where: { id: project_id } });
+        
+        if (!project) return res.status(404).json({ message: "A project with this id does not exist." });
+        if (project.owner !== user_id) return res.status(403).json({ message: "Not authorized to edit this project." });
+        
+        const projectInvalid = projectInvalidity(name, description);
+        if (projectInvalid) {
+            return res.status(projectInvalid.status).json({ message: projectInvalid.message });
+        }
+
+        project.update({ name, description });
+        return res.status(204).json({ message: "Project updated successfully." });
+    }
+
 }
 
 module.exports = ProjectController;

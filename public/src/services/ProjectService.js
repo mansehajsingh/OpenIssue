@@ -17,6 +17,12 @@ class ProjectService {
         return api.get(`/projects/${project_id}`);
     }
 
+    editProject(project_id, name, description) {
+        return api.patch(`/projects/${project_id}`, {
+            name, description
+        });
+    }
+
     getMembers(project_id) {
         return api.get(`/projects/${project_id}/members`);
     }

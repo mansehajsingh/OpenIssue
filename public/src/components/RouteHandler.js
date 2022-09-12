@@ -13,6 +13,7 @@ import ProjectPage from "./PageComponents/ProjectPage";
 import CreateIssuePage from "./PageComponents/CreateIssuePage";
 import IssuePage from "./PageComponents/IssuePage";
 import ProfilePage from "./PageComponents/ProfilePage/ProfilePage";
+import AdminDashboardPage from "./PageComponents/AdminDashboardPage";
 
 const RouteHandler = (props) => {
     return (
@@ -21,6 +22,7 @@ const RouteHandler = (props) => {
                 <Route path="/" element={<AuthComponent component={LandingPage}/>}/>
                 <Route path="/projects" element={<AuthComponent component={ProjectsPage}/>}/>
                 <Route path="/projects/:project_id" element={<AuthComponent component={ProjectPage}/>}/>
+                <Route path="/projects/:project_id/admin" element={<AuthComponent component={AdminDashboardPage}/>}/>
                 <Route path="/projects/:project_id/create-issue" element={<AuthComponent component={CreateIssuePage}/>}/>
                 <Route path="/projects/:project_id/issues/:issue_id" element={<AuthComponent component={IssuePage}/>}/>
                 <Route path="/profile" element={<AuthComponent component={ProfilePage}/>}/>

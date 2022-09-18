@@ -47,6 +47,10 @@ class ProjectService {
         return api.delete(`/projects/${project_id}/members/${user_id}`);
     }
 
+    deleteProject(project_id) {
+        return api.delete(`/projects/${project_id}`);
+    }
+
 }
 
 export default new ProjectService();

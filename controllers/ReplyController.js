@@ -1,5 +1,5 @@
 /* require dependencies */
-const { Issue, Flair, User, Project, ProjectMember, Reply } = require("../models");
+const { Issue, User, Project, ProjectMember, Reply } = require("../models");
 const replyValidity = require("./validation/ReplyValidator");
 
 /* controller */

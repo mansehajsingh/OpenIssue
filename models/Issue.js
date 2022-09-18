@@ -36,6 +36,11 @@ Issue.init(
             type: DataTypes.BOOLEAN,
             defaultValue: false,
             allowNull: false
+        },
+        flairs: {
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            defaultValue: [],
+            allowNull: false,
         }
     },
     /* model options */

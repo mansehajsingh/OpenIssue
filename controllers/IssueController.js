@@ -1,5 +1,5 @@
 /* require dependencies */
-const { Issue, Flair, User, Project, ProjectMember } = require("../models");
+const { Issue, User, Project, ProjectMember } = require("../models");
 const issueInvalidity = require("./validation/IssueValidator");
 
 /* controller */
@@ -35,13 +35,7 @@ class IssueController {
         });
 
         if (!issue)
-            return res.status(404).json({ message: "No issue exists with this id." })
-
-        const flairs = await Flair.findAll({
-            where: { issue_id: issue_id }
-        });
-
-        let flairNames = flairs.map((flair) => flair.value);
+            return res.status(404).json({ message: "No issue exists with this id." });
 
         const projectObject = JSON.parse(JSON.stringify(issue.project));
         projectObject.owner = projectObject.user;
@@ -57,7 +51,7 @@ class IssueController {
             updatedAt: issue.updatedAt,
             author: issue.user,
             project: projectObject,
-            flairs: flairNames,
+            flairs: issue.flairs,
         });
     }
     
@@ -85,11 +79,8 @@ class IssueController {
             title, content, project_id,
             author: req.session.user_id,
             priority: priority,
+            flair: flairs,
         });
-
-        const flairRecords = flairs.map((flair) => ({ value: flair, issue_id: issue.id }));
-
-        const createdFlairs = await Flair.bulkCreate(flairRecords);
 
         return res.status(201).json({
             message: "Issue created successfully.",
@@ -118,7 +109,7 @@ class IssueController {
             include: [{ 
                 model: Issue, 
                 where: { deleted: false },
-                include: [{model: User}, {model: Flair}],
+                include: [{model: User}],
                 order: [["createdAt", "DESC"]]
             }]
         });
@@ -136,7 +127,7 @@ class IssueController {
                 title: issue.title,
                 content: issue.content,
                 author: issue.author,
-                flairs: issue.flairs.map(flair => flair.value),
+                flairs: issue.flairs,
                 open: issue.open,
                 priority: issue.priority,
                 created: issue.createdAt,

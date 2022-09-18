@@ -3,7 +3,6 @@ const User = require("./User");
 const Project = require("./Project");
 const ProjectMember = require("./ProjectMember");
 const Issue = require("./Issue");
-const Flair = require("./Flair");
 const Reply = require("./Reply");
 
 /**
@@ -26,10 +25,7 @@ ProjectMember.belongsTo(Project, { foreignKey: "project_id" });
 
 Issue.belongsTo(Project, { foreignKey: "project_id" });
 Issue.belongsTo(User, { foreignKey: "author" });
-Issue.hasMany(Flair, { foreignKey: "issue_id" });
 Issue.hasMany(Reply, {foreignKey: "issue_id"});
-
-Flair.belongsTo(Issue, { foreignKey: "issue_id" });
 
 Reply.belongsTo(Issue, { foreignKey: "issue_id" });
 Reply.belongsTo(User, { foreignKey: "author" });
@@ -40,6 +36,5 @@ module.exports = {
     Project,
     ProjectMember,
     Issue,
-    Flair,
     Reply,
 };

@@ -7,6 +7,7 @@ import useIsMounted from "../../../hooks/useIsMounted";
 import { BiArrowBack } from "react-icons/bi";
 import Navbar from "../../Navbar/Navbar";
 import Footer from "../../Footer";
+import NuclearForm from "../../NuclearForm";
 import styles from "./styles.module.scss";
 
 const AdminDashboardPage = ({}) => {
@@ -86,6 +87,7 @@ const AdminDashboardPage = ({}) => {
     return (
         <>
         <Navbar />
+        <title>{editFormState.name} | Admin</title>
         <main className={styles.content}>
             <div className={styles.back_btn_wrapper}>
                 <button 
@@ -113,6 +115,7 @@ const AdminDashboardPage = ({}) => {
                         Apply Changes
                     </button>
                 </div>
+                <NuclearForm />
             </form>
         </main>
         <Footer />

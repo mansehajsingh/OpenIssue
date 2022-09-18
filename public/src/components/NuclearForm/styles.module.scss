@@ -1,0 +1,49 @@
+@use "../../App.module.scss" as App;
+
+/* mixins */
+
+/* styles */
+.container {
+    width: 80%;
+    max-width: 80%;
+    border: solid 1px #cb3213;
+    background-color: #320b03;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: left;
+}
+
+.heading_wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.heading {
+    color: #cb3213;
+    margin-bottom: 1px;
+}
+
+.subheading {
+    color: #cb3213;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.icon {
+    margin-top: 5px;
+    margin-right: 3px;
+    color: #cb3213;
+}
+
+.delete_button {
+    @include App.button_mixin;
+    width: 150px;
+    border: solid 1px #cb3213;
+    color: #cb3213;
+
+    &:hover {
+        background-color: #cb3213 !important;
+    }
+}

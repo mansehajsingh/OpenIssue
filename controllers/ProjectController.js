@@ -1,5 +1,5 @@
 /* require dependencies */
-const { User, Project, ProjectMember } = require("../models");
+const { User, Project, ProjectMember, Issue } = require("../models");
 const projectInvalidity = require("./validation/ProjectValidator");
 
 /* controller */
@@ -185,6 +185,22 @@ class ProjectController {
 
         project.update({ name, description });
         return res.status(204).json({ message: "Project updated successfully." });
+    }
+
+    static async deleteProject(req, res, next) {
+        const { project_id } = req.params;
+        const { user_id } = req.session;
+
+        const project = await Project.findOne({ where: { id: project_id } });
+        
+        if (!project) return res.status(404).json({ message: "A project with this id does not exist." });
+        if (project.owner !== user_id) return res.status(403).json({ message: "Not authorized to delete this project." });
+
+        await Issue.destroy({ where: { project_id } });
+        await ProjectMember.destroy({ where: { project_id } });
+        await Project.destroy({ where: { id: project_id } });
+
+        return res.status(204).json({ message: "Project deleted successfully." });
     }
 
 }

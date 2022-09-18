@@ -36,6 +36,8 @@ const Navbar = ({ activeItem = null, userID = null }) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
 
+    const isHomePage = useMatch("/");
+
     const { 
         isOpen: signOutIsOpen,
         onOpen: signOutOnOpen,
@@ -56,7 +58,7 @@ const Navbar = ({ activeItem = null, userID = null }) => {
     }, [windowWidth]);
 
     useEffect(() => {
-        if (user.logoutSuccess && !useMatch("/")) {
+        if (user.logoutSuccess && !isHomePage) {
             navigate("/");
         }
     }, [user.logoutSuccess]);

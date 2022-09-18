@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getProject, editProject } from "../../../redux/slices/projectSlice";
+import { getProject, editProject, getMembers } from "../../../redux/slices/projectSlice";
 import { useToast } from "@chakra-ui/react";
 import useIsMounted from "../../../hooks/useIsMounted";
 import { BiArrowBack } from "react-icons/bi";
@@ -29,6 +29,7 @@ const AdminDashboardPage = ({}) => {
 
     useEffect(() => {
         dispatch(getProject({ project_id }));
+        dispatch(getMembers({ project_id }));
     }, []);
 
     useEffect(() => {

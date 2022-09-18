@@ -203,6 +203,28 @@ class ProjectController {
         return res.status(204).json({ message: "Project deleted successfully." });
     }
 
+    static async transferOwnership(req, res, next) {
+        const { project_id } = req.params;
+        const { new_owner_id } = req.body;
+        const { user_id } = req.session;
+
+        const project = await Project.findOne({ where: { id: project_id } });
+        
+        if (!project) return res.status(404).json({ message: "A project with this id does not exist." });
+        if (project.owner !== user_id) return res.status(403).json({ message: "Not authorized to change ownership of this project." });
+
+        const projectMember = await ProjectMember.findOne({ where: { project_id, user_id: new_owner_id } });
+
+        if (!projectMember) return res.status(404).json({ message: "No project member with the given id exists." });
+
+        project.update({ owner: new_owner_id });
+
+        await ProjectMember.create({ user_id, project_id });
+        await projectMember.destroy();
+
+        return res.status(204).json({ message: "Ownership transferred successfully." });
+    }
+
 }
 
 module.exports = ProjectController;

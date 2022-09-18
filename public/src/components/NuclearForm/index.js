@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useDisclosure, useToast } from "@chakra-ui/react";
-import { deleteProject } from "../../redux/slices/projectSlice";
+import { deleteProject, transferProject } from "../../redux/slices/projectSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import useIsMounted from "../../hooks/useIsMounted";
 import { AiTwotoneExperiment } from "react-icons/ai";
@@ -11,6 +11,10 @@ import styles from "./styles.module.scss";
 const NuclearForm = ({}) => {
 
     const { isOpen: deleteIsOpen, onOpen: deleteOnOpen, onClose: deleteOnClose } = useDisclosure();
+
+    const { isOpen: transferIsOpen, onOpen: transferOnOpen, onClose: transferOnClose } = useDisclosure();
+
+    const [selectedTransfer, setSelectedTransfer] = useState(null);
 
     const navigate = useNavigate();
 
@@ -37,8 +41,43 @@ const NuclearForm = ({}) => {
         }
     }, [project.deleteProjectSuccess]);
 
+    useEffect(() => {
+        if (isMounted && project.transferProjectSuccess) {
+            toast({
+                title: "Hooray!",
+                description: "Project transferred successfully.",
+                status: "success",
+                position: "top",
+                duration: 5000,
+                isClosable: true,
+            });
+            navigate(`/projects/${project_id}`);
+        }
+    }, [project.transferProjectSuccess]);
+
     const deleteOnClick = () => {
         dispatch(deleteProject({ project_id }));
+    }
+
+    const transferOnClick = () => {
+        dispatch(transferProject({ project_id, new_owner_id: selectedTransfer.id }));
+    }
+
+    const renderMembers = () => {
+        if (!project.members) return null;
+        return project.members.map((member) => {
+            return (
+                <p 
+                    className={styles.member_tag}
+                    onClick={() => {
+                        setSelectedTransfer(member);
+                        transferOnOpen();
+                    }}
+                >
+                    to <span>@{member.username}</span> {member.first_name} {member.last_name}
+                </p>
+            );
+        });
     }
 
     return (
@@ -60,6 +99,19 @@ const NuclearForm = ({}) => {
                 isOpen={deleteIsOpen}
                 onClose={deleteOnClose}
                 action={deleteOnClick}
+            />
+            <div className={styles.transfer_container}>
+                <h3 className={styles.transfer_heading}>Transfer Ownership</h3>
+                <div className={styles.members_container}>
+                    {renderMembers()}
+                </div>
+            </div>
+            <ConfirmationModal 
+                text={`Are you absolutely sure you want to transfer this project to @${selectedTransfer?.username}?`}
+                buttonText="Transfer"
+                isOpen={transferIsOpen}
+                onClose={transferOnClose}
+                action={transferOnClick}
             />
         </div>
     );

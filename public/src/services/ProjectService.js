@@ -51,6 +51,10 @@ class ProjectService {
         return api.delete(`/projects/${project_id}`);
     }
 
+    transferProject(project_id, new_owner_id) {
+        return api.patch(`/projects/${project_id}/owner`, { new_owner_id });
+    }
+
 }
 
 export default new ProjectService();

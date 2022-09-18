@@ -42,8 +42,45 @@
     width: 150px;
     border: solid 1px #cb3213;
     color: #cb3213;
+    margin-bottom: 10px;
 
     &:hover {
         background-color: #cb3213 !important;
+    }
+}
+
+.transfer_container {
+    border-radius: 5px;
+    border: solid 1px #cb3213;
+    background-color: App.$dark-gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    padding: 10px 0 5px 30px;
+}
+
+.transfer_heading {
+    font-size: 14px;
+    color: #cb3213;
+}
+
+.members_container {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+}
+
+.member_tag {
+    cursor: pointer;
+    color: #FFF;
+    font-size: 11px;
+    margin: 4px 0;
+
+    & > span {
+        color: App.$purple;
+    }
+
+    &:hover {
+        text-decoration: underline;
     }
 }

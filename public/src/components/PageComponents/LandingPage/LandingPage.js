@@ -72,7 +72,6 @@ const LandingPage = ({ isAuthenticated }) => {
                     heading="Connect"
                     content="Colloborate and communicate with a network of other developers."
                     bgColor="#242526"
-                    buttonText="Learn More"
                     buttonProps={{
                         style: {
                             color: "#FFF",
@@ -86,7 +85,6 @@ const LandingPage = ({ isAuthenticated }) => {
                     heading="Design"
                     content="Deploy innovative new projects and platforms accessible to a global community."
                     bgColor="#272829"
-                    buttonText="Start Building"
                     buttonProps={{
                         style: {
                             color: "#FFF",
@@ -100,7 +98,6 @@ const LandingPage = ({ isAuthenticated }) => {
                     heading="Organize"
                     content="Manage workflows, issues, and feature updates all in one."
                     bgColor="#242526"
-                    buttonText="Get In Control"
                     buttonProps={{
                         style: {
                             color: "#FFF",

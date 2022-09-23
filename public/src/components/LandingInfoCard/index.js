@@ -26,13 +26,6 @@ const LandingInfoCard = ({
             <div className={styles.text_container}>
                 <h4 className={styles.heading}>{heading}</h4>
                 <p className={styles.content}>{content}</p>
-                <button
-                    className={styles.button}
-                    style={buttonProps.style || {}}
-                    onClick={buttonProps.onClick || null}
-                >
-                    {buttonText}
-                </button>
             </div>
         );
     }

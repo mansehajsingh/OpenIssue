@@ -30,7 +30,7 @@ export const NavbarActiveItems = {
 };
 
 /* component definition */
-const Navbar = ({ activeItem = null, userID = null }) => {
+const Navbar = ({ activeItem = null }) => {
     /* state */
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -88,27 +88,29 @@ const Navbar = ({ activeItem = null, userID = null }) => {
     const renderListItems = () => {
         let itemsElements = [];
 
-        const titleAndRouteByItem = {
-            Project: { title: "Projects", route: "/projects" },
-            Profile: { title: "Profile", route: "/profile" },
-            About: { title: "About", route: "/about" },
+        const itemMap = {
+            Project: { title: "Projects", route: "/projects", auth: true, },
+            Profile: { title: "Profile", route: "/profile", auth: true },
+            About: { title: "About", route: "/about", auth: false },
         };
 
         for (let item in NavbarActiveItems) {
-            itemsElements.push(
-                <li key={item}>
-                    <Link
-                        to={titleAndRouteByItem[item].route}
-                        className={
-                            activeItem === NavbarActiveItems[item]
-                                ? styles.active_navlink
-                                : styles.inactive_navlink
-                        }
-                    >
-                        {titleAndRouteByItem[item].title}
-                    </Link>
-                </li>
-            );
+            if (itemMap[item].auth === false || signedIn) {
+                itemsElements.push(
+                    <li key={item}>
+                        <Link
+                            to={itemMap[item].route}
+                            className={
+                                activeItem === NavbarActiveItems[item]
+                                    ? styles.active_navlink
+                                    : styles.inactive_navlink
+                            }
+                        >
+                            {itemMap[item].title}
+                        </Link>
+                    </li>
+                );
+            }
         }
         return itemsElements;
     };
@@ -141,24 +143,28 @@ const Navbar = ({ activeItem = null, userID = null }) => {
                     </DrawerHeader>
                     <DrawerBody className={styles.drawer_body} border="solid 0px">
                         <div className={styles.drawer_body_content}>
-                            <Link
-                                to={"/projects"}
-                                className={styles.drawer_link}
-                            >
-                                Projects
-                            </Link>
+                            {signedIn && (
+                                <Link
+                                    to={"/projects"}
+                                    className={styles.drawer_link}
+                                >
+                                    Projects
+                                </Link>
+                            )}
                             <Link
                                 to={"/about"}
                                 className={styles.drawer_link}
                             >
                                 About
                             </Link>
-                            <Link
-                                to={"/profile"}
-                                className={styles.drawer_link}
-                            >
-                                Profile
-                            </Link>
+                            {signedIn && (
+                                <Link
+                                    to={"/profile"}
+                                    className={styles.drawer_link}
+                                >
+                                    Profile
+                                </Link>
+                            )}
                         </div>
                     </DrawerBody>
                 </DrawerContent>

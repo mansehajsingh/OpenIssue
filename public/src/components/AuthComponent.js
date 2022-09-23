@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { getSelfFromToken } from "../redux/slices/userSlice";
+import ErrorPage from "./PageComponents/ErrorPage";
 
-const AuthComponent = ({ component }) => {
+const AuthComponent = ({ component, requiresAuth = false }) => {
     const Component = component;
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
@@ -18,7 +19,13 @@ const AuthComponent = ({ component }) => {
         if (user.tokenCreated) {
             dispatch(getSelfFromToken());
         }
-    }, [user.tokenCreated])
+    }, [user.tokenCreated]);
+    
+    if (requiresAuth && !user.identity) {
+        return (
+            <ErrorPage />
+        );
+    }
 
     return (
         <Component isAuthenticated={isAuthenticated}/>

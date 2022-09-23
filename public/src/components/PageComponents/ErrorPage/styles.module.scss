@@ -1,0 +1,27 @@
+/* imports */
+@use "../../../App.module.scss" as App;
+
+/* mixins */
+
+/* styles */
+.content {
+    height: 100vh;
+    text-align: center;
+    background-color: App.$dark-gray;
+    padding-top: 100px;
+}
+
+.code_heading {
+    color: #FFF;
+    font-size: 8rem;
+    font-weight: bold;
+}
+
+.subheading {
+    color: #FFF;
+
+    & > a {
+        color: App.$purple;
+        text-decoration: underline;
+    }
+}

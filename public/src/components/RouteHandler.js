@@ -20,12 +20,12 @@ const RouteHandler = (props) => {
         <Router basename="/">
             <Routes>
                 <Route path="/" element={<AuthComponent component={LandingPage}/>}/>
-                <Route path="/projects" element={<AuthComponent component={ProjectsPage}/>}/>
-                <Route path="/projects/:project_id" element={<AuthComponent component={ProjectPage}/>}/>
-                <Route path="/projects/:project_id/admin" element={<AuthComponent component={AdminDashboardPage}/>}/>
-                <Route path="/projects/:project_id/create-issue" element={<AuthComponent component={CreateIssuePage}/>}/>
-                <Route path="/projects/:project_id/issues/:issue_id" element={<AuthComponent component={IssuePage}/>}/>
-                <Route path="/profile" element={<AuthComponent component={ProfilePage}/>}/>
+                <Route path="/projects" element={<AuthComponent requiresAuth component={ProjectsPage}/>}/>
+                <Route path="/projects/:project_id" element={<AuthComponent requiresAuth component={ProjectPage}/>}/>
+                <Route path="/projects/:project_id/admin" element={<AuthComponent requiresAuth component={AdminDashboardPage}/>}/>
+                <Route path="/projects/:project_id/create-issue" element={<AuthComponent requiresAuth component={CreateIssuePage}/>}/>
+                <Route path="/projects/:project_id/issues/:issue_id" element={<AuthComponent requiresAuth component={IssuePage}/>}/>
+                <Route path="/profile" element={<AuthComponent requiresAuth component={ProfilePage}/>}/>
             </Routes>
         </Router>
     );

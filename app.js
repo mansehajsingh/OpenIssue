@@ -43,7 +43,7 @@ process.on('uncaughtException', function (err) {
 });
 
 server = https.createServer({
-    key: fs.readFileSync('../../../etc/letsencrypt/live/devwire.ca/key.pem'),
+    key: fs.readFileSync('../../../etc/letsencrypt/live/devwire.ca/privkey.pem'),
     cert: fs.readFileSync('../../../etc/letsencrypt/live/devwire.ca/cert.pem'),
     ca: fs.readFileSync('../../../etc/letsencrypt/live/devwire.ca/chain.pem'),
 }, app);

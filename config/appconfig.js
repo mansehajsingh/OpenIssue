@@ -3,6 +3,6 @@ module.exports = {
         useHttps: false,
     },
     production: {
-        useHttps: false, //TODO Replace this with true once implemented
+        useHttps: true, 
     }
 }

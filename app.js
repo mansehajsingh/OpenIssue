@@ -7,6 +7,8 @@ const router = require("./routes");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const logger = require("./logger");
+const https = require("https");
+const fs = require("fs");
 
 /* important inits */
 const app = express();
@@ -40,6 +42,12 @@ process.on('uncaughtException', function (err) {
     logger.log(err);
 });
 
-app.listen(PORT, HOSTNAME, () => {
+server = https.createServer({
+    key: fs.readFileSync('/etc/letsencrypt/live/devwire.ca/key.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/devwire.ca/cert.pem'),
+    ca: fs.readFileSync('/etc/letsencrypt/live/devwire.ca/chain.pem'),
+}, app);
+
+server.listen(PORT, HOSTNAME, () => {
     console.log(`App is listening on port ${PORT}.`);
 });

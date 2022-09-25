@@ -16,7 +16,7 @@ const reducer = {
 
 const store = configureStore({
     reducer: reducer,
-    devTools: true,
+    devTools: false,
 });
 
 export default store;

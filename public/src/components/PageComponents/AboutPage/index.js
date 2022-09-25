@@ -14,7 +14,7 @@ const AboutPage = ({}) => {
             <main className={styles.content}>
                 <img className={styles.image} src="../../../content/images/devwire_logo_color.svg"/>
                 <h2 className={styles.heading}>A platform to organize software development.</h2>
-                <p className={styles.description}>Devwire is a free-to-use platform for bringing together a team of developers to create a refined, well-oiled product. Create issues, add team members, replky to issues, and share ideas in a centralized format. The powerful markdown editor makes it incredibly easy to write well produced documents, with full support for inserting code snippets in many languages.</p>
+                <p className={styles.description}>Devwire is a free-to-use platform for bringing together a team of developers to create a refined, well-oiled product. Create issues, add team members, reply to issues, and share ideas in a centralized format. The powerful markdown editor makes it incredibly easy to write well produced documents, with full support for inserting code snippets in many languages.</p>
                 <p className={styles.description}>Stack:</p>
                 <table className={styles.stack_table}>
                     <tbody>

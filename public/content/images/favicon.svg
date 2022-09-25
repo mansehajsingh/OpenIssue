@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="106.21575mm"
-   height="135.38193mm"
-   viewBox="0 0 106.21576 135.38192"
+   width="102.30875mm"
+   height="139.56149mm"
+   viewBox="0 0 102.30876 139.56149"
    version="1.1"
    id="svg5"
    inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
@@ -26,8 +26,8 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.2102413"
-     inkscape:cx="-173.61004"
-     inkscape:cy="249.71307"
+     inkscape:cx="-175.98826"
+     inkscape:cy="268.73883"
      inkscape:window-width="1500"
      inkscape:window-height="930"
      inkscape:window-x="-6"
@@ -62,7 +62,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-48.318133,-84.65047)">
+     transform="translate(-49.771899,-80.834335)">
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:186.082px;font-family:'Britannic Bold';-inkscape-font-specification:'Britannic Bold,  Bold';fill:url(#linearGradient1692);fill-opacity:1;stroke-width:3.48903"
@@ -71,7 +71,7 @@
        id="text790"><tspan
          sodipodi:role="line"
          id="tspan788"
-         style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:normal;font-family:Arial;-inkscape-font-specification:'Arial Heavy';fill:url(#linearGradient1692);fill-opacity:1;stroke-width:3.48903"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Century Gothic';-inkscape-font-specification:'Century Gothic Bold';fill:url(#linearGradient1692);fill-opacity:1;stroke-width:3.48903"
          x="41.776188"
          y="217.85175">d</tspan></text>
   </g>

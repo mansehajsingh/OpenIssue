@@ -50,6 +50,7 @@ class UserController {
     }
 
     static async createUser(req, res, next) {
+        randomFunc();
         // destructuring request body
         const { username, first_name, last_name, password } = req.body;
 

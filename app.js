@@ -6,6 +6,7 @@ const { sequelize } = require("./database");
 const router = require("./routes");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const logger = require("./logger");
 
 /* important inits */
 const app = express();
@@ -18,7 +19,7 @@ app.use(express.static(path.join(__dirname, "public", "dist")));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: process.env.ORIGIN,
     credentials: true
 }));
 
@@ -34,6 +35,10 @@ app.use("/", router);
         console.error('Unable to connect to the database:', error);
     }
 })();
+
+process.on('uncaughtException', function (err) {
+    logger.log(err);
+});
 
 app.listen(PORT, HOSTNAME, () => {
     console.log(`App is listening on port ${PORT}.`);

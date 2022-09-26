@@ -24,6 +24,10 @@ app.use(cors({
     origin: process.env.ORIGIN,
     credentials: true
 }));
+app.enable('trust proxy')
+app.use((req, res, next) => {
+    req.secure ? next() : res.redirect('https://' + req.headers.host + req.url)
+});
 
 /* router setup */
 app.use("/", router);
@@ -51,3 +55,11 @@ server = https.createServer({
 server.listen(PORT, HOSTNAME, () => {
     console.log(`App is listening on port ${PORT}.`);
 });
+
+const redirectServer = express();
+
+redirectServer.get("*", function (req, res) {
+    res.redirect("https://devwire.ca" + req.baseUrl);
+});
+
+redirectServer.listen(80, HOSTNAME, () => {});

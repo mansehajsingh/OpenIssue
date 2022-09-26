@@ -5,3 +5,5 @@ IGNORE/
 
 videos/
 logs/
+
+public/.well-known

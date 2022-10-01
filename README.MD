@@ -5,7 +5,7 @@
 </p>
 
 <br>
-<p align="center"><a href="https://devwire.ca">devwire.ca</a></p>
+<p align="center"><a target="_blank" href="https://devwire.ca">devwire.ca</a></p>
 <p align="center">A collaborative issue tracker web applicaiton.</p>
 
 # Stack (PERN)
